@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Parts Book Sorter</title>
+  </head>
+  <body>
+    <label>Serial Number: </label><input id="serial" name="serial" type="text" placeholder="#"></label>
+    <ul id="links"></ul>
+
+    <script>
+    (function(w) {
+      var data = [
+      {
+        "serial":" 000000-301000",
+        "link":"https://www.dropbox.com/s/5di3mdtzj2g2hyq/BB-250%20Broce%20Broom%20Parts%20Catalog%20000000-301000.pdf?dl=1"
+      },
+      {
+        "serial":" 304263-304334",
+        "link":"https://www.dropbox.com/s/4knl1fgevqurgan/BB-250%20Broce%20Broom%20Parts%20Catalog%20304263-304334.pdf?dl=1"
+      },
+      {
+        "serial":" 304335-304642",
+        "link":"https://www.dropbox.com/s/mhlw19m89x4ewlm/BB-250%20Broce%20Broom%20Parts%20Catalog%20304335-304642.pdf?dl=1"
+      },
+      {
+        "serial":" 304643+",
+        "link":"https://www.dropbox.com/s/whlusprl9jvspir/BB-250%20Broce%20Broom%20Parts%20Catalog%20304643%2B.pdf?dl=1"
+      },
+      {
+        "serial":" 000000-301000",
+        "link":"https://www.dropbox.com/s/w1ik4cyn52wzhhi/300%20Series%20Broce%20Broom%20Parts%20Catalog%2086000-88649.pdf?dl=1"
+      },
+      {
+        "serial":" 00001-03163",
+        "link":"https://www.dropbox.com/s/0adyfhy6wiu4xbq/350%20Series%20Broce%20Broom%20Parts%20Catalog%2000001-03163.pdf?dl=1"
+      },
+      {
+        "serial":" 88650-89577",
+        "link":"https://www.dropbox.com/s/2ltzkclmthzap2y/350%20Series%20Broce%20Broom%20Parts%20Catalog%2088650-89577.pdf?dl=1"
+      },
+      {
+        "serial":" 89578-90187",
+        "link":"https://www.dropbox.com/s/94sannbmzc0d12d/350%20Series%20Broce%20Broom%20Parts%20Catalog%2089578-90187.pdf?dl=1"
+      },
+      {
+        "serial":" 90188-401274",
+        "link":"https://www.dropbox.com/s/pgxdmuf5ir3axld/350%20Series%20Broce%20Broom%20Parts%20Catalog%2090188-401274.pdf?dl=1"
+      },
+      {
+        "serial":" 401275-404000",
+        "link":"https://www.dropbox.com/s/rtop267nlid8r5b/350%20Series%20Broce%20Broom%20Parts%20Catalog%20401275-404000.pdf?dl=1"
+      },
+      {
+        "serial":" 404001-404561",
+        "link":"https://www.dropbox.com/s/h5yxdgtvxku54z0/350%20Series%20Broce%20Broom%20Parts%20Catalog%20404001-404561.pdf?dl=1"
+      },
+      {
+        "serial":" 404562-404986",
+        "link":"https://www.dropbox.com/s/1zipif1jg3kx1jf/350%20Series%20Broce%20Broom%20Parts%20Catalog%20404562-404986.pdf?dl=1"
+      },
+      {
+        "serial":" 404987-405037",
+        "link":"https://www.dropbox.com/s/k8htlj37oppd1u3/350%20Series%20Broce%20Broom%20Parts%20Catalog%20404987-405037.pdf?dl=1"
+      },
+      {
+        "serial":" 405038-405220",
+        "link":"https://www.dropbox.com/s/helfzjjzkwkoiwe/350%20Series%20Broce%20Broom%20Parts%20Catalog%20405038-405220.pdf?dl=1"
+      },
+      {
+        "serial":" 405221-405423",
+        "link":"https://www.dropbox.com/s/ds8ead7hvygfugg/350%20Series%20Broce%20Broom%20Parts%20Catalog%20405221-405423.pdf?dl=1"
+      },
+      {
+        "serial":" 405424-406082",
+        "link":"https://www.dropbox.com/s/ishjf57934gwmi1/350%20Series%20Broce%20Broom%20Parts%20Catalog%20405424-406082.pdf?dl=1"
+      },
+      {
+        "serial":" 406083-406288",
+        "link":"https://www.dropbox.com/s/j6w422dinre211m/350%20Series%20Broce%20Broom%20Parts%20Catalog%20406083-406288.pdf?dl=1"
+      },
+      {
+        "serial":" 406289-406323",
+        "link":"https://www.dropbox.com/s/81952tz1qv5fxa6/350%20Series%20Broce%20Broom%20Parts%20Catalog%20406289-406323.pdf?dl=1"
+      },
+      {
+        "serial":" 406324-406363",
+        "link":"https://www.dropbox.com/s/qa2s53zo4b4bh9k/350%20Series%20Broce%20Broom%20Parts%20Catalog%20406324-406363.pdf?dl=1"
+      },
+      {
+        "serial":" 406364-406854",
+        "link":"https://www.dropbox.com/s/4yvmdbczvqumtmd/350%20Series%20Broce%20Broom%20Parts%20Catalog%20406364-406854.pdf?dl=1"
+      },
+      {
+        "serial":" 406855-406974",
+        "link":"https://www.dropbox.com/s/9hjb7eqnnqvev11/350%20Series%20Broce%20Broom%20Parts%20Catalog%20406855-406974.pdf?dl=1"
+      },
+      {
+        "serial":" 406975-407291",
+        "link":"https://www.dropbox.com/s/mt9fq3ca2xe41yr/350%20Series%20Broce%20Broom%20Parts%20Catalog%20406975-407291.pdf?dl=1"
+      },
+      {
+        "serial":" 407292-407410",
+        "link":"https://www.dropbox.com/s/u96l81ca1lahhj6/350%20Series%20Broce%20Broom%20Parts%20Catalog%20407292-407410.pdf?dl=1"
+      },
+      {
+        "serial":" 407411-407525",
+        "link":"https://www.dropbox.com/s/iukkfmz9nk2eii0/350%20Series%20Broce%20Broom%20Parts%20Catalog%20407411-407525.pdf?dl=1"
+      },
+      {
+        "serial":" 407526-407637",
+        "link":"https://www.dropbox.com/s/deafupwn4n4nelk/350%20Series%20Broce%20Broom%20Parts%20Catalog%20407526-407637.pdf?dl=1"
+      },
+      {
+        "serial":" 407638-408093",
+        "link":"https://www.dropbox.com/s/rblsuts2g759prj/350%20Series%20Broce%20Broom%20Parts%20Catalog%20407638-408093.pdf?dl=1"
+      },
+      {
+        "serial":" 408094+",
+        "link":"https://www.dropbox.com/s/26cwl076kncgkzf/350%20Series%20Broce%20Broom%20Parts%20Catalog%20408094%2B.pdf?dl=1"
+      },
+      {
+        "serial":" 500002-500011",
+        "link":"https://www.dropbox.com/s/cu492dak95xrq0r/MK-1%20Broce%20Broom%20Parts%20Catalog%20500002-500011.pdf?dl=1"
+      },
+      {
+        "serial":" 500012-500023",
+        "link":"https://www.dropbox.com/s/3tj0rzs97cvb76y/MK-1%20Broce%20Broom%20Parts%20Catalog%20500012-500023.pdf?dl=1"
+      },
+      {
+        "serial":" 500024-500078",
+        "link":"https://www.dropbox.com/s/9siimqo37b0s1q2/MK-1%20Broce%20Broom%20Parts%20Catalog%20500024-500078.pdf?dl=1"
+      },
+      {
+        "serial":" 500079-500080",
+        "link":"https://www.dropbox.com/s/nuhnn88a4230nwu/MK-1%20Broce%20Broom%20Parts%20Catalog%20500079-500080.pdf?dl=1"
+      },
+      {
+        "serial":" 500081-500132",
+        "link":"https://www.dropbox.com/s/cwf0rdlndsu32gi/MK-1%20Broce%20Broom%20Parts%20Catalog%20500081-500132.pdf?dl=1"
+      },
+      {
+        "serial":" 500133-500162",
+        "link":"https://www.dropbox.com/s/qn7t6t4kqscl4aq/MK-1%20Broce%20Broom%20Parts%20Catalog%20500133-500162.pdf?dl=1"
+      },
+      {
+        "serial":" 500163+",
+        "link":"https://www.dropbox.com/s/cbr0jozbliklujj/MK-1%20Broce%20Broom%20Parts%20Catalog%20500163%2B.pdf?dl=1"
+      }
+    ]
+
+      var $ = jQuery;
+
+      $("#serial").on("input propertychange paste", function(e) {
+
+      	$("#links").empty();
+      	var matched = $.grep(data, function(item){
+      		return item.serial.includes($(e.target).val());
+      	})
+      	console.log(matched.length)
+      	$.each(matched, function(i, item) {
+
+      		var elem = $("<li>").add(
+      			$("<a>")
+      				.attr("href", item.link)
+      				.text(item.serial + " Download")
+    		)
+      		$("#links").append(elem)
+      	});
+      });
+
+    })(window)
+    </script>
+  </body>
+</html>
