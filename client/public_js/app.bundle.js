@@ -76,7 +76,6 @@ webpackJsonp([0],[
 	function SignupController () {
 	  var vm = this;
 	  vm.message = 'blahhhh';
-	  console.log('heyyyyyy');
 	}
 
 
