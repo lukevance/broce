@@ -24,6 +24,13 @@ module.exports = function(sequelize, DataTypes) {
         }
     }, {
        tableName: 'parts'
+    },
+    {
+      classMethods: {
+        associate: function(models){
+          Part.belongsTo(models.Parts_Category);
+        }
+      }
     });
 
     return Part;
