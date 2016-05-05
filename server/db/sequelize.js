@@ -1,6 +1,4 @@
+"use strict";
 
-
-
-
-
-module.exports
+var Sequelize = require("sequelize");
+var connection = new Sequelize(process.env.DATABASE, config.username, config.password, config);
