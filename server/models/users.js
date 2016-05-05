@@ -2,11 +2,11 @@
 
 module.exports = function(sequelize, DataTypes) {
     var User = sequelize.define("User", {
-        firstName: {
+        first_name: {
             type: DataTypes.STRING,
             allowNull: true
         },
-        lastName: {
+        last_name: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -18,6 +18,8 @@ module.exports = function(sequelize, DataTypes) {
           type: DataTypes.STRING,
           allowNull: false
         }
+    }, {
+       tableName: 'users'
     });
 
     return User;

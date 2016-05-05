@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: true
         }
     }, {
-       tableName: 'Parts_Categories'
+       tableName: 'parts_categories'
     });
 
     return Parts_Category;

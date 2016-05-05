@@ -12,7 +12,7 @@ var sequelize = new Sequelize(process.env.POSTGRESQL_LOCAL_DB, "", "", {
     define: {
         timestamps: true
     },
-    freezeTableName: false,
+    freezeTableName: true,
     pool: {
         max: 9,
         min: 0,
