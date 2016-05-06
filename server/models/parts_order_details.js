@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-    var Order_Parts_Detail = sequelize.define("order_parts_detail", {
+    var Order_Parts_Detail = sequelize.define("Order_Parts_Detail", {
         machineSerialNum: {
             type: DataTypes.STRING,
             allowNull: false
@@ -10,6 +10,13 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allowNull: false
         }
+    }, {
+      classMethods: {
+        associate: function(models) {
+          Order_Parts_Detail.belongsTo(models.Order);
+          Order_Parts_Detail.belongsTo(models.Part);
+        }
+      }
     }, {
        tableName: 'order_parts_details'
     });

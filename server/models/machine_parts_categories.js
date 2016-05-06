@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-    var Parts_Category = sequelize.define("Parts_Categories", {
+    var Parts_Category = sequelize.define("Parts_Category", {
         model: {
             type: DataTypes.STRING,
             allowNull: false
@@ -14,6 +14,12 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: true
         }
+    },{
+      classMethods: {
+        associate: function(models){
+          Parts_Category.hasMany(models.Part);
+        }
+      }
     }, {
        tableName: 'parts_categories'
     });

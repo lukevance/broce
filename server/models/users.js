@@ -19,6 +19,12 @@ module.exports = function(sequelize, DataTypes) {
           allowNull: false
         }
     }, {
+      classMethods: {
+        associate: function (models) {
+          User.hasMany(models.Order);
+        }
+      }
+    }, {
        tableName: 'users'
     });
 

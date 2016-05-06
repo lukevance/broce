@@ -23,6 +23,13 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: true
         }
     }, {
+      classMethods: {
+        associate: function (models) {
+          Order.hasMany(models.Order_Parts_Detail);
+          Order.belongsTo(models.User);
+        }
+      }
+    }, {
        tableName: 'orders'
     });
 
