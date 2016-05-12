@@ -1,3 +1,5 @@
+'use strict';
+
 const router = require('express').Router();
 
 const models = require('../models');
@@ -5,8 +7,19 @@ const models = require('../models');
 // show all current orders
 router.get('/current', function(req, res){
   models.Order
-    .all()
-    .where({status: 'active'})
+    .findAll({
+      where: {
+        status: 'active'
+      },
+      include:[{
+        model: models.Comments,
+        as: 'comments',
+        include:[{
+          model: models.Creator,
+          as: 'creator'
+        }]
+      }]
+    })
     .then(function(orderList){
       res.json({curOrders: orderList});
     })
