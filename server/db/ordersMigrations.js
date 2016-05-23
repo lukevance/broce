@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = {
+module.exports =
   [
     {
       shippingAddress: '123 Main St',
@@ -30,5 +30,4 @@ module.exports = {
       status:
       note:
     }
-  ]
-}
+  ];
