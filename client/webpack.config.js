@@ -1,13 +1,18 @@
+'use strict';
 var webpack = require('webpack');
 
+var path = require('path');
+
+var APP = __dirname + '/app';
+
 module.exports = {
-  context: __dirname + '/app',
+  context: APP,
   entry: {
-    app: ['webpack/hot/dev-server', '../public_js/app.bundle.js'],
+    app: './app.js',
     vendor: ['angular']
   },
   output: {
-    path: __dirname + '/public_js',
+    path: APP + '/core',
     filename: 'app.bundle.js'
   },
   plugins: [
