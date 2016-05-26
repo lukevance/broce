@@ -1,6 +1,6 @@
 function SignupController () {
   var vm = this;
-  vm.message = 'blahhhh';
+  vm.message = 'something neww';
 }
 
 
