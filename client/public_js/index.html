@@ -3,18 +3,36 @@
   <head>
     <meta charset="utf-8">
     <title>Broce Parts App</title>
+    <link rel="stylesheet" src="app/css/bootstrap.min.css" />
+    <link rel="stylesheet" src="app/css/styles.css" />
   </head>
   <body>
+    <header>
+      <nav class="navbar navbar-default">
+          <div class="container">
+              <div class="navbar-header">
+                  <a class="navbar-brand" href="/">Broce Brooms</a>
+              </div>
 
-    <p>
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                  <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
+                  <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+              </ul>
+          </div>
+      </nav>
+  </header>
+    <!-- <p>
       Angular is working: {{1 + 1 === 2}}
     </p>
 
     <div class="main" ng-controller="SignupController as SC">
       <h2>{{SC.message}}</h2>
-    </div>
+    </div> -->
 
     <script src="assets/vendor.bundle.js"></script>
     <script src="assets/app.bundle.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
   </body>
 </html>

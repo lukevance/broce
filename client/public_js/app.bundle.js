@@ -2,157 +2,56 @@ webpackJsonp([0],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(1);
-	module.exports = __webpack_require__(3);
+	module.exports = __webpack_require__(1);
 
 
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-	/*globals window __webpack_hash__ */
-	if(true) {
-		var lastData;
-		var upToDate = function upToDate() {
-			return lastData.indexOf(__webpack_require__.h()) >= 0;
-		};
-		var check = function check() {
-			module.hot.check(true, function(err, updatedModules) {
-				if(err) {
-					if(module.hot.status() in {
-							abort: 1,
-							fail: 1
-						}) {
-						console.warn("[HMR] Cannot apply update. Need to do a full reload!");
-						console.warn("[HMR] " + err.stack || err.message);
-						window.location.reload();
-					} else {
-						console.warn("[HMR] Update failed: " + err.stack || err.message);
-					}
-					return;
-				}
-
-				if(!updatedModules) {
-					console.warn("[HMR] Cannot find update. Need to do a full reload!");
-					console.warn("[HMR] (Probably because of restarting the webpack-dev-server)");
-					window.location.reload();
-					return;
-				}
-
-				if(!upToDate()) {
-					check();
-				}
-
-				__webpack_require__(2)(updatedModules, updatedModules);
-
-				if(upToDate()) {
-					console.log("[HMR] App is up to date.");
-				}
-
-			});
-		};
-		var addEventListener = window.addEventListener ? function(eventName, listener) {
-			window.addEventListener(eventName, listener, false);
-		} : function(eventName, listener) {
-			window.attachEvent("on" + eventName, listener);
-		};
-		addEventListener("message", function(event) {
-			if(typeof event.data === "string" && event.data.indexOf("webpackHotUpdate") === 0) {
-				lastData = event.data;
-				if(!upToDate() && module.hot.status() === "idle") {
-					console.log("[HMR] Checking for updates on the server...");
-					check();
-				}
-			}
-		});
-		console.log("[HMR] Waiting for update signal from WDS...");
-	} else {
-		throw new Error("[HMR] Hot Module Replacement is disabled.");
-	}
-
-
-/***/ },
-/* 2 */
-/***/ function(module, exports) {
-
-	/*
-		MIT License http://www.opensource.org/licenses/mit-license.php
-		Author Tobias Koppers @sokra
-	*/
-	module.exports = function(updatedModules, renewedModules) {
-		var unacceptedModules = updatedModules.filter(function(moduleId) {
-			return renewedModules && renewedModules.indexOf(moduleId) < 0;
-		});
-
-		if(unacceptedModules.length > 0) {
-			console.warn("[HMR] The following modules couldn't be hot updated: (They would need a full reload!)");
-			unacceptedModules.forEach(function(moduleId) {
-				console.warn("[HMR]  - " + moduleId);
-			});
-		}
-
-		if(!renewedModules || renewedModules.length === 0) {
-			console.log("[HMR] Nothing hot updated.");
-		} else {
-			console.log("[HMR] Updated modules:");
-			renewedModules.forEach(function(moduleId) {
-				console.log("[HMR]  - " + moduleId);
-			});
-		}
-	};
-
-
-/***/ },
-/* 3 */
-/***/ function(module, exports, __webpack_require__) {
-
 	angular.module('partsApp', []);
 
-	console.log('heyyy');
-
-	__webpack_require__(4);
+	__webpack_require__(2);
+	// require('./pages');
+	__webpack_require__(6);
 	__webpack_require__(8);
 	__webpack_require__(10);
 
 
 /***/ },
-/* 4 */
+/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var angular = __webpack_require__(5);
+	var angular = __webpack_require__(3);
 
 	angular.module('partsApp')
-	  .directive('navbar', __webpack_require__(7));
+	  .directive('navbar', __webpack_require__(5));
 
 
 /***/ },
-/* 5 */,
-/* 6 */,
-/* 7 */
+/* 3 */,
+/* 4 */,
+/* 5 */
 /***/ function(module, exports) {
 
-	
+
 
 /***/ },
-/* 8 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var angular = __webpack_require__(5);
+	var angular = __webpack_require__(3);
 
 	angular.module('partsApp')
-	  .service('SignupService', __webpack_require__(9));
+	  .service('SignupService', __webpack_require__(7));
 
 
 /***/ },
-/* 9 */
+/* 7 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -168,28 +67,71 @@ webpackJsonp([0],[
 
 
 /***/ },
-/* 10 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var angular = __webpack_require__(5);
+	var angular = __webpack_require__(3);
 
 	angular.module('partsApp')
-	  .controller('SignupController', __webpack_require__(11));
+	  .controller('SignupController', __webpack_require__(9));
 
 
 /***/ },
-/* 11 */
+/* 9 */
 /***/ function(module, exports) {
 
 	function SignupController () {
 	  var vm = this;
-	  vm.message = 'hi';
+	  vm.message = 'yeah it totally works';
 	}
 
-
 	module.exports = SignupController;
+
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	var partsApp = angular.module('partsApp', ['ngRoute']);
+
+	    // configure our routes
+	    partsApp.config(function($routeProvider) {
+	        $routeProvider
+
+	            // route for the home page/signin page
+	            .when('/', {
+	                templateUrl : 'pages/signin.html',
+	                controller  : 'signinController',
+	                css : 'styles.css'
+	            })
+
+	            // route for the about page
+	            .when('/about', {
+	                templateUrl : 'pages/about.html',
+	                controller  : 'aboutController'
+	            })
+	            // route for the contact page
+	            .when('/contact', {
+	                templateUrl : 'pages/contact.html',
+	                controller  : 'contactController'
+	            });
+	    });
+
+	    // create the controller and inject Angular's $scope
+	    partsApp.controller('signinController', function($scope) {
+	        // create a message to display in our view
+	        $scope.message = 'SIGN IN';
+	    });
+
+	    partsApp.controller('aboutController', function($scope) {
+	        $scope.message = 'Look! I am an about page.';
+	    });
+
+	    partsApp.controller('contactController', function($scope) {
+	        $scope.message = 'Contact us! JK. This is just a demo.';
+	    });
 
 
 /***/ }
