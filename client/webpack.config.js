@@ -3,7 +3,7 @@ var webpack = require('webpack');
 module.exports = {
   context: __dirname + '/app',
   entry: {
-    app: ['./app.js'],
+    app: ['webpack/hot/dev-server', './app.js'],
     vendor: ['angular']
   },
   output: {
