@@ -6,19 +6,19 @@ var partsApp = angular.module('partsApp', ['ngRoute']);
 
             // route for the home page/signin page
             .when('/', {
-                templateUrl : 'app/pages/signin.html',
+                template : require('./pages/signin.html'),
                 controller  : 'signinController',
                 css : 'styles.css'
             })
 
             // route for the about page
             .when('/about', {
-                templateUrl : 'pages/about.html',
+                template : require('./pages/about.html'),
                 controller  : 'aboutController'
             })
             // route for the contact page
             .when('/contact', {
-                templateUrl : 'pages/contact.html',
+                template : require('./pages/contact.html'),
                 controller  : 'contactController'
             });
     });
