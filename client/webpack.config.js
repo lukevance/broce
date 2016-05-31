@@ -4,7 +4,12 @@ module.exports = {
   context: __dirname + '/app',
   entry: {
     app: ['webpack/hot/dev-server', './app.js'],
-    vendor: ['angular']
+    vendor: ['angular', 'angular-route']
+  },
+  module: {
+    loaders: [
+      { test: /\.html$/, loaders: ["html"] }
+    ]
   },
   output: {
     path: __dirname + '/public_js',
