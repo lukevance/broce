@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="partsApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Broce Parts App</title>
+
+    <link rel="stylesheet" src="client/app/css/bootstrap.min.css" />
+    <link rel="stylesheet" src="client/app/css/styles.css" />
+  </head>
+  <body>
+
+    <header>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Broce Brooms</a>
+                </div>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/#/"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="/#/about"><i class="fa fa-shield"></i> About</a></li>
+                    <li><a href="/#/contact"><i class="fa fa-comment"></i> Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT AND INJECTED VIEWS -->
+    <div id="main">
+        <!--  {{ message }}-->
+        <div ng-view></div>
+
+        <!-- angular templating -->
+        <!-- this is where content will be injected -->
+    </div>
+
+    <script src="assets/vendor.bundle.js"></script>
+    <script src="assets/app.bundle.js"></script>
+  </body>
+</html>

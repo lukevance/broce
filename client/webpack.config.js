@@ -1,21 +1,28 @@
 'use strict';
+
 var webpack = require('webpack');
 
-var path = require('path');
-
-var APP = __dirname + '/app';
-
 module.exports = {
-  context: APP,
+  context: __dirname + '/app',
   entry: {
-    app: './app.js',
-    vendor: ['angular']
+    app: ['webpack/hot/dev-server', './app.js'],
+    vendor: ['angular', 'angular-route']
+  },
+  module: {
+    loaders: [
+      { test: /\.html$/, loaders: ["html"] }
+    ]
   },
   output: {
-    path: APP + '/core',
+    path: __dirname + '/public_js',
+    publicPath: "/assets/",
     filename: 'app.bundle.js'
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js")
-  ]
+    new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js"),
+    new webpack.HotModuleReplacementPlugin()
+  ],
+  devServer: {
+    hot: true
+  }
 };

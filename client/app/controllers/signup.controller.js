@@ -1,7 +1,6 @@
 function SignupController () {
   var vm = this;
-  vm.message = 'something neww';
+  vm.message = 'yeah it totally works';
 }
-
 
 module.exports = SignupController;
