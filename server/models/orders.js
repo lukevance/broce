@@ -4,7 +4,7 @@ module.exports = function(sequelize, DataTypes) {
     var Order = sequelize.define("Order", {
         shippingAddress: {
             type: DataTypes.STRING,
-            allowNull: true
+            allowNull: false
         },
         poNumber: {
             type: DataTypes.STRING,
@@ -12,11 +12,11 @@ module.exports = function(sequelize, DataTypes) {
         },
         total: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         },
         status: {
             type: DataTypes.STRING,
-            allowNull: true
+            allowNull: false
         },
         note: {
             type: DataTypes.TEXT,

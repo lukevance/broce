@@ -1,12 +1,4 @@
-
-function SignupController () {
-<<<<<<< Updated upstream
-  var vm = this;
-  vm.message = 'yeah it totally works';
-// password validation
-//username validation
-//call on service to htpp request
-=======
+'use strict';
     // var name = document.frm.signupName;
     //
     //        if( document.frm.name.value == "" )
@@ -40,15 +32,18 @@ function SignupController () {
         //    }
         //    return( true );
         // }
->>>>>>> Stashed changes
 
+function SignupController () {
+  var vm = this;
+  vm.message = 'SIGN IN';
 }
 
-function SigninController($scope){
-
-
-      $scope.message = 'SIGN IN';
-
+function SigninController () {
+  var vm = this;
+  vm.message = 'SIGN IN';
 }
 
-module.exports = {SignupController: SignupController, SigninController: SigninController};
+module.exports = {
+  SignupController: SignupController,
+  SigninController: SigninController
+};

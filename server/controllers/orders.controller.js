@@ -10,15 +10,15 @@ router.get('/current', function(req, res){
     .findAll({
       where: {
         status: 'active'
-      },
-      include:[{
-        model: models.Comments,
-        as: 'comments',
-        include:[{
-          model: models.Creator,
-          as: 'creator'
-        }]
-      }]
+      }
+      // include:[{
+      //   model: models.Order_Parts_Detail,
+      //   as: 'machines',
+      //   include:[{
+      //     model: models.Part,
+      //     as: 'parts'
+      //   }]
+      // }]
     })
     .then(function(orderList){
       res.json({curOrders: orderList});
@@ -28,25 +28,74 @@ router.get('/current', function(req, res){
     });
 });
 
+// let sampleOrder = {
+//   poNumber: 'po98234',
+//   shippingAddress: '123 main street',
+//   status: 'active',
+//   details: [
+//     {
+//       machineSerialNum: 12335234,
+//       parts: [
+//         {
+//           id: 34,
+//           qty: 2
+//         },
+//         {
+//           id: 72,
+//           qty: 5
+//         }
+//       ]
+//     },
+//     {
+//       machineSerialNum: 986234,
+//       parts: [
+//         {
+//           id: 12,
+//           qty: 1
+//         }
+//       ]
+//     }
+//   ]
+// };
+
 // create new order
 router.post('/new', function(req, res){
+  // data sanitation steps
+  // let orderData = {
+  //
+  // }
   models.Order
     .create({
       poNumber: req.body.poNumber,
       shippingAddress: req.body.shippingAddress,
-      total: req.body.total,
-      status: req.body.satus,
+      status: 'active',
       note: req.body.note
     })
-    .then(function(){
-      models.Order
-      .findAll()
-      .then(function(allOrders){
-        res.json({ordes: allOrders});
-      })
-      .catch(function(err){
-        res.json({error: err});
+    .then(function(data){
+      console.log(data);
+      let orderID = data.dataValues.id;
+      req.body.details.forEach(function(val){
+        models.Order_Parts_Detail
+          .create({
+            machineSerialNum: val.machineSerialNum,
+            quantity: val.quantity,
+            partID: val.partID
+          });
       });
+      models.Order
+      .findAll({
+        where: {
+          id: orderID
+        }
+        // include parts info
+      })
+      .then(function(lastOrder){
+          // let orderID =
+          res.json({orders: lastOrder});
+      });
+    })
+    .catch(function(err){
+      res.json({error: err});
     });
 });
 

@@ -14,19 +14,19 @@ module.exports = [
     Order: 1
   },
   {
-    machineSerialNum: '',
+    machineSerialNum: '981235',
     quantity: 3,
     Part: 1,
     Order: 2
   },
   {
-    machineSerialNum: '',
+    machineSerialNum: '981345',
     quantity: 3,
     Part: 1,
     Order: 2
   },
   {
-    machineSerialNum: '',
+    machineSerialNum: '234688',
     quantity: 3,
     Part: 1,
     Order: 2

@@ -1,24 +1,21 @@
-var partsApp = angular.module('partsApp', ['ngRoute']);
+angular.module('partsApp')
 
     // configure our routes
 
-
-  partsApp.config(function($routeProvider) {
+  .config(function($routeProvider) {
         $routeProvider
-
             // route for the home page/signin page
             .when('/', {
 
                 template : require('./pages/signin.html'),
-                controller  : 'signinController',
+                controller  : 'SignupController as SC',
                 css : 'styles.css'
             })
-
             // route for the about page
             .when('/about', {
 
                 template : require('./pages/about.html'),
-                controller  : 'aboutController'
+                controller  : 'AboutController as AC'
             })
             .when('/account', {
                 template : require('./pages/account.html'),
@@ -47,5 +44,3 @@ var partsApp = angular.module('partsApp', ['ngRoute']);
                 controller  : 'dashController'
             });
     });
-
-  
