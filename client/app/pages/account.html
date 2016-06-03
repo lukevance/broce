@@ -1,8 +1,9 @@
-<div class="container" ng-controller= "accountController">
+<div class="container">
     <div class="row">
         <div class="panel panel-primary">
             <div class="panel-body">
                 <form method="POST" action="#" role="form" data-toggle-"validator" name="frm" class="register">
+<!-- registration view for view injection -->
                     <div class="form-group">
                         <h2>Request Account</h2>
                     </div>
@@ -23,7 +24,14 @@
                         <span ng-show="frm.email.$dirty && frm.email.$error.required" >Required</span>
                         <span ng-show="frm.email.$dirty && frm.email.$error.email" >Not an email</span>
                         <div class="help-block with-errors"></div>
-                    </div>
+
+
+                    <!-- <div class="form-group">
+                      <label>Username</label>
+                      <input type="text" name="username" class="form-control" ng-model="user.username" ng-minlength="3" ng-maxlength="8">
+                      <p ng-show="userForm.username.$error.minlength" class="help-block">Username is too short.</p>
+                      <p ng-show="userForm.username.$error.maxlength" class="help-block">Username is too long.</p>
+                    </div> -->
 
                     <div class="form-group">
                         <label class="control-label" for="signupPassword">Password</label>
@@ -42,11 +50,9 @@
                       <span ng-show="frm.password.$dirty && frm.password.$error.minlength">Minimum of 6 characters</span>
                       <span ng-show="frm.password.$dirty && frm.password.$error.maxlength">too Long!</span>
 
+                        <input name="signupPassword" id="signupPassword" type="password" maxlength="25" class="form-control" placeholder="at least 6 characters" length="40">
                     </div>
-                    <div class="form-group">
-                        <label class="control-label" for="signupPasswordagain">Password again</label>
-                        <input id="signupPasswordagain" type="password" maxlength="25" class="form-control">
-                    </div>
+
                     <div class="form-group">
                         <button id="signupSubmit" ng-disabled="frm.$invalid" type="submit" class="btn btn-info btn-block">Request your account</button>
                     </div>

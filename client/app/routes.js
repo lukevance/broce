@@ -20,6 +20,10 @@ var partsApp = angular.module('partsApp', ['ngRoute']);
                 template : require('./pages/about.html'),
                 controller  : 'aboutController'
             })
+            .when('/account', {
+                template : require('./pages/account.html'),
+                controller  : 'AccountController'
+            })
             // route for the contact page
             .when('/contact', {
 
@@ -44,33 +48,4 @@ var partsApp = angular.module('partsApp', ['ngRoute']);
             });
     });
 
-    // create the controller and inject Angular's $scope
-    partsApp.controller('signinController', function($scope) {
-        // create a message to display in our view--
-        $scope.message = 'SIGN IN';
-    });
-
-    partsApp.controller('aboutController', function($scope) {
-        $scope.message = 'This can be anything';
-    });
-
-    partsApp.controller('contactController', function($scope) {
-        $scope.message = 'Contact us! JK.';
-
-    });
-    partsApp.controller('accountController', function($scope) {
-      $scope.SubmitForm = function() {
-
-                 // check to make sure the form is completely valid
-                 if ($scope.frm.$valid) {
-                     alert('it works');
-                     console.log('true')
-                 }
-
-             };
-
-    });
-    partsApp.controller('dashController', function($scope) {
-        $scope.message = 'dash page test';
-
-    });
+  
