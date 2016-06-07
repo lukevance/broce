@@ -3,4 +3,5 @@
 var angular = require('angular');
 
 angular.module('partsApp')
-  .service('SignupService', ['$http', require('./auth.service')]);
+  .service('SigninService', ['$http', require('./auth.service').SigninService])
+  .service('SignupService',['$http', require('./auth.service').SignupService]);

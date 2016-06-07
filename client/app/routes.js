@@ -8,7 +8,7 @@ angular.module('partsApp')
             .when('/', {
 
                 template : require('./pages/signin.html'),
-                controller  : 'SignupController as SC',
+                controller  : 'AuthController as AU',
                 css : 'styles.css'
             })
             // route for the about page
@@ -16,31 +16,31 @@ angular.module('partsApp')
 
                 template : require('./pages/about.html'),
                 controller  : 'AboutController as AC'
-            })
-            .when('/account', {
-                template : require('./pages/account.html'),
-                controller  : 'AccountController'
-            })
-            // route for the contact page
-            .when('/contact', {
-
-                template : require('./pages/contact.html'),
-                controller  : 'contactController'
-            })
-
-            .when('/account', {
-
-                template : require('./pages/account.html'),
-                controller  : 'accountController'
-            })
-            .when('/test', {
-
-                template : require('./pages/test.html'),
-                controller  : 'accountController'
-            })
-            .when('/dash', {
-
-                template : require('./pages/dash.html'),
-                controller  : 'dashController'
             });
+            // .when('/account', {
+            //     template : require('./pages/account.html'),
+            //     controller  : 'AccountController'
+            // });
+            // // route for the contact page
+            // .when('/contact', {
+            //
+            //     template : require('./pages/contact.html'),
+            //     controller  : 'contactController'
+            // })
+            //
+            // .when('/account', {
+            //
+            //     template : require('./pages/account.html'),
+            //     controller  : 'accountController'
+            // })
+            // .when('/test', {
+            //
+            //     template : require('./pages/test.html'),
+            //     controller  : 'accountController'
+            // })
+            // .when('/dash', {
+            //
+            //     template : require('./pages/dash.html'),
+            //     controller  : 'dashController'
+            // });
     });
