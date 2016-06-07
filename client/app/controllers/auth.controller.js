@@ -34,9 +34,11 @@ function AuthController(SigninService, SignupService) {
 
     var vm = this;
     vm.userInfo = {};
+    vm.userInfoSU = {};
     // vm.signup = signup;
     vm.message = 'SIGN IN';
     vm.submit = submitSignIn;
+    vm.submitSU = submitSignUp
 
 }
 

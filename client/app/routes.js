@@ -16,11 +16,11 @@ angular.module('partsApp')
 
                 template : require('./pages/about.html'),
                 controller  : 'AboutController as AC'
+            })
+            .when('/signup', {
+                template : require('./pages/signup.html'),
+                controller  : 'AuthController as AU'
             });
-            // .when('/account', {
-            //     template : require('./pages/account.html'),
-            //     controller  : 'AccountController'
-            // });
             // // route for the contact page
             // .when('/contact', {
             //
