@@ -2,6 +2,8 @@
 
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const secret = process.env.JWT_Secret;
 
 var models = require('../models');
 
@@ -10,7 +12,7 @@ router.post('/signup', function(req, res){
   // validation/sanitation
   let newUser = req.body;
   // check for matching confirm password to match
-  if (newUser.password !== newUser.confPassword){
+  if (newUser.password !== newUser.confirmPassword){
     res.json({message: 'Passwords do not match.'});
   } else {
     // encrypt password
@@ -64,8 +66,13 @@ router.post('/signin', function(req, res){
           } else {
             // if passwords match
             if (response === true) {
+              console.log('correct password');
+              // console.log(userInfo.dataValues);
+
+              let token = jwt.sign(userInfo.dataValues, secret, {expiresIn: 60*60*5});
+              // console.log(token);
               // send signed token
-              res.json({message: 'you are signed in!', user: userInfo});
+              res.json({token: token});
             } else {
               res.json({message: 'username or password did not match'});
             }
