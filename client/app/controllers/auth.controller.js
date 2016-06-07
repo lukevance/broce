@@ -21,7 +21,7 @@ function AuthController(SigninService, SignupService) {
     }
 
     function afterSignUp(response) {
-        console.log('afterSignUp');
+        console.log(response);
 
     }
 
@@ -34,9 +34,10 @@ function AuthController(SigninService, SignupService) {
 
     var vm = this;
     vm.userInfo = {};
-    vm.userInfoSU = {};
+    vm.newUser = {};
     // vm.signup = signup;
     vm.message = 'SIGN IN';
+    
     vm.submit = submitSignIn;
     vm.submitSU = submitSignUp
 

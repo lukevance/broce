@@ -2,47 +2,53 @@
     <div class="row">
         <div class="panel panel-primary">
             <div class="panel-body">
-                <form method="POST" action="#" role="form" data-toggle="validator" name="frm" class="register">
+                <form role="form" data-toggle="validator" name="frm" class="register">
                     <!-- registration view for view injection -->
                     <div class="form-group">
                         <h2>Request Account</h2>
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="signupName">Your name</label>
-                        <input id="signupName" retype="name" name="name" required maxlength="50" class="form-control" ng-model="AU.userInfoSU.name" class="help-block">
-                        <span ng-show="frm.name.$invalid && frm.name.$pristine && frm.name.$error.required">Required</span>
+                        <label class="control-label" for="signupName">First Name</label>
+                        <input id="signupName" retype="name" name="name" required maxlength="50" class="form-control" ng-model="AU.newUser.firstName" class="help-block">
+                        <span ng-show="frm.firstName.$invalid && frm.firstName.$pristine && frm.firstName.$error.required">Required</span>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="signupName">Last Name</label>
+                        <input id="signupName" retype="name" name="lastName" required maxlength="50" class="form-control" ng-model="AU.newUser.lastName" class="help-block">
+                        <span ng-show="frm.lastName.$invalid && frm.lastName.$pristine && frm.lastName.$error.required">Required</span>
 
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="signupEmail">Email</label>
-                        <input id="signupEmail" type="email" name="email" ng-model="AU.userInfoSU.email" required maxlength="50" class="form-control">
+                        <input id="signupEmail" type="email" name="email" ng-model="AU.newUser.email" required maxlength="50" class="form-control">
                         <span ng-show="frm.email.$dirty && frm.email.$error.required">Required</span>
                         <span ng-show="frm.email.$dirty && frm.email.$error.email">Not an email</span>
                         <div class="help-block with-errors"></div>
                         <div class="form-group">
                             <label class="control-label" for="signupEmail">Confirm Email</label>
-                            <input id="signupEmail" type="email" name="emailConfirm" ng-model="AU.userInfoSU.emailConfirm" required maxlength="50" class="form-control">
+                            <input id="signupEmail" type="email" name="emailConfirm" ng-model="AU.newUser.emailConfirm" required maxlength="50" class="form-control">
                             <!-- <span ng-show="frm.email.$dirty && frm.email.$error.required">Required</span>
                             <span ng-show="frm.email.$dirty && frm.email.$error.email">Not an email</span> -->
                             <div class="help-block with-errors"></div>
 
                             <div class="form-group">
                                 <label class="control-label" for="signupPassword">Password</label>
-                                <input id="signupPassword" type="password" name="password" ng-model="AU.userInfoSU.password" ng-minlength="6" ng-maxlength="50" required maxlength="25" class="form-control" placeholder="at least 6 characters" length="40">
+                                <input id="signupPassword" type="password" name="password" ng-model="AU.newUser.password" ng-minlength="6" ng-maxlength="50" required maxlength="25" class="form-control" placeholder="at least 6 characters" length="40">
                                 <span ng-show="frm.password.$dirty && frm.password.$error.required">Required</span>
                             <span ng-show="frm.password.$dirty && frm.password.$error.minlength">Minimum of 6 characters</span>
                             <span ng-show="frm.password.$dirty && frm.password.$error.maxlength">too Long!</span>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="signupPasswordConfirm">Confirm Password</label>
-                                <input id="signupPassword" type="password" name="passwordConfirm" ng-model="AU.userInfoSU.passwordConfirm" ng-minlength="6" ng-maxlength="50" maxlength="25" class="form-control" placeholder="at least 6 characters" length="40">
+                                <input id="signupPassword" type="password" name="passwordConfirm" ng-model="AU.newUser.confPassword" ng-minlength="6" ng-maxlength="50" maxlength="25" class="form-control" placeholder="at least 6 characters" length="40">
                                 <!-- <span ng-show="frm.password.$dirty && frm.password.$error.required">Required</span>
                             <span ng-show="frm.password.$dirty && frm.password.$error.minlength">Minimum of 6 characters</span>
                             <span ng-show="frm.password.$dirty && frm.password.$error.maxlength">too Long!</span> -->
                             </div>
 
                             <div class="form-group">
-                                <button id="signupSubmit" ng-disabled="frm.$invalid" type="submit" class="btn btn-info btn-block" ng-click="AU.submitSU(AU.userInfoSU)">Request your account</button>
+                                <button id="signupSubmit" ng-disabled="frm.$invalid" type="submit" class="btn btn-info btn-block" ng-click="AU.submitSU(AU.newUser)">Request your account</button>
                             </div>
                             <p class="form-group">By filling out this form you are not creating an account but requesting that you are an approved dealer. <a href="#">Terms of Use</a> and our <a href="#">Privacy Policy</a>.</p>
                             <hr>
