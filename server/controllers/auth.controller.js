@@ -2,6 +2,8 @@
 
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const secret = process.env.JWT_Secret;
 
 var models = require('../models');
 
@@ -10,7 +12,7 @@ router.post('/signup', function(req, res){
   // validation/sanitation
   let newUser = req.body;
   // check for matching confirm password to match
-  if (newUser.password !== newUser.confPassword){
+  if (newUser.password !== newUser.confirmPassword){
     res.json({message: 'Passwords do not match.'});
   } else {
     // encrypt password
@@ -32,7 +34,15 @@ router.post('/signup', function(req, res){
             if (!created) {
               res.json({message: 'Sorry there is already an account with that email address.'});
             } else {
-              res.json(user);
+              console.log(user.dataValues);
+              let userInfo = {
+                firstName: user.dataValues.first_name,
+                lastName: user.dataValues.last_name,
+                email: user.dataValues.email
+              };
+              let token = jwt.sign(userInfo, secret, {expiresIn: 60*60*2});
+
+              res.json({token: token});
             }
           })
           .catch(function(err){
@@ -64,8 +74,13 @@ router.post('/signin', function(req, res){
           } else {
             // if passwords match
             if (response === true) {
+              console.log('correct password');
+              // console.log(userInfo.dataValues);
+
+              let token = jwt.sign(userInfo.dataValues, secret, {expiresIn: 60*60*2});
+              // console.log(token);
               // send signed token
-              res.json({message: 'you are signed in!', user: userInfo});
+              res.json({token: token});
             } else {
               res.json({message: 'username or password did not match'});
             }
