@@ -17,6 +17,10 @@ angular.module('partsApp')
                 template : require('./pages/about.html'),
                 controller  : 'AboutController as AC'
             })
+            .when('/dash', {
+                template : require('./pages/dash.html'),
+                controller  : 'AuthController as AU'
+            })
             .when('/signup', {
                 template : require('./pages/signup.html'),
                 controller  : 'AuthController as AU'

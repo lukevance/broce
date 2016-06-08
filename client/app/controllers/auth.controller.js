@@ -8,7 +8,7 @@ function AuthController(SigninService, SignupService) {
       // var errors = false;
       // $('#signin').submit(function(event){
         if(response.data.message !== nope){
-          errors = true;
+          // errors = true;
           alert('wrong email address or password');
         }
       else{
