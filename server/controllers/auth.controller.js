@@ -34,7 +34,15 @@ router.post('/signup', function(req, res){
             if (!created) {
               res.json({message: 'Sorry there is already an account with that email address.'});
             } else {
-              res.json(user);
+              console.log(user.dataValues);
+              let userInfo = {
+                firstName: user.dataValues.first_name,
+                lastName: user.dataValues.last_name,
+                email: user.dataValues.email
+              };
+              let token = jwt.sign(userInfo, secret, {expiresIn: 60*60*2});
+
+              res.json({token: token});
             }
           })
           .catch(function(err){
@@ -69,7 +77,7 @@ router.post('/signin', function(req, res){
               console.log('correct password');
               // console.log(userInfo.dataValues);
 
-              let token = jwt.sign(userInfo.dataValues, secret, {expiresIn: 60*60*5});
+              let token = jwt.sign(userInfo.dataValues, secret, {expiresIn: 60*60*2});
               // console.log(token);
               // send signed token
               res.json({token: token});
