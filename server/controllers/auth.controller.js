@@ -9,8 +9,12 @@ var models = require('../models');
 router.post('/signup', function(req, res){
   // validation/sanitation
   let newUser = req.body;
+  //checkfor matching confirm emails
+  if(newUser.email !== newUser.confEmail){
+    res.json({message: 'Email does not match'})
+  }
   // check for matching confirm password to match
-  if (newUser.password !== newUser.confPassword){
+  else { (newUser.password !== newUser.confPassword){
     res.json({message: 'Passwords do not match.'});
   } else {
     // encrypt password
@@ -23,8 +27,9 @@ router.post('/signup', function(req, res){
           .findOrCreate({
             where: {email: newUser.email},
             defaults: {
-              first_name: req.body.firstName,
-              last_name: req.body.lastName,
+              firstName: req.body.firstName,
+              lastName: req.body.lastName,
+
               password: hash
             }
           })
