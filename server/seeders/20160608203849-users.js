@@ -17,7 +17,7 @@ module.exports = {
         first_name: 'Dave',
         last_name: 'DealerDude',
         email: 'dave@dealerdude.com',
-        password: 'dudestuff',
+        password: '$2a$08$Ogqyva.KTiLwLB6cH5xhHuoDGQ7Cjr/lIIJ9xzXQf8b8nKnU7rkxa', //dudestuff
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -25,7 +25,7 @@ module.exports = {
         first_name: 'Bob',
         last_name: 'Taylor',
         email: 'bob@thetaylors.com',
-        password: 'pants',
+        password: '$2a$08$ZCVow3DEz31KUajcTY26fOEYecQ2j7rqdzOsEDU5arWNDy4RGKcCS', //pants
         createdAt: new Date(),
         updatedAt: new Date()
       }
