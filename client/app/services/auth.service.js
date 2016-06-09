@@ -2,7 +2,7 @@
 
 // inject http service from angular
 SignupService.$inject = ['$http'];
-SignupService.$inject = ['$http'];
+SigninService.$inject = ['$http'];
 
 
 

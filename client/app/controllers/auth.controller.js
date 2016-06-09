@@ -45,7 +45,7 @@ function AuthController(SigninService, SignupService) {
     vm.message = 'SIGN IN';
 
     vm.submit = submitSignIn;
-    vm.submitSU = submitSignUp
+    vm.submitSU = submitSignUp;
 
 }
 

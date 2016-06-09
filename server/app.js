@@ -4,10 +4,16 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const expressJwt = require('express-jwt');
+
 
 require('dotenv').config();
 
 var routes = require('./routes');
+// protect certain routes by looking for jwt signature i.e. :
+// app.use('/user/profile', expressJwt({secret: process.env.JWT_Secret}));
+
+
 
 var app = express();
 
