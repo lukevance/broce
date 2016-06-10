@@ -8,7 +8,15 @@ module.exports = function(sequelize, DataTypes) {
         },
         billing_address: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
+        },
+        billing_city: {
+          type: DataTypes.STRING,
+          allowNull: true
+        },
+        billing_state: {
+          type: DataTypes.STRING,
+          allowNull: true
         }
     }, {
       classMethods: {
