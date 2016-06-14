@@ -12,14 +12,6 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-    return queryInterface.bulkInsert('Accounts', [
-      {
-        account_name: 'CAT Dealers',
-        billing_address: '123 Main St',
-        billing_city: 'Springfield',
-        billing_state: 'MO'
-      }
-    ], {});
   },
 
   down: function (queryInterface, Sequelize) {
@@ -30,6 +22,5 @@ module.exports = {
       Example:
       return queryInterface.bulkDelete('Person', null, {});
     */
-    return queryInterface.bulkDelete('Accounts', null, {});
   }
 };
