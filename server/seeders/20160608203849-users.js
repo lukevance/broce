@@ -8,7 +8,7 @@ module.exports = {
         last_name: 'DealerDude',
         email: 'dave@dealerdude.com',
         password: 'dudestuff',
-        AccountId: 3,
+        AccountId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -17,7 +17,7 @@ module.exports = {
         last_name: 'Taylor',
         email: 'bob@thetaylors.com',
         password: 'pants',
-        AccountId: 4,
+        AccountId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       }
