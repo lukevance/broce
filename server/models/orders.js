@@ -2,30 +2,30 @@
 
 module.exports = function(sequelize, DataTypes) {
     var Order = sequelize.define("Order", {
-        shippingAddress: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        poNumber: {
+        shipping_address: {
             type: DataTypes.STRING,
             allowNull: true
         },
-        total: {
-            type: DataTypes.INTEGER,
+        shipping_city: {
+          type: DataTypes.STRING,
+          allowNull: true
+        },
+        shipping_state: {
+          type: DataTypes.STRING,
+          allowNull: true
+        },
+        po_number: {
+            type: DataTypes.STRING,
             allowNull: true
         },
         status: {
             type: DataTypes.STRING,
             allowNull: false
-        },
-        note: {
-            type: DataTypes.TEXT,
-            allowNull: true
         }
     }, {
       classMethods: {
         associate: function (models) {
-          Order.hasMany(models.Order_Parts_Detail);
+          Order.hasMany(models.Order_Detail);
           Order.belongsTo(models.User);
         }
       }

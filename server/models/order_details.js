@@ -1,8 +1,8 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-    var Order_Parts_Detail = sequelize.define("Order_Parts_Detail", {
-        machineSerialNum: {
+    var Order_Detail = sequelize.define("Order_Detail", {
+        machine_serial_num: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -13,13 +13,14 @@ module.exports = function(sequelize, DataTypes) {
     }, {
       classMethods: {
         associate: function(models) {
-          Order_Parts_Detail.belongsTo(models.Order);
-          Order_Parts_Detail.belongsTo(models.Part);
+          Order_Detail.belongsTo(models.Order);
+          Order_Detail.belongsTo(models.Part);
+          Order_Detail.hasOne(models.Quote_Detail);
         }
       }
     }, {
-       tableName: 'order_parts_details'
+       tableName: 'order_details'
     });
 
-    return Order_Parts_Detail;
+    return Order_Detail;
 };
