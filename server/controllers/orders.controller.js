@@ -11,14 +11,14 @@ router.get('/current', function(req, res){
       where: {
         status: 'active'
       }
-      // include:[{
-      //   model: models.Order_Parts_Detail,
-      //   as: 'machines',
-      //   include:[{
-      //     model: models.Part,
-      //     as: 'parts'
-      //   }]
-      // }]
+    //   include:[{
+    //     model: models.Order_Detail,
+    //     as: 'machines',
+    //     include:[{
+    //       model: models.Part,
+    //       as: 'parts'
+    //     }]
+    //   }]
     })
     .then(function(orderList){
       res.json({curOrders: orderList});
