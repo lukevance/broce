@@ -3,7 +3,7 @@
 module.exports = function(sequelize, DataTypes) {
     var Order_Detail = sequelize.define("Order_Detail", {
         machine_serial_num: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         quantity: {
