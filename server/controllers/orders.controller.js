@@ -57,39 +57,43 @@ router.get('/current', function(req, res){
 //   ]
 // };
 
+
+
 // create new order
-router.post('/new', function(req, res){
+router.post('/new-quote', function(req, res){
   // data sanitation steps
   // let orderData = {
   //
   // }
+  // first create new order
   models.Order
     .create({
-      poNumber: req.body.poNumber,
-      shippingAddress: req.body.shippingAddress,
-      status: 'active',
-      note: req.body.note
+      po_number: req.body.poNumber,
+      UserId: req.body.userId,
+      status: 'quote'
     })
     .then(function(data){
       console.log(data);
       let orderID = data.dataValues.id;
       req.body.details.forEach(function(val){
-        models.Order_Parts_Detail
+        models.Order_Detail
           .create({
-            machineSerialNum: val.machineSerialNum,
+            machine_serial_num: val.machineSerialNum,
             quantity: val.quantity,
-            partID: val.partID
+            PartId: val.partID,
+            OrderId: orderID,
           });
       });
       models.Order
       .findAll({
         where: {
           id: orderID
-        }
-        // include parts info
+        },
+        include: [{
+          model: models.Order_Detail
+        }]
       })
       .then(function(lastOrder){
-          // let orderID =
           res.json({orders: lastOrder});
       });
     })

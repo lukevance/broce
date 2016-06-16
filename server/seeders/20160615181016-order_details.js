@@ -10,6 +10,14 @@ module.exports = {
         PartId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        machine_serial_num: 305322,
+        quantity: 1,
+        OrderId: 1,
+        PartId: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ]);
   },
