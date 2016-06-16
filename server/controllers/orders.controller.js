@@ -6,19 +6,18 @@ const models = require('../models');
 
 // show all current orders
 router.get('/current', function(req, res){
+  console.log('current orders');
   models.Order
     .findAll({
       where: {
-        status: 'active'
-      }
-    //   include:[{
-    //     model: models.Order_Detail,
-    //     as: 'machines',
-    //     include:[{
-    //       model: models.Part,
-    //       as: 'parts'
-    //     }]
-    //   }]
+        status: 'quote'
+      },
+      include:[{
+        model: models.Order_Detail,
+        include:[{
+          model: models.Part
+        }]
+      }]
     })
     .then(function(orderList){
       res.json({curOrders: orderList});
