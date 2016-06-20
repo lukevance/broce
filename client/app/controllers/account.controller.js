@@ -1,7 +1,7 @@
 function AccountController($scope) {
     console.log('inside');
 
-  var dummydata =
+    var dummydata =
     [{orderName: "350 part", groupName: "Caterpillar", quantity: 1, cost: 250}];
 
     $scope.dummydata = dummydata;
