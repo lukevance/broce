@@ -1,22 +1,24 @@
-function AuthController(SigninService, SignupService) {
+function AuthController($window, SigninService, SignupService) {
 
     function submitSignIn(credentials) {
         console.log('signin');
         SigninService(credentials, afterSignIn);
     }
     function afterSignIn(response) {
-      // var errors = false;
-      // $('#signin').submit(function(event){
-        if(response.data.message !== nope){
-          // errors = true;
-          alert('wrong email address or password');
-        }
+
+        if(response.data.token){
+          $window.localStorage.token = response.data.token;
+          window.location="http://localhost:8080/#/dash";
+          console.log(window.atob($window.localStorage.token.split(".")[1]));
+          }
       else{
-          console.log('it worked');
+          //clear sign in fields and add message
+          document.getElementById('signinEmail').value="";
+          document.getElementById('signinPassword').value="";
+          alert("sorry try again");
+
         }
-        console.log(response.data.message);
-        console.log(nope);
-      // });
+
     }
 
     function submitSignUp(credentials) {
@@ -26,7 +28,7 @@ function AuthController(SigninService, SignupService) {
 
     function afterSignUp(response) {
         if(response.config.data.password !== response.config.data.confPassword){
-          alert("Passwords dont match");
+          alert("Passwords ");
         }else if (response.config.data.email !== response.config.data.confEmail) {
           alert("Email adresses dont match");
         }else{
@@ -36,7 +38,6 @@ function AuthController(SigninService, SignupService) {
 
     }
 
-    var nope = 'you are signed in!';
 
     var vm = this;
     vm.userInfo = {};
@@ -45,7 +46,7 @@ function AuthController(SigninService, SignupService) {
     vm.message = 'SIGN IN';
 
     vm.submit = submitSignIn;
-    vm.submitSU = submitSignUp;
+    vm.submitSU = submitSignUp
 
 }
 

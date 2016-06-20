@@ -15,11 +15,11 @@ angular.module('partsApp')
             .when('/about', {
 
                 template : require('./pages/about.html'),
-                controller  : 'AboutController as AC'
+                controller  : 'AboutController as AU'
             })
             .when('/dash', {
                 template : require('./pages/dash.html'),
-                controller  : 'AuthController as AU'
+                controller  : 'AccountController as AC'
             })
             .when('/signup', {
                 template : require('./pages/signup.html'),
