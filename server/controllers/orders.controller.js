@@ -27,79 +27,59 @@ router.get('/current', function(req, res){
     });
 });
 
-// let sampleOrder = {
-//   poNumber: 'po98234',
-//   shippingAddress: '123 main street',
-//   status: 'active',
-//   details: [
-//     {
-//       machineSerialNum: 12335234,
-//       parts: [
-//         {
-//           id: 34,
-//           qty: 2
-//         },
-//         {
-//           id: 72,
-//           qty: 5
-//         }
-//       ]
-//     },
-//     {
-//       machineSerialNum: 986234,
-//       parts: [
-//         {
-//           id: 12,
-//           qty: 1
-//         }
-//       ]
-//     }
-//   ]
-// };
-
-
 
 // create new order
 router.post('/new-quote', function(req, res){
+  console.log(req.body);
   // data sanitation steps
   // let orderData = {
   //
   // }
   // first create new order
-  models.Order
-    .create({
-      po_number: req.body.poNumber,
-      UserId: req.body.userId,
-      status: 'quote'
-    })
-    .then(function(data){
-      console.log(data);
-      let orderID = data.dataValues.id;
-      req.body.details.forEach(function(val){
-        models.Order_Detail
-          .create({
-            machine_serial_num: val.machineSerialNum,
-            quantity: val.quantity,
-            PartId: val.partID,
-            OrderId: orderID,
-          });
-      });
-      models.Order
-      .findAll({
-        where: {
-          id: orderID
-        },
-        include: [{
-          model: models.Order_Detail
-        }]
+  if (req.body.userId) {
+    models.Order
+      .create({
+        po_number: req.body.poNumber,
+        UserId: req.body.userId,
+        status: 'quote'
       })
-      .then(function(lastOrder){
-          res.json({orders: lastOrder});
+      .then(function(data){
+        console.log(data.dataValues);
+        let orderID = data.dataValues.id;
+        req.body.details.forEach(function(val){
+          models.Order_Detail
+            .create({
+              machine_serial_num: val.machineSerialNum,
+              quantity: val.quantity,
+              PartId: val.partID,
+              OrderId: orderID,
+            });
+        });
+        console.log(orderID);
+        models.Order
+        .findAll({
+          where: {
+            id: orderID
+          },
+          include:[{
+            model: models.Order_Detail,
+            include:[{
+              model: models.Part
+            }]
+          }]
+        })
+        .then(function(lastOrder){
+          console.log('this is the order we found');
+          console.log(lastOrder[0].dataValues.Order_Details);
+            res.json({orders: lastOrder});
+        });
+      })
+      .catch(function(err){
+        res.json({error: err});
       });
-    })
-    .catch(function(err){
-      res.json({error: err});
-    });
+  } else {
+    res.json({error: 'not authorized'});
+  }
 });
 
 module.exports = router;
