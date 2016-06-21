@@ -1,4 +1,4 @@
-"use strict";
+  "use strict";
 
 module.exports = function(sequelize, DataTypes) {
     var User = sequelize.define("User", {
@@ -22,6 +22,7 @@ module.exports = function(sequelize, DataTypes) {
       classMethods: {
         associate: function (models) {
           User.hasMany(models.Order);
+          User.belongsTo(models.Account);
         }
       }
     }, {

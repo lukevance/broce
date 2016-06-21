@@ -3,6 +3,7 @@
     padding: 15px;
     margin: 0 auto;
 }
+
 .form-signin .form-signin-heading, .form-signin .checkbox {
     margin-bottom: 10px;
 }
@@ -114,4 +115,19 @@
 
 .panel-order .panel-deading {
     margin-bottom: 0;
+}
+/*Quote form css*/
+.quoteForm{
+    max-width: 330px;
+    padding: 15px;
+    margin-left: 50px;
+    
+}
+/*Quote Form Added table*/
+.quoteAdded{
+    max-width: 800px;
+    height: 500px;
+    padding: 15px;
+    margin-right: 50px;
+    float:right;
 }

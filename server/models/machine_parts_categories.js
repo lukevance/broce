@@ -6,18 +6,18 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
-        serialMin: {
+        serial_min: {
             type: DataTypes.STRING,
             allowNull: true
         },
-        serialMax: {
+        serial_max: {
             type: DataTypes.STRING,
             allowNull: true
         }
     },{
       classMethods: {
         associate: function(models){
-          Parts_Category.hasMany(models.Part);
+          Parts_Category.belongsTo(models.Part);
         }
       }
     }, {
