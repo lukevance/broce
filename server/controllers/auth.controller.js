@@ -11,10 +11,12 @@ var models = require('../models');
 router.post('/signup', function(req, res){
   // validation/sanitation
   let newUser = req.body;
+  //checkfor matching confirm emails
   // check for matching confirm password to match
-  if (newUser.password !== newUser.confirmPassword){
-    res.json({message: 'Passwords do not match.'});
-  } else {
+  if(newUser.email !== newUser.confEmail || newUser.password !== newUser.confPassword){
+    res.json({message: 'Email or password does not match'});
+  }
+ else {
     // encrypt password
     bcrypt.hash(newUser.password, 8, function(err, hash) {
       if (err) {
@@ -25,8 +27,9 @@ router.post('/signup', function(req, res){
           .findOrCreate({
             where: {email: newUser.email},
             defaults: {
-              first_name: req.body.firstName,
-              last_name: req.body.lastName,
+              firstName: req.body.firstName,
+              lastName: req.body.lastName,
+
               password: hash
             }
           })

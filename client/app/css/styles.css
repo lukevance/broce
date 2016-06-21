@@ -3,6 +3,7 @@
     padding: 15px;
     margin: 0 auto;
 }
+
 .form-signin .form-signin-heading, .form-signin .checkbox {
     margin-bottom: 10px;
 }
@@ -55,6 +56,8 @@
     -webkit-border-radius: 50%;
     border-radius: 50%;
 }
+
+/*dash page css*/
 .need-help {
     margin-top: 10px;
 }
@@ -62,28 +65,69 @@
     display: block;
     margin-top: 10px;
 }
-/*.register {
-    margin: 0px 10px;
+
+.panel-order .row {
+    border-bottom: 1px solid #ccc;
 }
-h2 {
-    margin-top: 2px;
-    margin-bottom: 2px;
+
+.panel-order .row:last-child {
+    border: 0px;
 }
-.container {
-    max-width: 360px;
-}
-.divider {
+
+.panel-order .row .col-md-1 {
     text-align: center;
-    margin-top: 20px;
-    margin-bottom: 5px;
+    padding-top: 15px;
 }
-.divider hr {
-    margin: 7px 0px;
-    width: 35%;
+
+.panel-order .row .col-md-1 img {
+    width: 50px;
+    max-height: 50px;
 }
-.left {
-    float: left;
+
+.panel-order .row .row {
+    border-bottom: 0;
 }
-.right {
-    float: right;
-}*/
+
+.panel-order .row .col-md-11 {
+    border-left: 1px solid #ccc;
+}
+
+.panel-order .row .row .col-md-12 {
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.panel-order .row .row .col-md-12:last-child {
+    font-size: 11px;
+    color: #555;
+    background: #efefef;
+}
+
+.panel-order .btn-group {
+    margin: 0px;
+    padding: 0px;
+}
+
+.panel-order .panel-body {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.panel-order .panel-deading {
+    margin-bottom: 0;
+}
+/*Quote form css*/
+.quoteForm{
+    max-width: 330px;
+    padding: 15px;
+    margin-left: 50px;
+    
+}
+/*Quote Form Added table*/
+.quoteAdded{
+    max-width: 800px;
+    height: 500px;
+    padding: 15px;
+    margin-right: 50px;
+    float:right;
+}
