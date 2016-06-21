@@ -14,21 +14,16 @@ module.exports = function(sequelize, DataTypes) {
           type: DataTypes.FLOAT,
           allowNull: true
         },
-        price: {
-          type: DataTypes.FLOAT,
-          allowNull: true
-        },
-        imageURL: {
+        image_url: {
             type: DataTypes.STRING,
             allowNull: true
         }
-    }, {
-       tableName: 'parts'
     },
     {
       classMethods: {
         associate: function(models){
-           Part.belongsTo(models.Parts_Category);
+           Part.belongsToMany(models.Parts_Category, {through: 'PartCategory'});
+           Part.hasMany(models.Order_Detail);
         }
       }
     });

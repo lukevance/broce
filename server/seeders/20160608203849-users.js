@@ -2,22 +2,22 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkInsert('Person', [{
-        name: 'John Doe',
-        isBetaMember: false
-      }], {});
-    */
     return queryInterface.bulkInsert('Users', [
+      {
+        first_name: 'Ray',
+        last_name: 'Bray',
+        email: 'ray@brocebroom.com',
+        password: '$2a$08$WDRgosAz6nnR85KNGpT5aekCoMXVtbXcHnDo4JfdN248FW6vbla/6',
+        AccountId: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
       {
         first_name: 'Dave',
         last_name: 'DealerDude',
         email: 'dave@dealerdude.com',
-        password: '$2a$08$Ogqyva.KTiLwLB6cH5xhHuoDGQ7Cjr/lIIJ9xzXQf8b8nKnU7rkxa', //dudestuff
+        password: '$2a$08$6WmwCXMPnXTrwlDjXgEpSupuvvWu7vsNONZoHQMgZBhm7wA.VkCPC',
+        AccountId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -25,7 +25,8 @@ module.exports = {
         first_name: 'Bob',
         last_name: 'Taylor',
         email: 'bob@thetaylors.com',
-        password: '$2a$08$ZCVow3DEz31KUajcTY26fOEYecQ2j7rqdzOsEDU5arWNDy4RGKcCS', //pants
+        password: '$2a$08$uWwXCs/lNnZKSIZ5OFsJSueqPpb8qWVPPrjHyZ20W5ZHldCa7C3/W',
+        AccountId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       }
@@ -33,13 +34,6 @@ module.exports = {
   },
 
   down: function (queryInterface, Sequelize) {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkDelete('Person', null, {});
-    */
     return queryInterface.bulkDelete('Users', null, {});
   }
 };
