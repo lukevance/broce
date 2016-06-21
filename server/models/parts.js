@@ -22,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
     {
       classMethods: {
         associate: function(models){
-           Part.hasMany(models.Parts_Category);
+           Part.belongsToMany(models.Parts_Category, {through: 'PartCategory'});
            Part.hasMany(models.Order_Detail);
         }
       }
