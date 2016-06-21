@@ -1,31 +1,22 @@
-function AccountController($window, $http) {
-
-
+function AccountController($window, $http, GetUsersQuotes) {
     console.log('inside');
     var vm = this;
     vm.mydata=[];
-    $http({
-        method: 'GET',
-        url: '//localhost:3000/orders/current'
-    }).then(function successCallback(response) {
-      if(response){
+    GetUsersQuotes(usersOrdersCallback);
 
-      }
-        var data = response.data;
-        vm.mydata = data;
-        // this callback will be called asynchronously
-        // when the response is available
-        // response = response.Curorders.Order_Details.Machine_serial_num
-        var machineSerialNum = data.curOrders[0].Order_Details[0].machine_serial_num;
-        // dataArray = [{serialNumber:machineSerialNum}]
-        console.log(data.curOrders[0].Order_Details[0].machine_serial_num);
-        console.log(data.curOrders); //.object.Order_Details.object.Machine_serial_num
-    }, function errorCallback(response) {
-        console.log(response);
-
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-    });
+    function usersOrdersCallback (orderData) {
+      // check to be sure orders arrived
+      var data = orderData.data;
+      vm.mydata = data.curOrders;
+      console.log(vm.mydata);
+      // this callback will be called asynchronously
+      // when the response is available
+      // response = response.Curorders.Order_Details.Machine_serial_num
+      var machineSerialNum = data.curOrders[0].Order_Details[0].machine_serial_num;
+      // dataArray = [{serialNumber:machineSerialNum}]
+      console.log(data.curOrders[0].Order_Details[0].machine_serial_num);
+      console.log(data.curOrders); //.object.Order_Details.object.Machine_serial_num
+    }
 
 
     // var dummydata =
