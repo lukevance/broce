@@ -2,7 +2,7 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('Part_Categories', [
+    return queryInterface.bulkInsert('Parts_Categories', [
       {
         model: '350',
         serial_min: 408094,
@@ -21,6 +21,6 @@ module.exports = {
   },
 
   down: function (queryInterface, Sequelize) {
-    return queryInterface.bulkDelete('Part_Categories', null, {});
+    return queryInterface.bulkDelete('Parts_Categories', null, {});
   }
 };
