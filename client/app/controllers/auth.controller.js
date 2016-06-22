@@ -41,7 +41,6 @@ function AuthController($window, SigninService, SignupService) {
 
     var vm = this;
     vm.userInfo = {};
-    vm.newUser = {};
     // vm.signup = signup;
     vm.message = 'SIGN IN';
 

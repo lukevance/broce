@@ -7,11 +7,19 @@ var models = require('../models');
 // Get all parts list
 router.get('/', function(req, res){
   models.Part
-    .all()
+    .findAll({
+      include: [{
+        model: models.Parts_Category,
+        through: {
+          attributes: ['model', 'serial_min', 'serial_max']
+        }
+      }]
+    })
     .then(function(partsList){
       res.json({parts: partsList});
     });
 });
+
 
 // Create new parts
 router.post('/new', function(req, res){

@@ -7,17 +7,17 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
         },
         serial_min: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: true
         },
         serial_max: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: true
         }
     },{
       classMethods: {
         associate: function(models){
-          Parts_Category.belongsTo(models.Part);
+          Parts_Category.belongsToMany(models.Part, {through: 'PartCategory'});
         }
       }
     }, {

@@ -12,17 +12,11 @@ router.post('/signup', function(req, res){
   // validation/sanitation
   let newUser = req.body;
   //checkfor matching confirm emails
-  if(newUser.email !== newUser.confEmail){
-    res.json({message: 'Email does not match'})
-  }
   // check for matching confirm password to match
-<<<<<<< HEAD
-  else { (newUser.password !== newUser.confPassword){
-=======
-  if (newUser.password !== newUser.confirmPassword){
->>>>>>> 9b3098574a1ad3ae7ed77b93d59cf19fc0a02801
-    res.json({message: 'Passwords do not match.'});
-  } else {
+  if(newUser.email !== newUser.confEmail || newUser.password !== newUser.confPassword){
+    res.json({message: 'Email or password does not match'});
+  }
+ else {
     // encrypt password
     bcrypt.hash(newUser.password, 8, function(err, hash) {
       if (err) {
