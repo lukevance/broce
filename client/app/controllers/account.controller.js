@@ -1,7 +1,13 @@
-function AccountController($window, $http, GetUsersQuotes) {
+function AccountController($window, $http, GetUsersQuotes, CheckForAuthService) {
     console.log('inside');
     var vm = this;
     vm.mydata=[];
+    vm.auth = false;
+    if (CheckForAuthService()) {
+      vm.auth = true;
+    }
+
+
     GetUsersQuotes(usersOrdersCallback);
 
     function usersOrdersCallback (orderData) {

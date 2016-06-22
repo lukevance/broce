@@ -1,4 +1,13 @@
-<div class="container" style="padding-top: 60px;">
+<div class="container" style="padding-top: 60px;" ng-hide="AC.auth">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h3 style="text-align: center;">Sorry you must be signed in to view this page :(</h3>
+    </div>
+  </div>
+</div>
+
+
+<div class="container" style="padding-top: 60px;" ng-show="AC.auth">
   <h1>Order and Quote history{{AC.message}}</h1>
   <div class="panel panel-default panel-order">
     <div class="panel-heading">
