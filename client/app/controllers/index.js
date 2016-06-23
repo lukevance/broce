@@ -7,4 +7,5 @@ angular.module('partsApp')
   .controller('AboutController', require('./about.controller'))
   .controller('AccountController',["$window", "$http", "GetUsersQuotes","PostNewQuote", "CheckForAuthService", require('./account.controller')])
   .controller('FormController',require('./form.controller'))
-  .controller('ContactController', require('./contact.controller'));
+  .controller('ContactController', require('./contact.controller'))
+  .controller('ErrorController', require('./error.controller'));
