@@ -20,7 +20,7 @@ angular.module('partsApp')
             .when('/form', {
 
                 template : require('./pages/form.html'),
-                controller  : 'FormController as FC'
+                controller  : 'AccountController as AC'
             })
             .when('/dash', {
                 template : require('./pages/dash.html'),
