@@ -1,6 +1,7 @@
 'use strict';
 
 GetUsersQuotes.$inject = ['$http'];
+PostNewQuote.$inject=['$http'];
 
 function GetUsersQuotes ($http) {
   return function (nextFunc) {
@@ -14,5 +15,21 @@ function GetUsersQuotes ($http) {
   };
 }
 
+function PostNewQuote($http){
+  return function (quoteBody, nextFunc) {
+    return $http.post('//localhost:3000/orders/new-quote', quoteBody)
+      .then(function(newQuote){
+        nextFunc(newQuote);
+      })
+      .catch(function(error){
+        console.log(error);
+      });
+  };
+}
 
-module.exports = GetUsersQuotes;
+
+
+module.exports = {
+  GetUsersQuotes:GetUsersQuotes,
+  PostNewQuote:PostNewQuote
+};
