@@ -6,6 +6,6 @@ angular.module('partsApp')
   .controller('AuthController', ["$window","SigninService","SignupService", require('./auth.controller')])
   .controller('AboutController', require('./about.controller'))
 
-  .controller('AccountController',["$window", "$http", "GetUsersQuotes","PostNewQuote","$scope", require('./account.controller')])
+  .controller('AccountController',["$window", "$http", "GetUsersQuotes","PostNewQuote","$scope","$route", require('./account.controller')])
   .controller('FormController',require('./form.controller'))
   .controller('ContactController', require('./contact.controller'));

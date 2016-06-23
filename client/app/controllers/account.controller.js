@@ -1,7 +1,8 @@
-function AccountController($window, $http, GetUsersQuotes, PostNewQuote, $scope) {
+function AccountController($window, $http, GetUsersQuotes, PostNewQuote, $scope, $route) {
     console.log('inside');
     var vm = this;
     vm.IsVisible = false;
+    vm.reloadroute = reloadRoute;
     vm.showhide= ShowHide;
     vm.submit = submitNewQuote;
     vm.inputs = {};
@@ -13,15 +14,6 @@ function AccountController($window, $http, GetUsersQuotes, PostNewQuote, $scope)
         var partSelect = document.getElementById("frm").elements.namedItem("partSelect").value;
         var quantitySelect = document.getElementById("frm").elements.namedItem("quantitySelect").value;
 
-        inputs = {
-            serialNumber,
-            partSelect,
-            quantitySelect
-        };
-
-        //when called find vm model form inputs
-        //Put it in a object with right format
-        //var quoteBody = {poNumber:}; //adding more entries into an array
         var quoteBody = {
             "poNumber": "12341",
             "userId": 3,
@@ -31,14 +23,24 @@ function AccountController($window, $http, GetUsersQuotes, PostNewQuote, $scope)
                 "quantity": quantitySelect
             }]
         }
+        if(PostNewQuote(quoteBody, dealWithResponse)){
+            reloadRoute();
+      }
         console.log(quoteBody);
-        PostNewQuote(quoteBody, dealWithResponse);
 
     }
+    function reloadRoute(){
+      $route.reload();
+    }
+
+
+
+
 
     function dealWithResponse(response) {
         console.log(response);
     }
+
 
     function usersOrdersCallback(orderData) {
         // check to be sure orders arrived
@@ -61,6 +63,57 @@ function AccountController($window, $http, GetUsersQuotes, PostNewQuote, $scope)
         console.log('after');
 
     }
+
+//     function pages($scope, $filter) {
+//     $scope.currentPage = 0;
+//     $scope.pageSize = 10;
+//     $scope.data = [];
+//     $scope.q = '';
+//
+//     function getData {
+//       // needed for the pagination calc
+//       // https://docs.angularjs.org/api/ng/filter/filter
+//       return $filter('filter')($scope.data, $scope.q)
+//      /*
+//        // manual filter
+//        // if u used this, remove the filter from html, remove above line and replace data with getData()
+//
+//         var arr = [];
+//         if($scope.q == '') {
+//             arr = $scope.data;
+//         } else {
+//             for(var ea in $scope.data) {
+//                 if($scope.data[ea].indexOf($scope.q) > -1) {
+//                     arr.push( $scope.data[ea] );
+//                 }
+//             }
+//         }
+//         return arr;
+//        */
+//     }
+//
+//     $scope.numberOfPages=function(){
+//         return Math.ceil($scope.getData().length/$scope.pageSize);
+//     }
+//
+//     for (var i=0; i<65; i++) {
+//         $scope.data.push("Item "+i);
+//     }
+// }]);
+//
+// //We already have a limitTo filter built-in to angular,
+// //let's make a startFrom filter
+// app.filter('startFrom', function() {
+//     return function(input, start) {
+//         start = +start; //parse to int
+//         return input.slice(start);
+//     }
+// });
+
+
+
+
+
 
 
 }
