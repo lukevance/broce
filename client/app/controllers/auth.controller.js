@@ -8,7 +8,7 @@ function AuthController($window, SigninService, SignupService) {
 
         if(response.data.token){
           $window.localStorage.token = response.data.token;
-          window.location="http://localhost:8080/#/dash";
+          window.location="http://localhost:8080/#/form";
           console.log(window.atob($window.localStorage.token.split(".")[1]));
           }
       else{

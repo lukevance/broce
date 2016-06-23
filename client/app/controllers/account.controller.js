@@ -1,17 +1,23 @@
-function AccountController($window, $http, GetUsersQuotes, PostNewQuote) {
+function AccountController($window, $http, GetUsersQuotes, PostNewQuote, $scope) {
     console.log('inside');
     var vm = this;
+    vm.IsVisible = false;
+    vm.showhide= ShowHide;
     vm.submit = submitNewQuote;
     vm.inputs = {};
     vm.mydata = [];
     GetUsersQuotes(usersOrdersCallback);
 
     function submitNewQuote() {
-      var serialNumber = document.getElementById("frm").elements.namedItem("serialNumber").value;
-      var partSelect = document.getElementById("frm").elements.namedItem("partSelect").value;
-      var quantitySelect = document.getElementById("frm").elements.namedItem("quantitySelect").value;
+        var serialNumber = document.getElementById("frm").elements.namedItem("serialNumber").value;
+        var partSelect = document.getElementById("frm").elements.namedItem("partSelect").value;
+        var quantitySelect = document.getElementById("frm").elements.namedItem("quantitySelect").value;
 
-      inputs = {serialNumber, partSelect, quantitySelect};
+        inputs = {
+            serialNumber,
+            partSelect,
+            quantitySelect
+        };
 
         //when called find vm model form inputs
         //Put it in a object with right format
@@ -30,8 +36,8 @@ function AccountController($window, $http, GetUsersQuotes, PostNewQuote) {
 
     }
 
-    function dealWithResponse(response){
-      console.log(response);
+    function dealWithResponse(response) {
+        console.log(response);
     }
 
     function usersOrdersCallback(orderData) {
@@ -46,6 +52,14 @@ function AccountController($window, $http, GetUsersQuotes, PostNewQuote) {
         // dataArray = [{serialNumber:machineSerialNum}]
         console.log(data.curOrders[0].Order_Details[0].machine_serial_num);
         console.log(data.curOrders); //.object.Order_Details.object.Machine_serial_num
+    }
+
+      function ShowHide() {
+        //If DIV is visible it will be hidden and vice versa.
+        console.log('before');
+        $scope.IsVisible = $scope.IsVisible ? false : true;
+        console.log('after');
+
     }
 
 

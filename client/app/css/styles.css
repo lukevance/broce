@@ -58,6 +58,9 @@
 }
 
 /*dash page css*/
+
+
+
 .need-help {
     margin-top: 10px;
 }
@@ -68,24 +71,29 @@
 
 .panel-order .row {
     border-bottom: 1px solid #ccc;
+
 }
 
 .panel-order .row:last-child {
     border: 0px;
+
 }
 
 .panel-order .row .col-md-1 {
     text-align: center;
     padding-top: 15px;
+
 }
 
 .panel-order .row .col-md-1 img {
     width: 50px;
     max-height: 50px;
+
 }
 
 .panel-order .row .row {
     border-bottom: 0;
+
 }
 
 .panel-order .row .col-md-11 {
@@ -95,6 +103,11 @@
 .panel-order .row .row .col-md-12 {
     padding-top: 7px;
     padding-bottom: 7px;
+}
+
+.panel{
+  width: 825px;
+  margin-left: 10px;
 }
 
 .panel-order .row .row .col-md-12:last-child {
@@ -111,17 +124,19 @@
 .panel-order .panel-body {
     padding-top: 0px;
     padding-bottom: 0px;
+
 }
 
 .panel-order .panel-deading {
     margin-bottom: 0;
+
 }
 /*Quote form css*/
 .quoteForm{
     max-width: 330px;
     padding: 15px;
-    margin-left: 50px;
-    
+    margin-right: 50px;
+
 }
 /*Quote Form Added table*/
 .quoteAdded{
@@ -130,4 +145,27 @@
     padding: 15px;
     margin-right: 50px;
     float:right;
+}
+
+.panelq{
+  width:330px;
+  foat:right;
+  margin-right: 10px;
+}
+
+
+
+.containerDash{
+  width: 500px;
+  margin-left: 30px;
+}
+#left{
+  float:left;
+}
+#right{
+  float:right;
+}
+#addQuote{
+  width: 200px;
+  margin-left: 75px;
 }
