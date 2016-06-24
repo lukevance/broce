@@ -2,7 +2,7 @@
 
 function AdminController (DummyDataService) {
   var vm = this;
-  vm.dummyData = DummyDataService();
+  vm.ordersData = DummyDataService();
 
 }
 
