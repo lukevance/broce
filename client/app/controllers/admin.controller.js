@@ -42,7 +42,26 @@ function AdminController () {
       }
     ],
     submittedQuotes: [
-
+      {
+        account: 'Some Other Dealer',
+        user: 'Dwayne Johnson',
+        createdAt: new Date(),
+        details: {
+          machine_serial_num: 896543,
+          parts: [
+            {
+              number: 'R10798',
+              quantity: 3,
+              price: 21.73
+            },
+            {
+              number: 'AD0976',
+              quantity: 2,
+              price: 11.92
+            }
+          ]
+        }
+      },
     ],
     orders: [
 

@@ -11,34 +11,19 @@
 
   <div class="row">
     <div class="col-md-6">
-      <h2 class="text-center">Quote Requests</h2>
-      <div class="account-wall">
-        <div class="panel panel-default order-card" ng-repeat="item in ADC.dummyData.requestedQuotes">
-          <h3>{{item.account}}</h3>
-        </div>
-
-      </div>
+      <admin-quotes quotes="ADC.dummyData.requestedQuotes"></admin-quotes>
     </div>
     <div class="col-md-6">
-      <h2 class="text-center">Orders</h2>
-      <div class="account-wall">
-
-      </div>
+      <admin-orders></admin-orders>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-6">
-      <h2 class="text-center">Submitted Quotes</h2>
-      <div class="account-wall">
-
-      </div>
+      <admin-sub-quotes><admin-sub-quotes>
     </div>
     <div class="col-md-6">
-      <h2 class="text-center">Shipped Orders</h2>
-      <div class="account-wall">
-
-      </div>
+      <admin-ship-orders></admin-ship-orders>
     </div>
   </div>
 
