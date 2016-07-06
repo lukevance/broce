@@ -14,7 +14,21 @@ function adminAllOrders () {
               parts: [
                 {
                   number: 'R10798',
-                  quantity: 3
+                  quantity: 3,
+                  price: 2.99
+                },
+                {
+                  number: 'AD0976',
+                  quantity: 2
+                }
+              ]
+            }, {
+              machine_serial_num: 1234512,
+              parts: [
+                {
+                  number: 'R10798',
+                  quantity: 3,
+                  price: 2.99
                 },
                 {
                   number: 'AD0976',
@@ -34,7 +48,7 @@ function adminAllOrders () {
               parts: [
                 {
                   number: 'HR-95134',
-                  quantity: 1
+                  quantity: 1,
                 },
                 {
                   number: 'XJ5725',
