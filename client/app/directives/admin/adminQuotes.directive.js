@@ -15,6 +15,7 @@ function AdminQuotes () {
           quote.total = 0.00;
           quote.showDetails = false;
           quote.showText = "Show";
+          quote.showCommentBox = false;
           quote.details.forEach(function(val){
             val.parts.forEach(function(cur){
               cur.editMode = false;
@@ -58,6 +59,12 @@ function AdminQuotes () {
             }
           });
         });
+      }
+
+      // function to display comment section
+      $scope.showComments = showComments;
+      function showComments (quote) {
+        quote.showCommentBox = !quote.showCommentBox;
       }
 
       // function to submit quote to customer
