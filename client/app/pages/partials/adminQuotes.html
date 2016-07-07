@@ -7,18 +7,20 @@
     <div class="order-details" ng-show="item.showDetails">
       <table class="table table-striped">
         <thead>
-          <th>
-            Part Number
-          </th>
-          <th>
-            Quantity
-          </th>
-          <th>
-            Price
-          </th>
-          <th>
+          <tr>
+            <th>
+              Part Number
+            </th>
+            <th>
+              Quantity
+            </th>
+            <th>
+              Price
+            </th>
+            <th>
 
-          </th>
+            </th>
+          </tr>
         </thead>
         <tfoot>
           <tr>
@@ -48,7 +50,7 @@
         <tbody ng-repeat="machine in item.details">
           <tr>
             <td colspan="4">
-              <h6>Machine Serial Number: {{machine.machine_serial_num}}</h6>
+              Machine Serial: {{machine.machine_serial_num}}
             </td>
           </tr>
           <tr ng-repeat="part in machine.parts">

@@ -16,9 +16,9 @@ function AdminQuotes () {
           quote.showDetails = false;
           quote.showText = "Show";
           quote.showCommentBox = false;
-          quote.details.forEach(function(val){
-            val.parts.forEach(function(cur){
-              cur.editMode = false;
+          quote.details.forEach(function(machine){
+            machine.parts.forEach(function(part){
+              part.editMode = false;
             });
           });
         }

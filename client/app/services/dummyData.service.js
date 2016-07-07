@@ -78,6 +78,14 @@ function adminAllOrders () {
                 }
               ]
             }
+          ],
+          comments: [
+            {
+              user: 'Ray Bray',
+              date: new Date(),
+              text: 'Hey there bryan I changed your first part number to the appropriate number for your model. Let me know if you have any questions.'
+            }
+
           ]
         },
       ],
