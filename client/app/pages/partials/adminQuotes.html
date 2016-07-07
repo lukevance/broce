@@ -3,8 +3,8 @@
   <div class="panel panel-default order-card" ng-repeat="item in quotes">
     <h2>{{item.account}}</h2>
     <h4>Submitted by: {{item.user}}</h4>
-    <h5>Order Details</h5>
-    <div class="order-details">
+    <h5 ng-click="showDetails(item)">{{item.showText}} Order Details</h5>
+    <div class="order-details" ng-show="item.showDetails">
       <table class="table table-striped">
         <thead>
           <th>
@@ -20,6 +20,21 @@
 
           </th>
         </thead>
+        <tfoot>
+          <tr>
+            <th colspan="2">
+              <strong>Total:</strong>
+            </th>
+            <th colspan="2">
+              $xx.xx
+            </th>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <button class="btn btn-default btn-success quote-submit-btn" type="button" name="button">Submit Quote Details</button>
+            </td>
+          </tr>
+        </tfoot>
         <tbody ng-repeat="machine in item.details">
           <tr>
             <td colspan="4">
@@ -46,18 +61,7 @@
             </td>
           </tr>
         </tbody>
-        <tfoot>
-          <tr>
-            <th colspan="2">
-              <strong>Total:</strong>
-            </th>
-            <th colspan="2">
-              $xx.xx
-            </th>
-          </tr>
-        </tfoot>
       </table>
-
     </div>
   </div>
 

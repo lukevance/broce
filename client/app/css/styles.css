@@ -121,7 +121,7 @@
     max-width: 330px;
     padding: 15px;
     margin-left: 50px;
-    
+
 }
 /*Quote Form Added table*/
 .quoteAdded{
@@ -130,4 +130,8 @@
     padding: 15px;
     margin-right: 50px;
     float:right;
+}
+
+.quote-submit-btn {
+  float: right;
 }
