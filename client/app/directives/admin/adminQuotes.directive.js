@@ -12,6 +12,7 @@ function AdminQuotes () {
       $scope.quotes.forEach(function(quote){
         if (quote.details){
           // attach show attribute
+          quote.total = 0.00;
           quote.showDetails = false;
           quote.showText = "Show";
           quote.details.forEach(function(val){
@@ -44,6 +45,19 @@ function AdminQuotes () {
       function addPrice (part, partPrice) {
         part.price = partPrice;
         editModeChng(part);
+      }
+
+      // update quote total
+      $scope.updateTotal = updateTotal;
+      function updateTotal (quote) {
+        quote.total = 0.00;
+        quote.details.forEach(function(machine){
+          machine.parts.forEach(function(part){
+            if (part.price) {
+              quote.total += part.price * part.quantity;
+            }
+          });
+        });
       }
 
       // function to submit quote to customer

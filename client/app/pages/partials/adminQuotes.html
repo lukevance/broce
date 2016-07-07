@@ -26,7 +26,7 @@
               <strong>Total:</strong>
             </th>
             <th colspan="2">
-              $xx.xx
+              ${{item.total}}
             </th>
           </tr>
           <tr>
@@ -57,7 +57,7 @@
             <td>
               <button class="btn btn-default" ng-hide="part.editMode" ng-click="editModeChng(part)">Edit</button>
               <button class="btn btn-default" ng-show="part.editMode" ng-click="editModeChng(part)" type="button" >Cancel</button>
-              <button class="btn btn-default" ng-show="part.editMode" ng-click="addPrice(part, part.tempPrice)" type="button" >Update</button>
+              <button class="btn btn-default" ng-show="part.editMode" ng-click="addPrice(part, part.tempPrice); updateTotal(item)" type="button" >Update</button>
             </td>
           </tr>
         </tbody>

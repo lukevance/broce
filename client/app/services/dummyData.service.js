@@ -15,7 +15,6 @@ function adminAllOrders () {
                 {
                   number: 'R10798',
                   quantity: 3,
-                  price: 2.99
                 },
                 {
                   number: 'AD0976',
@@ -28,7 +27,6 @@ function adminAllOrders () {
                 {
                   number: 'R10798',
                   quantity: 3,
-                  price: 2.99
                 },
                 {
                   number: 'AD0976',
