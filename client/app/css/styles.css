@@ -153,11 +153,22 @@
   margin-right: 10px;
 }
 
+.getclose{
 
+}
 
 .containerDash{
   width: 500px;
   margin-left: 30px;
+}
+.addfields{
+  margin-left: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+
+}
+.addbutton{
+  text-align: center;
 }
 #left{
   float:left;
@@ -168,4 +179,66 @@
 #addQuote{
   width: 200px;
   margin-left: 75px;
+}
+#divP{
+  padding: 0;
+  display: inline-block;
+}
+#divQ{
+  padding:0;
+  display: inline-block;
+}
+#div1{
+  display:inline-block;
+  margin-top: 5px;
+
+}
+#div2{
+  display:inline-block;
+  margin-top: 5px;
+
+
+}
+#div3{
+  display:inline-block;
+  margin-top: 5px;
+
+
+}
+#div4{
+  display:inline-block;
+  margin-top: 5px;
+
+
+}
+#div5{
+  display:inline-block;
+  margin-top: 5px;
+
+
+}
+#divQ1{
+  display:inline-block;
+  margin-top: 5px;
+
+}
+#divQ2{
+  display:inline-block;
+  margin-top: 5px;
+
+}
+#divQ3{
+  display:inline-block;
+  margin-top: 5px;
+
+}
+#divQ4{
+  display:inline-block;
+  margin-top: 5px;
+
+}
+#divQ5{
+  display:inline-block;
+  margin-top: 5px;
+
 }

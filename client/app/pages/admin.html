@@ -1,0 +1,30 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li class="active"><a href="#">Dashboard</a></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <admin-quotes quotes="ADC.ordersData.requestedQuotes"></admin-quotes>
+    </div>
+    <div class="col-md-6">
+      <admin-orders></admin-orders>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <admin-sub-quotes quotes="ADC.ordersData.submittedQuotes"><admin-sub-quotes>
+    </div>
+    <div class="col-md-6">
+      <admin-ship-orders></admin-ship-orders>
+    </div>
+  </div>
+
+</div>

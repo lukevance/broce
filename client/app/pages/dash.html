@@ -1,106 +1,110 @@
-<div class="containerDash" id="left">
-          <div class="panel panel-default panel-order">
-              <div class="panel-heading">
-                  <strong>Order history</strong>
-                  <div class="btn-group pull-right">
-                      <div class="btn-group">
-                          <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                              Filter history <i class="fa fa-filter"></i>
-                          </button>
-                          <ul class="dropdown-menu dropdown-menu-right">
-                              <li><a href="/#/dash">Active orders</a></li>
-                              <li><a href="/#/dash">Pending orders</a></li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-              <div class="panel-body">
-                  <div class="row" ng-repeat="item in AC.mydata">
-                      <div class="col-md-1"><img src="http://portfoliotheme.org/enigmatic/wp-content/uploads/sites/9/2012/07/placeholder1.jpg" class="media-object"></div>
-                      <div class="col-md-11">
-                          <div class="row">
-                              <div class="col-md-12">
-                                  <div class="pull-right"><i class="fa fa-certificate"></i> pending</div>
-                                  <span><strong>Serial Number: {{item.machineSerialNum}}</strong></span>
-                                  <span class="label label-info">Group Name: {{item.groupName}}</span>
-                                  <br>
-                                  <span>Quantity: {{item.quantity}}</span>
-                                  <br>
-                                  <span>Part Number: ${{item.cost}}</span>
-                              </div>
-                              <div class="col-md-12">
-                                  order made on: 05/30/2014 by <a href="/#/dash">Broce Brooms </a>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="panel-footer">
-                      <ul class="pagination">
-                          <li class="active"><a href="/#/dash">&laquo;</a></li>
-                          <li><a href="/#/dash">1</a></li>
-                          <li><a href="/#/dash">2</a></li>
-                          <li><a href="/#/dash">3</a></li>
-                          <li><a href="/#/dash">4</a></li>
-                          <li><a href="/#/dash">5</a></li>
-                          <li><a href="/#/dash">&raquo;</a></li>
-                      </ul>
-                  </div>
-              </div>
-          </div>
-      </div>
-
-      <div class="quoteContainer" id="right" >
-        <div>
-          <button id="addQuote" class="btn btn-lg btn-primary btn-block" ng-click="AC.showhide()" type="submit">
-              Make A Quote</button>
+<div class="container" style="padding-top: 60px;" ng-hide="AC.auth">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h3 style="text-align: center;">Sorry you must be signed in to view this page :(</h3>
         </div>
-        <div class="container quoteForm " >
-            <div class="row" ng-show="IsVisible">
-                <div class="panel panel-primary panelq">
-                    <div class="panel-body " >
-                        <form id="frm" role="form" data-toggle="validator" name="surveyForm"  >
-                            <!-- registration view for view injection -->
-                            <div class="form-group">
-                                <h2>Quote Form</h2>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="signupName">Machine Serial Number</label>
-                                <input id="serialNumber" retype="name" name="serialNumber" required maxlength="50" class="form-control" ng-model="AC.input.serialNumber" class="help-block">
-                            </div>
-                            <div>
-                                <fieldset class="form-group">
-                                    <label for="exampleSelect1">Part Number</label>
-                                    <select class="form-control" id="partSelect" ng-model="AC.input.partSelect">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
-                                    <button class="remove" class="btn btn-lg btn-primary btn-block" ng-show="$last" ng-click="AC.removepart()">RIGHT HERE</button>
-                                </fieldset>
-                                <button class="addfields" ng-click="AC.addnewchoice()">Add fields</button>
-                            </div>
-                            <div>
-                                <fieldset class="form-group">
-                                    <label for="exampleSelect1">quantity</label>
-                                    <select class="form-control" id="quantitySelect" ng-model="AC.input.quantitySelect">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
-                                </fieldset>
-                            </div>
-                            <div>
-                                <button id="addButton" class="btn btn-lg btn-primary btn-block" type="submit" ng-submit="AC.submit()" ng-click="AC.reloadroute()">
-                                    Add</button>
-                            </div>
-                        </form>
-                    </div>
+    </div>
+</div>
+
+
+<div class="containerDash" id="left">
+    <div class="panel panel-default panel-order">
+        <div class="panel-heading">
+            <strong>Order history</strong>
+            <div class="btn-group pull-right">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                        Filter history <i class="fa fa-filter"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="/#/dash">Active orders</a></li>
+                        <li><a href="/#/dash">Pending orders</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
-        {{AC.parts}}
-      </div>
+        <div class="panel-body">
+            <div class="row" ng-repeat="item in AC.mydata">
+                <div class="col-md-1"><img src="http://portfoliotheme.org/enigmatic/wp-content/uploads/sites/9/2012/07/placeholder1.jpg" class="media-object"></div>
+                <div class="col-md-11">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="pull-right"><i class="fa fa-certificate"></i> pending</div>
+                            <span><strong>Serial Number: {{item.machineSerialNum}}</strong></span>
+                            <span class="label label-info">Group Name: {{item.groupName}}</span>
+                            <br>
+                            <span>Quantity: {{item.quantity}}</span>
+                            <br>
+                            <span>Part Number: ${{item.cost}}</span>
+                        </div>
+                        <div class="col-md-12">
+                            order made on: 05/30/2014 by <a href="/#/dash">Broce Brooms </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <ul class="pagination">
+                    <li class="active"><a href="/#/dash">&laquo;</a></li>
+                    <li><a href="/#/dash">1</a></li>
+                    <li><a href="/#/dash">2</a></li>
+                    <li><a href="/#/dash">3</a></li>
+                    <li><a href="/#/dash">4</a></li>
+                    <li><a href="/#/dash">5</a></li>
+                    <li><a href="/#/dash">&raquo;</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="quoteContainer" id="right">
+    <div>
+        <button id="addQuote" class="btn btn-lg btn-primary btn-block" ng-click="AC.showhide()">
+            Make A Quote</button>
+    </div>
+    <div class="container quoteForm ">
+        <div class="row" ng-show="IsVisible">
+            <div class="panel panel-primary panelq">
+                <div class="panel-body ">
+                    <form  id="frm" role="form" data-toggle="validator" name="surveyForm" type="submit">
+                        <!-- registration view for view injection -->
+                        <div class="form-group">
+                            <h2>Quote Form</h2>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" >Machine Serial Number</label>
+                            <input id="serialNumber" retype="name" name="serialNumber" required maxlength="50" class="form-control" ng-model="AC.input.serialNumber" class="help-block">
+                        </div>
+                        <div class="getclose">
+
+
+                            <div class="col-xs-9 col left" id="divP">
+                                <label class="control-label " for="signupName">Part Number</label>
+                                <input id="partNumber" retype="name" name="partNumber[]" required maxlength="50" class="form-control" ng-model="AC.input.partNumber" class="help-block">
+                            </div>
+                            <div class="col-xs-3" id="divQ">
+                                <label>QTY</label>
+                                <input id="quantity" retype="name" name="myInputsQ" required maxlength="50" class="form-control" ng-model="AC.input.quantity" class="help-block">
+                            </div>
+                        </div>
+                </div>
+
+
+
+                <div class="addbutton">
+                    <button class="addfields btn btn-sml btn-primary" ng-click="AC.addInput('divP','divQ')">Add Part</button>
+                </div>
+                <div class="addbutton">
+                    <button class="addfields btn btn-sml btn-primary" ng-click="AC.addFields()">Add Fields to Order</button>
+                </div>
+                <div>
+                    <button id="addButton" class="btn btn-lg btn-primary btn-block" type="submit" ng-click="AC.submit()" ng-submit=AC.reloadroute()>
+                        Submit</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{AC.parts}}
+</div>

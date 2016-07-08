@@ -4,7 +4,7 @@ angular.module('partsApp', ['ngRoute']);
 require('./css/styles.css');
 require('./css/jquery-1.12.4.min');
 // include angular modules
-// require('./directives');
+require('./directives');
 require('./services');
 require('./controllers');
 require('./routes');

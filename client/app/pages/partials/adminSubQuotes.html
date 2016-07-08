@@ -1,0 +1,37 @@
+<h2 class="text-center">Submitted Quotes</h2>
+<div class="account-wall">
+  <div class="panel panel-default order-card" ng-repeat="item in quotes">
+    <h2>{{item.account}}</h2>
+    <h4>Submitted by: {{item.user}}</h4>
+    <h5>Order Details</h5>
+    <div class="order-details" ng-repeat="machine in item.details">
+      <h6>Machine Serial Number: {{machine.machine_serial_num}}</h6>
+      <table class="table table-striped">
+        <thead>
+          <td>
+            Part Number
+          </td>
+          <td>
+            Quantity
+          </td>
+          <td>
+            Price
+          </td>
+        </thead>
+        <tbody>
+          <tr ng-repeat="part in machine.parts">
+            <td>
+              {{part.number}}
+            </td>
+            <td>
+              {{part.quantity}}
+            </td>
+            <td>
+              ${{part.price}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
