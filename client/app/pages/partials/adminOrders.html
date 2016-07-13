@@ -64,8 +64,16 @@
                   </th>
                 </tr>
                 <tr ng-repeat="comment in item.comments" ng-show="item.showCommentBox">
-                  <td colspan="3">
+                  <td colspan="2">
                     {{comment.text}}
+                  </td>
+                  <td>
+                    {{comment.user}}
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3">
+                    <input class="btn btn-default quote-submit-btn" type="button" name="name" value="Add Shipping Info" />
                   </td>
                 </tr>
               </tfoot>
