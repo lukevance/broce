@@ -10,21 +10,36 @@
   </div>
 
   <div class="row">
-    <div class="col-md-6">
-      <admin-quotes quotes="ADC.ordersData.requestedQuotes"></admin-quotes>
+    <div class="col-md-2 col-lg-1 admin-nav">
+      <ul class="nav nav-pills">
+        <li role="presentation" class="active"><a href="#">Dashboard</a></li>
+        <li role="presentation"><a ng-click="ADC.moduleActive('quotes')">Quote Requests</a></li>
+        <li role="presentation"><a href="#">Submitted Quotes</a></li>
+        <li role="presentation"><a href="#">Orders</a></li>
+        <li role="presentation"><a href="#">Shipped Orders</a></li>
+      </ul>
     </div>
-    <div class="col-md-6">
-      <admin-orders orders="ADC.ordersData.orders"></admin-orders>
+
+    <div class="col-md-10 col-lg-11">
+      <div class="row">
+        <div class="col-md-6" ng-class="ADC.adminModules.quotes">
+          <admin-quotes quotes="ADC.ordersData.requestedQuotes" ></admin-quotes>
+        </div>
+        <div class="col-md-6"  ng-class="ADC.adminModules.orders">
+          <admin-orders orders="ADC.ordersData.orders"></admin-orders>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6"  ng-class="ADC.adminModules.subQuotes">
+          <admin-sub-quotes quotes="ADC.ordersData.submittedQuotes"><admin-sub-quotes>
+        </div>
+        <div class="col-md-6"  ng-class="ADC.adminModules.shipOrders">
+          <admin-ship-orders orders="ADC.ordersData.shippedOrders"></admin-ship-orders>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-6">
-      <admin-sub-quotes quotes="ADC.ordersData.submittedQuotes"><admin-sub-quotes>
-    </div>
-    <div class="col-md-6">
-      <admin-ship-orders orders="ADC.ordersData.shippedOrders"></admin-ship-orders>
-    </div>
-  </div>
+
 
 </div>
