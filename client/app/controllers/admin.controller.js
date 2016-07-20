@@ -5,40 +5,76 @@ function AdminController (DummyDataService) {
   vm.ordersData = DummyDataService();
 
   // functions for showing and hiding admin modules
-  vm.adminModules = {
+  vm.adminModuleStatuses = {
     quotes: {
       'admin-mod-default': true,
       'admin-mod-inactive': false,
       'admin-mod-active': false
     },
-    subQuotes: 'admin-mod-default',
-    orders: 'admin-mod-default',
-    shipOrders: 'admin-mod-default'
+    subQuotes: {
+      'admin-mod-default': true,
+      'admin-mod-inactive': false,
+      'admin-mod-active': false
+    },
+    orders: {
+      'admin-mod-default': true,
+      'admin-mod-inactive': false,
+      'admin-mod-active': false
+    },
+    shipOrders: {
+      'admin-mod-default': true,
+      'admin-mod-inactive': false,
+      'admin-mod-active': false
+    }
   };
 
-  vm.inactive = {
-    'admin-mod-inactive': true
-  };
-
+  // function to activate chosen module
   vm.moduleActive = moduleActive;
   function moduleActive (module) {
-    console.log(module);
-    for (var mod in vm.adminModules) {
+    // loop through modules on admin obj
+    for (var mod in vm.adminModuleStatuses) {
+      // exclude module that is chosen
       if (mod !== module) {
-        // use object keys !!!!!
-        Object.keys(vm.adminModules.mod).forEach(function(status){
-          if (status !== 'admin-mod-active'){
-            vm.adminModules.mod.status = false;
-          }
-        });
-        // for (var status in vm.adminModules.mod) {
-        //   if (vm.adminModules.mod)
-        // }
-        // vm.adminModules.mod = 'admin-mod-inactive';
-        // console.log(vm.adminModules.mod);
+        // loop through classes and set only inactive to true
+        statusSetter(vm.adminModuleStatuses, mod, 'admin-mod-inactive');
+      }
+      // set chosen module to active
+      else {
+        statusSetter(vm.adminModuleStatuses, mod, 'admin-mod-active');
       }
     }
-  }
+    // define function to set status for entire module
+    function statusSetter (ref, module, status){
+      var classes = Object.keys(ref[module]);
+      console.log(classes);
+      for (var i = 0; i < classes.length; i++){
+          if (classes[i] !== status){
+            ref[module][classes[i]] = false;
+          } else {
+            ref[module][classes[i]] = true;
+          }
+      }
+    }
+  } //end of moduleActive function
+
+  vm.defaultView = defaultView;
+  function defaultView () {
+    // loop through modules on admin obj
+    for (var mod in vm.adminModuleStatuses) {
+      if (vm.adminModuleStatuses[mod]){
+        var classes = Object.keys(vm.adminModuleStatuses[mod]);
+        for (var i = 0; i < classes.length; i++){
+          if (classes[i] === 'admin-mod-default'){
+            vm.adminModuleStatuses[mod][classes[i]] = true;
+          } else {
+            vm.adminModuleStatuses[mod][classes[i]] = false;
+          }
+        }
+      }
+    }
+  } // end of defaultView function
+
+
 }
 
 module.exports = AdminController;
