@@ -12,6 +12,16 @@ module.exports = {
         UserId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        shipping_address: null,
+        shipping_city: null,
+        shipping_state: null,
+        po_number: null,
+        status: 'price',
+        UserId: 3,
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ], {});
   },

@@ -6,6 +6,10 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allowNull: false
         },
+        part_number: {
+          type: DataTypes.STRING,
+          allowNull: false
+        },
         quantity: {
             type: DataTypes.INTEGER,
             allowNull: false
@@ -14,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
       classMethods: {
         associate: function(models) {
           Order_Detail.belongsTo(models.Order);
-          Order_Detail.belongsTo(models.Part);
+          // Order_Detail.belongsTo(models.Part);
           Order_Detail.hasOne(models.Quote_Detail);
         }
       }

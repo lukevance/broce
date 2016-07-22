@@ -17,15 +17,12 @@ module.exports = function(sequelize, DataTypes) {
         po_number: {
             type: DataTypes.STRING,
             allowNull: true
-        },
-        status: {
-            type: DataTypes.STRING,
-            allowNull: false
         }
     }, {
       classMethods: {
         associate: function (models) {
           Order.hasMany(models.Order_Detail);
+          Order.hasMany(models.Order_Status);
           Order.belongsTo(models.Shipping_Option);
           Order.belongsTo(models.User);
         }
