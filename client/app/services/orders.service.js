@@ -3,9 +3,9 @@
 GetUsersQuotes.$inject = ['$http'];
 PostNewQuote.$inject=['$http'];
 
-function GetUsersQuotes ($http) {
+function GetUsersQuotes ($http, EnvironmentService) {
   return function (nextFunc) {
-    return $http.get('//localhost:3000/orders/current')
+    return $http.get(EnvironmentService.path + '/orders/current')
       .then(function(usersOrders){
         nextFunc(usersOrders);
       })
@@ -15,9 +15,9 @@ function GetUsersQuotes ($http) {
   };
 }
 
-function PostNewQuote($http){
+function PostNewQuote($http, EnvironmentService){
   return function (quoteBody, nextFunc) {
-    return $http.post('//localhost:3000/orders/new-quote', quoteBody)
+    return $http.post(EnvironmentService.path + '/orders/new-quote', quoteBody)
       .then(function(newQuote){
         nextFunc(newQuote);
       })
