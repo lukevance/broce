@@ -21,6 +21,7 @@ router.get('/summary', function(req, res){
       },
       {
         model: models.Order_Detail
+        // add shipping info model connection
       },
       {
         model: models.User,
@@ -102,5 +103,50 @@ router.get('/summary', function(req, res){
 //     res.json({error: err});
 //   });
 // });
+
+
+// post route for submitting prices of quotes
+router.post('/pricedQuotes', function(req, res){
+  let updatedDetails = [];
+  // loop through details to update
+  req.body.quoteDetails.forEach(function(detail){
+    console.log(detail);
+    models.Order_Detail
+    .update({
+      price: detail.price
+    }, {
+      where: {id: detail.id}
+    })
+    .then(function(orderDetails){
+      updatedDetails.push(orderDetails);
+    })
+    .catch(function(err){
+      res.json({error: err});
+    });
+  }); // all updates are done --NEED PROMISE HERE
+
+  // send updated quotes to customers through email
+
+  // send updated quotes back to client to update admin's view
+  res.json({updatedQuotes: updatedDetails});
+});
+
+// route for submitting shipped orders info
+router.post('/shippedOrders', function(req, res){
+  console.log(req.body);
+
+  // instantiate object to contain shipping info
+  let orders = {};
+  // loop through details of submitted order
+
+    // add shippedDetails record for each
+
+    // add details to object
+
+  // send shipping info to custoemr through email
+
+  // send updated order record back to client to update view
+  res.json({result: orders});
+});
 
 module.exports = router;
