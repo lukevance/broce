@@ -8,21 +8,25 @@ function AdminQuotes () {
     },
     template: require('../../pages/partials/adminQuotes.html'),
     controller: function($scope){
-      // loop through quotes add edit status
-      $scope.quotes.forEach(function(quote){
-        if (quote.details){
-          // attach show attribute
-          quote.total = 0.00;
-          quote.showDetails = false;
-          quote.showText = "Show";
-          quote.showCommentBox = false;
-          quote.details.forEach(function(machine){
-            machine.parts.forEach(function(part){
-              part.editMode = false;
+      // check if data from quotes request is back
+      if ($scope.quotes){
+        console.log($scope.quotes);
+        // loop through quotes add edit status
+        $scope.quotes.forEach(function(quote){
+          if (quote.details){
+            // attach show attribute
+            quote.total = 0.00;
+            quote.showDetails = false;
+            quote.showText = "Show";
+            quote.showCommentBox = false;
+            quote.details.forEach(function(machine){
+              machine.parts.forEach(function(part){
+                part.editMode = false;
+              });
             });
-          });
-        }
-      });
+          }
+        });
+      }
 
       // function to show order details
       $scope.showDetails = showDetails;

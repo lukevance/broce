@@ -1,8 +1,14 @@
 'use strict';
 
-function AdminController (DummyDataService) {
+function AdminController ($scope, AdminSummaryService, DummyDataService) {
   var vm = this;
-  vm.ordersData = DummyDataService();
+  // vm.ordersData = DummyDataService();
+
+  $scope.ordersData = AdminSummaryService(logStuff);
+
+  function logStuff (summaryData) {
+    // console.log(summaryData.data);
+  }
 
   // functions for showing and hiding admin modules
   vm.adminModuleStatuses = {

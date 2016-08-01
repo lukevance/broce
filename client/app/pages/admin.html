@@ -23,18 +23,18 @@
     <div class="col-md-10">
       <div class="row">
         <div ng-class="{ 'admin-mod-inactive': ADC.adminModuleStatuses.quotes['admin-mod-inactive'], 'col-md-6': ADC.adminModuleStatuses.quotes['admin-mod-default'], 'col-md-12': ADC.adminModuleStatuses.quotes['admin-mod-active'] }">
-          <admin-quotes quotes="ADC.ordersData.requestedQuotes" ></admin-quotes>
+          <admin-quotes quotes="ordersData.requestedQuotes" ></admin-quotes>
         </div>
         <div ng-class="{ 'admin-mod-inactive': ADC.adminModuleStatuses.orders['admin-mod-inactive'], 'col-md-6': ADC.adminModuleStatuses.orders['admin-mod-default'], 'col-md-12': ADC.adminModuleStatuses.orders['admin-mod-active'] }">
-          <admin-orders orders="ADC.ordersData.orders"></admin-orders>
+          <admin-orders orders="ordersData.orders"></admin-orders>
         </div>
       </div>
       <div class="row">
         <div ng-class="{ 'admin-mod-inactive': ADC.adminModuleStatuses.subQuotes['admin-mod-inactive'], 'col-md-6': ADC.adminModuleStatuses.subQuotes['admin-mod-default'], 'col-md-12': ADC.adminModuleStatuses.subQuotes['admin-mod-active'] }">
-          <admin-sub-quotes quotes="ADC.ordersData.submittedQuotes"><admin-sub-quotes>
+          <admin-sub-quotes quotes="ordersData.submittedQuotes"><admin-sub-quotes>
         </div>
         <div ng-class="{ 'admin-mod-inactive': ADC.adminModuleStatuses.shipOrders['admin-mod-inactive'], 'col-md-6': ADC.adminModuleStatuses.shipOrders['admin-mod-default'], 'col-md-12': ADC.adminModuleStatuses.shipOrders['admin-mod-active'] }">
-          <admin-ship-orders orders="ADC.ordersData.shippedOrders"></admin-ship-orders>
+          <admin-ship-orders orders="ordersData.shippedOrders"></admin-ship-orders>
         </div>
       </div>
     </div>

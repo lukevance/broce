@@ -8,5 +8,5 @@ angular.module('partsApp')
   .controller('AccountController',["$window", "$http", "GetUsersQuotes","PostNewQuote", "CheckForAuthService", require('./account.controller')])
   .controller('FormController',require('./form.controller'))
   .controller('ContactController', require('./contact.controller'))
-  .controller('AdminController', ["AdminSummaryService", "DummyDataService", require('./admin.controller')])
+  .controller('AdminController', ["$scope", "AdminSummaryService", "DummyDataService", require('./admin.controller')])
   .controller('ErrorController', require('./error.controller'));
