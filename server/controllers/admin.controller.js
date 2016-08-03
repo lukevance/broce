@@ -20,7 +20,8 @@ router.get('/summary', function(req, res){
         ],
       },
       {
-        model: models.Order_Detail
+        model: models.Order_Detail,
+        attributes: ["machine_serial_num", "part_number", "quantity", "price"]
         // add shipping info model connection
       },
       {
@@ -173,7 +174,8 @@ router.get('/requestedQuotes', function(req, res){
             ]
           },
           {
-            model: models.Order_Detail
+            model: models.Order_Detail,
+            attributes: ["machine_serial_num", "part_number", "quantity", "price"]
           }
         ]
       }
@@ -181,11 +183,33 @@ router.get('/requestedQuotes', function(req, res){
     limit: 20
   })
   .then(function(quotesList){
-    res.json(quotesList);
+    // Standardize Quotes --- NOT WORKING YET ---
+    // let modQuotesList = [];
+    // for (let i = 0; i < quotesList.length; i++){
+    //   let newQuote = {};
+    //   newQuote.user = {
+    //     first_name: quotesList[i].Order.User.first_name,
+    //     last_name: quotesList[i].Order.User.last_name
+    //   };
+    //   modQuotesList.push(newQuote);
+    // }
+    res.json({requestedQuotes: quotesList});
   })
   .catch(function(err){
     res.json({error: err});
   });
 });
+
+
+// utility functions
+function copy(object) {
+  var new_object = {};
+  for (var key in object) {
+    if (object.hasOwnProperty(key)) {
+      new_object[key] = object[key];
+    }
+  }
+  return new_object;
+}
 
 module.exports = router;

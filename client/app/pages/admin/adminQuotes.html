@@ -17,22 +17,21 @@
                   Requested on
                 </th>
                 <th>
-
                 </th>
               </tr>
             </thead>
-            <tbody ng-repeat="item in vm.quotes">
+            <tbody ng-repeat="item in AQC.requestedQuotes">
               <tr>
                 <td>
-                  {{item.account}}
+                  {{item.Order.User.Account.account_name}}
                 </td>
                 <td>
-                  {{item.user}}
+                  {{item.Order.User.first_name}} {{item.Order.User.last_name}}
                 </td>
                 <td colspan="2">
                   date goes here
                 </td>
-                <td ng-click="showDetails(item)">
+                <td ng-click="AQC.showDetails(item)">
                   {{item.showText}} Quote Details
                 </td>
               </tr>
@@ -80,13 +79,13 @@
                         </td>
                       </tr>
                     </tfoot>
-                    <tbody ng-repeat="machine in item.details">
+                    <tbody ng-repeat="machine in item.machines">
                       <tr>
                         <td colspan="4">
-                          Machine Serial: {{machine.machine_serial_num}}
+                          Machine Serial: {{machine}}
                         </td>
                       </tr>
-                      <tr ng-repeat="part in machine.parts">
+                      <tr ng-repeat="part in item.details[machine]">
                         <td>
                           {{part.number}}
                         </td>

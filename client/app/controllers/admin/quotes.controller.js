@@ -1,14 +1,61 @@
 'use strict';
 
 function AdminQuotesController (AdminQuotesService) {
-  console.log('quotes rule!!!');
-  // function for distributing quotes data
-  function getQuotesResponse(quotesData){
-    console.log(quotesData.data);
+  var vm = this;
+
+  // function for organizing quotes data
+  function organizeQuotes(quotesData){
+    // setup variable to modify
+    var quotesOrganized = quotesData.data.requestedQuotes;
+    // loop through each quote
+    quotesData.data.requestedQuotes.forEach(function(quote){
+      // setup default values
+      quote.total = "N/A";
+      quote.showDetails = false;
+      quote.showText = "Show";
+      quote.showCommentBox = false;
+      // setup storage array for standardized details array
+      quote.details = {};
+      quote.machines = [];
+      // loop through detail per quote
+      quote.Order.Order_Details.forEach(function(detail){
+        if (!quote.details[detail.machine_serial_num]){
+          quote.details[detail.machine_serial_num] = [];
+          quote.details[detail.machine_serial_num].push({
+            number: detail.part_number,
+            quantity: detail.quantity,
+            price: detail.price
+          });
+          quote.machines.push(detail.machine_serial_num);
+        } else {
+          quote.details[detail.machine_serial_num].push({
+            part_number: detail.part_number,
+            quantity: detail.quantity,
+            price: detail.price
+          });
+        }
+        console.log(detail);
+      });
+    });
+    console.log(quotesOrganized);
+    vm.requestedQuotes = quotesOrganized;
   }
 
-  AdminQuotesService(getQuotesResponse);
+  // function for showing quote details
+  vm.showDetails = showDetails;
+  function showDetails (quote) {
+    quote.showDetails = !quote.showDetails;
+    if (quote.showDetails) {
+      quote.showText = "Hide";
+    } else {
+      quote.showText = "Show";
+    }
+  }
+
+  // call service and pass organization function into service nextFunc param
+  AdminQuotesService(organizeQuotes);
 
 }
+
 
 module.exports = AdminQuotesController;
