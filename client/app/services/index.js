@@ -9,5 +9,8 @@ angular.module('partsApp')
   .service('CheckForAuthService', ['$window', require('./auth.service').CheckForAuthService])
   .service('PostNewQuote', ['$http', 'EnvironmentService', require('./orders.service').PostNewQuote])
   .service('GetUsersQuotes', ['$http', 'EnvironmentService', require('./orders.service').GetUsersQuotes])
+
+  // admin services
   .service('AdminSummaryService', ['$http', 'EnvironmentService', require('./admin.service').GetAdminSummaryData])
+  .service('AdminQuotesService', ['$http', 'EnvironmentService', require('./admin.service').AdminQuotesService])
   .service('DummyDataService', require('./dummyData.service'));

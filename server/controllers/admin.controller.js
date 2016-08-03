@@ -157,7 +157,7 @@ router.get('/requestedQuotes', function(req, res){
       current: true,
       StatusTypeId: 1
     },
-    attributes: ["OrderId", "createdAt"],
+    attributes: ["OrderId", "createdAt", "StatusTypeId"],
     include: [
       {
         model: models.Order,
@@ -167,9 +167,13 @@ router.get('/requestedQuotes', function(req, res){
             attributes: ["first_name", "last_name", "email"],
             include: [
               {
-                model: models.Account
+                model: models.Account,
+                attributes: ["account_name"]
               }
             ]
+          },
+          {
+            model: models.Order_Detail
           }
         ]
       }
