@@ -1,112 +1,119 @@
-<div class="quad-section">
-  <h2 class="text-center quad-section-title">Quote Requests</h2>
-  <div class="panel panel-default order-card">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>
-            Account Name
-          </th>
-          <th>
-            Requested By
-          </th>
-          <th colspan="2">
-            Requested on
-          </th>
-          <th>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="quad-section">
+        <h2 class="text-center quad-section-title">Quote Requests</h2>
+        <div class="panel panel-default order-card">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>
+                  Account Name
+                </th>
+                <th>
+                  Requested By
+                </th>
+                <th colspan="2">
+                  Requested on
+                </th>
+                <th>
 
-          </th>
-        </tr>
-      </thead>
-      <tbody ng-repeat="item in vm.quotes">
-        <tr>
-          <td>
-            {{item.account}}
-          </td>
-          <td>
-            {{item.user}}
-          </td>
-          <td colspan="2">
-            date goes here
-          </td>
-          <td ng-click="showDetails(item)">
-            {{item.showText}} Quote Details
-          </td>
-        </tr>
-        <tr ng-show="item.showDetails">
-          <td colspan="5">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>
-                    Part Number
-                  </th>
-                  <th>
-                    Quantity
-                  </th>
-                  <th>
-                    Price
-                  </th>
-                  <th>
+                </th>
+              </tr>
+            </thead>
+            <tbody ng-repeat="item in vm.quotes">
+              <tr>
+                <td>
+                  {{item.account}}
+                </td>
+                <td>
+                  {{item.user}}
+                </td>
+                <td colspan="2">
+                  date goes here
+                </td>
+                <td ng-click="showDetails(item)">
+                  {{item.showText}} Quote Details
+                </td>
+              </tr>
+              <tr ng-show="item.showDetails">
+                <td colspan="5">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>
+                          Part Number
+                        </th>
+                        <th>
+                          Quantity
+                        </th>
+                        <th>
+                          Price
+                        </th>
+                        <th>
 
-                  </th>
-                </tr>
-              </thead>
-              <tfoot>
-                <tr>
-                  <th colspan="2">
-                    <strong>Total:</strong>
-                  </th>
-                  <th colspan="2">
-                    ${{item.total}}
-                  </th>
-                </tr>
-                <tr>
-                  <td colspan="4">
-                    <form class="" action="index.html" method="post">
-                      <div class="form-group">
-                        <label for="comments" ng-click="showComments(item)">Add Comments</label>
-                        <textarea name="comments" id="comments" class="form-control" rows="4" ng-show="item.showCommentBox"></textarea>
-                      </div>
-                    </form>
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan="4">
-                    <button class="btn btn-default btn-success quote-submit-btn" type="button" name="button">Submit Quote Details</button>
-                  </td>
-                </tr>
-              </tfoot>
-              <tbody ng-repeat="machine in item.details">
-                <tr>
-                  <td colspan="4">
-                    Machine Serial: {{machine.machine_serial_num}}
-                  </td>
-                </tr>
-                <tr ng-repeat="part in machine.parts">
-                  <td>
-                    {{part.number}}
-                  </td>
-                  <td>
-                    {{part.quantity}}
-                  </td>
-                  <td>
-                    <p ng-hide="part.editMode">
-                      {{part.price}}
-                    </p>
-                    <input type="text" name="name" value="" ng-show="part.editMode" ng-model="part.tempPrice">
-                  </td>
-                  <td>
-                    <button class="btn btn-default" ng-hide="part.editMode" ng-click="editModeChng(part)">Edit</button>
-                    <button class="btn btn-default" ng-show="part.editMode" ng-click="editModeChng(part)" type="button" >Cancel</button>
-                    <button class="btn btn-default" ng-show="part.editMode" ng-click="addPrice(part, part.tempPrice); updateTotal(item)" type="button" >Update</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tfoot>
+                      <tr>
+                        <th colspan="2">
+                          <strong>Total:</strong>
+                        </th>
+                        <th colspan="2">
+                          ${{item.total}}
+                        </th>
+                      </tr>
+                      <tr>
+                        <td colspan="4">
+                          <form class="" action="index.html" method="post">
+                            <div class="form-group">
+                              <label for="comments" ng-click="showComments(item)">Add Comments</label>
+                              <textarea name="comments" id="comments" class="form-control" rows="4" ng-show="item.showCommentBox"></textarea>
+                            </div>
+                          </form>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="4">
+                          <button class="btn btn-default btn-success quote-submit-btn" type="button" name="button">Submit Quote Details</button>
+                        </td>
+                      </tr>
+                    </tfoot>
+                    <tbody ng-repeat="machine in item.details">
+                      <tr>
+                        <td colspan="4">
+                          Machine Serial: {{machine.machine_serial_num}}
+                        </td>
+                      </tr>
+                      <tr ng-repeat="part in machine.parts">
+                        <td>
+                          {{part.number}}
+                        </td>
+                        <td>
+                          {{part.quantity}}
+                        </td>
+                        <td>
+                          <p ng-hide="part.editMode">
+                            {{part.price}}
+                          </p>
+                          <input type="text" name="name" value="" ng-show="part.editMode" ng-model="part.tempPrice">
+                        </td>
+                        <td>
+                          <button class="btn btn-default" ng-hide="part.editMode" ng-click="editModeChng(part)">Edit</button>
+                          <button class="btn btn-default" ng-show="part.editMode" ng-click="editModeChng(part)" type="button" >Cancel</button>
+                          <button class="btn btn-default" ng-show="part.editMode" ng-click="addPrice(part, part.tempPrice); updateTotal(item)" type="button" >Update</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
   </div>
-</div>
+</div> <!-- end of container -->

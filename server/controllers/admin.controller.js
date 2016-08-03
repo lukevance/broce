@@ -131,7 +131,7 @@ router.post('/pricedQuotes', function(req, res){
   res.json({updatedQuotes: updatedDetails});
 });
 
-// route for submitting shipped orders info
+// post route for submitting shipped orders info
 router.post('/shippedOrders', function(req, res){
   console.log(req.body);
 
@@ -147,6 +147,41 @@ router.post('/shippedOrders', function(req, res){
 
   // send updated order record back to client to update view
   res.json({result: orders});
+});
+
+// get all current requestedQuotes
+router.get('/requestedQuotes', function(req, res){
+  models.Order_Status
+  .findAll({
+    where: {
+      current: true,
+      StatusTypeId: 1
+    },
+    attributes: ["OrderId", "createdAt"],
+    include: [
+      {
+        model: models.Order,
+        include: [
+          {
+            model: models.User,
+            attributes: ["first_name", "last_name", "email"],
+            include: [
+              {
+                model: models.Account
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    limit: 20
+  })
+  .then(function(quotesList){
+    res.json(quotesList);
+  })
+  .catch(function(err){
+    res.json({error: err});
+  });
 });
 
 module.exports = router;
