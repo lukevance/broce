@@ -15,7 +15,7 @@ function AdminQuotesController (AdminQuotesService) {
       quote.showText = "Show";
       quote.showCommentBox = false;
       // setup storage array for standardized details array
-      quote.details = {};
+      quote.details = [];
       quote.machines = [];
       // loop through detail per quote
       quote.Order.Order_Details.forEach(function(detail){
@@ -52,10 +52,44 @@ function AdminQuotesController (AdminQuotesService) {
     }
   }
 
+  // function to open editMode
+  vm.editModeChng = editModeChng;
+  function editModeChng (part) {
+    part.editMode = !part.editMode;
+  }
+
+  // function to save price to quote
+  vm.addPrice = addPrice;
+  function addPrice (part, partPrice) {
+    part.price = partPrice;
+    editModeChng(part);
+  }
+
+  // update quote total
+  vm.updateTotal = updateTotal;
+  function updateTotal (quote) {
+    quote.total = 0.00;
+    Object.keys(quote.details).forEach(function(machine){
+      if (machine){
+        quote.details[machine].forEach(function(part){
+          if (part.price) {
+            quote.total += part.price * part.quantity;
+          }
+        });
+      }
+    });
+  }
+
+  // function to display comment section
+  vm.showComments = showComments;
+  function showComments (quote) {
+    quote.showCommentBox = !quote.showCommentBox;
+  }
+
   // call service and pass organization function into service nextFunc param
   AdminQuotesService(organizeQuotes);
 
-}
+} // end of controller
 
 
 module.exports = AdminQuotesController;

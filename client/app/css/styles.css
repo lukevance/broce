@@ -132,8 +132,9 @@
     float:right;
 }
 
-.quote-submit-btn {
+.admin-quote-form-btn {
   float: right;
+  margin-left: 1rem;
 }
 
 /* ------ Admin Dash ------ */
@@ -171,4 +172,9 @@
 
 .order-card {
   margin: 10px;
+}
+
+.details-table {
+  border-color: rgb(64, 147, 173);
+  background-color: rgb(88, 153, 167)
 }

@@ -37,75 +37,88 @@
               </tr>
               <tr ng-show="item.showDetails">
                 <td colspan="5">
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>
-                          Part Number
-                        </th>
-                        <th>
-                          Quantity
-                        </th>
-                        <th>
-                          Price
-                        </th>
-                        <th>
+                  <div class="panel panel-default details-table">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>
+                            Machine Serial #
+                          </th>
+                          <th>
+                            Part Number
+                          </th>
+                          <th>
+                            Quantity
+                          </th>
+                          <th>
+                            Price
+                          </th>
+                          <th>
 
-                        </th>
-                      </tr>
-                    </thead>
-                    <tfoot>
-                      <tr>
-                        <th colspan="2">
-                          <strong>Total:</strong>
-                        </th>
-                        <th colspan="2">
-                          ${{item.total}}
-                        </th>
-                      </tr>
-                      <tr>
-                        <td colspan="4">
-                          <form class="" action="index.html" method="post">
-                            <div class="form-group">
-                              <label for="comments" ng-click="showComments(item)">Add Comments</label>
-                              <textarea name="comments" id="comments" class="form-control" rows="4" ng-show="item.showCommentBox"></textarea>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tfoot>
+                        <tr>
+                          <th colspan="3">
+                            <strong>Total:</strong>
+                          </th>
+                          <th colspan="2">
+                            ${{item.total}}
+                          </th>
+                        </tr>
+                        <tr>
+                          <td colspan="5">
+                            <h4>Comments</h4>
+                            <div class="comment-box">
+                              
                             </div>
-                          </form>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td colspan="4">
-                          <button class="btn btn-default btn-success quote-submit-btn" type="button" name="button">Submit Quote Details</button>
-                        </td>
-                      </tr>
-                    </tfoot>
-                    <tbody ng-repeat="machine in item.machines">
-                      <tr>
-                        <td colspan="4">
-                          Machine Serial: {{machine}}
-                        </td>
-                      </tr>
-                      <tr ng-repeat="part in item.details[machine]">
-                        <td>
-                          {{part.number}}
-                        </td>
-                        <td>
-                          {{part.quantity}}
-                        </td>
-                        <td>
-                          <p ng-hide="part.editMode">
-                            {{part.price}}
-                          </p>
-                          <input type="text" name="name" value="" ng-show="part.editMode" ng-model="part.tempPrice">
-                        </td>
-                        <td>
-                          <button class="btn btn-default" ng-hide="part.editMode" ng-click="editModeChng(part)">Edit</button>
-                          <button class="btn btn-default" ng-show="part.editMode" ng-click="editModeChng(part)" type="button" >Cancel</button>
-                          <button class="btn btn-default" ng-show="part.editMode" ng-click="addPrice(part, part.tempPrice); updateTotal(item)" type="button" >Update</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                            <form class="" action="index.html" method="post">
+                              <div class="form-group">
+                                <label for="comments" ng-click="AQC.showComments(item)">Add Comment</label>
+                                <textarea name="comments" id="comments" class="form-control" rows="4" ng-show="item.showCommentBox"></textarea>
+                              </div>
+                            </form>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="5">
+                            <button class="btn btn-default btn-success admin-quote-form-btn" type="button" name="submit">Submit Quote Details</button>
+                            <button class="btn btn-default admin-quote-form-btn" type="button" name="cancel" ng-click="AQC.showDetails(item)">Cancel</button>
+                          </td>
+                        </tr>
+                      </tfoot>
+                      <tbody ng-repeat="machine in item.machines">
+                        <tr>
+                          <td colspan="5">
+                            Machine Serial: {{machine}}
+                          </td>
+                        </tr>
+                        <tr ng-repeat="part in item.details[machine]">
+                          <td>
+
+                          </td>
+                          <td>
+                            {{part.number}}
+                          </td>
+                          <td>
+                            {{part.quantity}}
+                          </td>
+                          <td>
+                            <p ng-hide="part.editMode">
+                              {{part.price}}
+                            </p>
+                            <input type="text" name="name" value="" ng-show="part.editMode" ng-model="part.tempPrice">
+                          </td>
+                          <td>
+                            <button class="btn btn-default" ng-hide="part.editMode" ng-click="AQC.editModeChng(part)">Edit Price</button>
+                            <button class="btn btn-default" ng-show="part.editMode" ng-click="AQC.editModeChng(part)" type="button" >Cancel</button>
+                            <button class="btn btn-default" ng-show="part.editMode" ng-click="AQC.addPrice(part, part.tempPrice); AQC.updateTotal(item)" type="button" >Update</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </td>
               </tr>
             </tbody>
