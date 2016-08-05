@@ -6,9 +6,8 @@ function UserNav () {
     scope: {
       user: '='
     },
-    template: require('../pages/partials/userNav.html'),
+    template: require('../../pages/partials/navs/userNav.html'),
     controller: function($scope) {
-      console.log('user navbar is visible?');
     }
   };
 }

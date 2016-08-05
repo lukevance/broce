@@ -6,9 +6,8 @@ function AdminNav () {
     scope: {
       user: '='
     },
-    template: require('../pages/partials/adminNav.html'),
+    template: require('../../pages/partials/navs/adminNav.html'),
     controller: function($scope) {
-      console.log('admin navbar is visible?');
     }
   };
 }

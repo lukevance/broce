@@ -10,18 +10,20 @@
   </div>
 
   <div class="row">
-    <div class="col-md-2 admin-nav">
-      <ul class="nav nav-pills">
-        <li role="presentation" class="active"><a ng-click="ADC.defaultView()">Dashboard</a></li>
-        <li role="presentation"><a ng-click="ADC.moduleActive('quotes')">Quote Requests</a></li>
-        <li role="presentation"><a href="/#/admin/quotes">Quote Requests</a></li>
-        <li role="presentation"><a ng-click="ADC.moduleActive('subQuotes')">Submitted Quotes</a></li>
-        <li role="presentation"><a ng-click="ADC.moduleActive('orders')">Orders</a></li>
-        <li role="presentation"><a ng-click="ADC.moduleActive('shipOrders')">Shipped Orders</a></li>
-      </ul>
-    </div>
 
-    <div class="col-md-10">
+    <!--  THIS SECTION IS FOR A DYNAMIC DASHBOARD ... FUTURE FEATURE -->
+      <!-- <div class="col-md-2 admin-nav">
+        <ul class="nav nav-pills">
+          <li role="presentation" class="active"><a ng-click="ADC.defaultView()">Dashboard</a></li>
+          <li role="presentation"><a ng-click="ADC.moduleActive('quotes')">Quote Requests</a></li>
+          <li role="presentation"><a href="/#/admin/quotes">Quote Requests</a></li>
+          <li role="presentation"><a ng-click="ADC.moduleActive('subQuotes')">Submitted Quotes</a></li>
+          <li role="presentation"><a ng-click="ADC.moduleActive('orders')">Orders</a></li>
+          <li role="presentation"><a ng-click="ADC.moduleActive('shipOrders')">Shipped Orders</a></li>
+        </ul>
+      </div> -->
+
+    <div class="col-md-12">
       <div class="row">
         <div ng-class="{ 'admin-mod-inactive': ADC.adminModuleStatuses.quotes['admin-mod-inactive'], 'col-md-6': ADC.adminModuleStatuses.quotes['admin-mod-default'], 'col-md-12': ADC.adminModuleStatuses.quotes['admin-mod-active'] }">
           <admin-quotes quotes="ADC.ordersData.requestedQuotes" ></admin-quotes>

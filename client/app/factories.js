@@ -1,8 +1,6 @@
 'use strict';
 
 var angular = require('angular');
-console.log('factory loaded');
-
 
 angular.module('partsApp')
   .factory('authInterceptor', function ($rootScope, $q, $window) {
