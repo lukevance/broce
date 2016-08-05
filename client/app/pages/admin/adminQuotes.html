@@ -71,19 +71,22 @@
                           <td colspan="5">
                             <h4>Comments</h4>
                             <div class="comment-box">
-                              
+
                             </div>
                             <form class="" action="index.html" method="post">
                               <div class="form-group">
                                 <label for="comments" ng-click="AQC.showComments(item)">Add Comment</label>
-                                <textarea name="comments" id="comments" class="form-control" rows="4" ng-show="item.showCommentBox"></textarea>
+                                <textarea name="comments" id="comments" class="form-control" rows="4" ng-show="item.showCommentBox" ng-model="AQC.activeComment"></textarea>
+                              </div>
+                              <div class="form-group" ng-show="item.showCommentBox">
+                                <input class="btn btn-default admin-quote-form-btn" type="button" name="addComment" value="Add Comment" ng-click="AQC.addComment(item)">
                               </div>
                             </form>
                           </td>
                         </tr>
                         <tr>
                           <td colspan="5">
-                            <button class="btn btn-default btn-success admin-quote-form-btn" type="button" name="submit">Submit Quote Details</button>
+                            <button class="btn btn-default btn-success admin-quote-form-btn" type="button" name="submit" ng-click="AQC.submitQuote(item)">Submit Quote Details</button>
                             <button class="btn btn-default admin-quote-form-btn" type="button" name="cancel" ng-click="AQC.showDetails(item)">Cancel</button>
                           </td>
                         </tr>
@@ -113,7 +116,7 @@
                           <td>
                             <button class="btn btn-default" ng-hide="part.editMode" ng-click="AQC.editModeChng(part)">Edit Price</button>
                             <button class="btn btn-default" ng-show="part.editMode" ng-click="AQC.editModeChng(part)" type="button" >Cancel</button>
-                            <button class="btn btn-default" ng-show="part.editMode" ng-click="AQC.addPrice(part, part.tempPrice); AQC.updateTotal(item)" type="button" >Update</button>
+                            <button class="btn btn-default" ng-show="part.editMode" ng-click="AQC.addPrice(item, part, part.tempPrice); AQC.updateTotal(item)" type="button" >Update</button>
                           </td>
                         </tr>
                       </tbody>

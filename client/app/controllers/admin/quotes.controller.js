@@ -14,6 +14,7 @@ function AdminQuotesController (AdminQuotesService) {
       quote.showDetails = false;
       quote.showText = "Show";
       quote.showCommentBox = false;
+      quote.comments = [];
       // setup storage array for standardized details array
       quote.details = [];
       quote.machines = [];
@@ -60,7 +61,9 @@ function AdminQuotesController (AdminQuotesService) {
 
   // function to save price to quote
   vm.addPrice = addPrice;
-  function addPrice (part, partPrice) {
+  function addPrice (quote, part, partPrice) {
+    // loop through main order Obj
+
     part.price = partPrice;
     editModeChng(part);
   }
@@ -84,6 +87,23 @@ function AdminQuotesController (AdminQuotesService) {
   vm.showComments = showComments;
   function showComments (quote) {
     quote.showCommentBox = !quote.showCommentBox;
+  }
+
+  // function to add comment to quote
+  vm.addComment = addComment;
+  function addComment (quote) {
+    quote.comments.push({
+      user: "Ray Bray - the current user",
+      text: vm.activeComment
+    });
+    console.log(vm.activeComment);
+    vm.activeComment = "";
+  }
+
+  // function to submit quote to customer
+  vm.submitQuote = submitQuote;
+  function submitQuote (quote) {
+    console.log(quote);
   }
 
   // call service and pass organization function into service nextFunc param
