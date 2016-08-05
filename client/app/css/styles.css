@@ -105,10 +105,10 @@
     padding-bottom: 7px;
 }
 
-.panel{
+/*.panel{
   width: 825px;
   margin-left: 10px;
-}
+}*/
 
 .panel-order .row .row .col-md-12:last-child {
     font-size: 11px;
@@ -148,7 +148,7 @@
 
 .panelq{
   width:330px;
-  foat:right;
+  float:right;
   margin-right: 10px;
 }
 
@@ -169,6 +169,7 @@
 .addbutton{
   text-align: center;
 }
+
 #left{
   float:left;
 }
