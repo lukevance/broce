@@ -27,9 +27,15 @@ angular.module('partsApp')
                 template : require('./pages/signup.html'),
                 controller  : 'AuthController as AU'
             })
+
+            // admin pages routes
             .when('/admin', {
               template: require('./pages/admin.html'),
               controller: 'AdminController as ADC'
+            })
+            .when('/admin/quotes', {
+              template: require('./pages/admin/adminQuotes.html'),
+              controller: 'AdminQuotesController as AQC'
             })
             .when('/404', {
               template: require('./pages/404.html'),

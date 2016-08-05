@@ -1,4 +1,152 @@
-<h2 class="text-center">Shipped Orders</h2>
-<div class="account-wall">
+<div class="quad-section">
+  <h2 class="text-center quad-section-title">Shipped Orders</h2>
+  <div class="panel panel-default order-card">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>
+            Account Name
+          </th>
+          <th>
+            Order Placed By
+          </th>
+          <th>
+            Date Filled
+          </th>
+          <th>
+            Filled By
+          </th>
+          <th>
+
+          </th>
+        </tr>
+      </thead>
+      <tbody ng-repeat="item in orders">
+        <tr>
+          <td>
+            {{item.account}}
+          </td>
+          <td>
+            {{item.user}}
+          </td>
+          <td>
+            {{item.shippingDetails.date.split(0, 7)}}
+          </td>
+          <td>
+            Ray Bray
+          </td>
+          <td ng-click="showDetails(item)">
+            {{item.showText}} Order Details
+          </td>
+        </tr>
+        <tr ng-repeat="machine in item.details" ng-show="item.showDetails">
+          <td colspan="5">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>
+                    Part Number
+                  </th>
+                  <th>
+                    Quantity
+                  </th>
+                  <th>
+                    Price
+                  </th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th colspan="2">
+                    <strong>Subtotal:</strong>
+                  </th>
+                  <th colspan="1">
+                    ${{item.total}}
+                  </th>
+                </tr>
+                <tr>
+                  <th colspan="5">
+                    Freight Details
+                  </th>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    Service
+                  </td>
+                  <td colspan="3">
+                    {{item.shippingDetails.service}}
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    Shipped on:
+                  </td>
+                  <td>
+                    {{item.shippingDetails.date}}
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    Cost
+                  </td>
+                  <td colspan="3">
+                    {{item.shippingDetails.cost}}
+                  </td>
+                </tr>
+                <tr>
+                  <th colspan="2">
+                    Total:
+                  </th>
+                  <td colspan="3">
+                    ${{item.total + item.shippingDetails.cost}}
+                  </td>
+                </tr>
+                <tr>
+                  <th colspan="3" ng-click="showComments(item)">
+                    Show {{item.comments.length}} Comments
+                  </th>
+                </tr>
+                <tr ng-repeat="comment in item.comments" ng-show="item.showCommentBox">
+                  <td colspan="3">
+                    {{comment.text}}
+                  </td>
+                </tr>
+              </tfoot>
+              <tbody>
+                <tr>
+                  <td colspan="3">
+                    Machine Serial: {{machine.machine_serial_num}}
+                  </td>
+                </tr>
+                <tr ng-repeat="part in machine.parts">
+                  <td>
+                    {{part.number}}
+                  </td>
+                  <td>
+                    {{part.quantity}}
+                  </td>
+                  <td>
+                    ${{part.price}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- <div class="panel panel-default order-card">
+    <div class="order-details" ng-show="item.showDetails">
+
+      <div class="shippingDetails">
+        <h4></h4>
+
+      </div>
+    </div>
+  </div> -->
+
 
 </div>

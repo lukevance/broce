@@ -14,19 +14,19 @@ module.exports = function(sequelize, DataTypes) {
           type: DataTypes.STRING,
           allowNull: true
         },
+        shipping_zip: {
+          type: DataTypes.INTEGER,
+          allowNull: true
+        },
         po_number: {
             type: DataTypes.STRING,
             allowNull: true
-        },
-        status: {
-            type: DataTypes.STRING,
-            allowNull: false
         }
     }, {
       classMethods: {
         associate: function (models) {
           Order.hasMany(models.Order_Detail);
-          Order.belongsTo(models.Shipping_Option);
+          Order.hasMany(models.Order_Status);
           Order.belongsTo(models.User);
         }
       }

@@ -7,9 +7,9 @@ CheckForAuth.$inject = ['$window'];
 
 
 
-function SigninService ($http) {
+function SigninService ($http, EnvironmentService) {
   return function (userCredentials, nextFunc) {
-    return $http.post('//localhost:3000/auth/signin', userCredentials)
+    return $http.post(EnvironmentService.path + '/auth/signin', userCredentials)
     .then(function(authorizedUserData){
       console.log(authorizedUserData);
       nextFunc(authorizedUserData);
@@ -21,9 +21,9 @@ function SigninService ($http) {
   };
 }
 
-function SignupService ($http) {
+function SignupService ($http, EnvironmentService) {
   return function (userCredentials, nextFunc) {
-    return $http.post('//localhost:3000/auth/signup', userCredentials)
+    return $http.post(EnvironmentService.path + '/auth/signup', userCredentials)
     .then(function(authorizedUserData){
       console.log(authorizedUserData);
       nextFunc(authorizedUserData);

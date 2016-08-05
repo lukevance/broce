@@ -12,8 +12,8 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     classMethods: function(models){
-      Shipping_Detail.belongsTo(models.Order_Detail);
-      Shipping_Detail.belongsTo(models.models.User);
+      Shipping_Detail.hasOne(models.Order_Detail);
+      Shipping_Detail.belongsTo(models.User, {as: 'ShippedBy'});
     }
   });
   return Shipping_Detail;

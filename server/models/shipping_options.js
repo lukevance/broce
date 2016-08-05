@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     classMethods: function(models){
-      Shipping_Option.belongsTo(models.Order);
+      Shipping_Option.hasMany(models.Order);
     }
   });
   return Shipping_Option;

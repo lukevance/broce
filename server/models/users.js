@@ -17,12 +17,17 @@ module.exports = function(sequelize, DataTypes) {
         password: {
           type: DataTypes.STRING,
           allowNull: false
+        },
+        role: {
+          type: DataTypes.STRING,
+          allowNull: false
         }
     }, {
       classMethods: {
         associate: function (models) {
           User.hasMany(models.Order);
           User.belongsTo(models.Account);
+          User.hasMany(models.Shipping_Detail);
         }
       }
     }, {
