@@ -19,7 +19,7 @@ angular.module('partsApp')
                 template : require('./pages/form.html'),
                 controller  : 'AccountController as AC'
             })
-            .when('/dash', {
+            .when('/user/dash', {
                 template : require('./pages/dash.html'),
                 controller  : 'AccountController as AC'
             })
