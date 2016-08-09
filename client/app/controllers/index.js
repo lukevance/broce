@@ -10,6 +10,10 @@ angular.module('partsApp')
   .controller('FormController',require('./form.controller'))
   .controller('ContactController', require('./contact.controller'))
 
+  // user controllers
+  .controller('UserDashController', require('./user/userDash.controller'))
+
+
   // admin controllers
   .controller('AdminController', ["$scope", "AdminSummaryService", "DummyDataService", require('./admin.controller')])
   .controller('AdminQuotesController', ["AdminQuotesService", require('./admin/quotes.controller')])

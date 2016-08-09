@@ -1,7 +1,6 @@
 function AccountController($scope, $route, $window, $http, GetUsersQuotes, PostNewQuote, CheckForAuthService) {
-    console.log('inside');
     var vm = this;
-    vm.serialNumber = serialNumber
+    vm.serialNumber = serialNumber;
     vm.addInput = addInput;
     // vm.IsVisible = false;
     vm.reloadroute = reloadRoute;

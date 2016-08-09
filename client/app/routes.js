@@ -20,8 +20,8 @@ angular.module('partsApp')
                 controller  : 'AccountController as AC'
             })
             .when('/user/dash', {
-                template : require('./pages/dash.html'),
-                controller  : 'AccountController as AC'
+                template : require('./pages/user/userDash.html'),
+                controller  : 'UserDashController as UDC'
             })
             .when('/signup', {
                 template : require('./pages/signup.html'),
