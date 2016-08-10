@@ -6,28 +6,31 @@
     </div>
 </div>
 
-<div class="container" style="padding-top: 60px;" ng-show="UDC.auth">
+<div class="container" ng-show="UDC.auth">
     <div class="row">
       <div class="col-md-6">
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <h2>Request a Quote</h2>
-                <p>
-                  Choose this option if you would like to verify part numbers and/or prices before ordering.
-                </p>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <h2>Place an Order</h2>
-                <p>
-                  Choose this option ONLY if you do not need price or part number verification. Your order may not be checked for matching part numbers and machine serial numbers.
-                </p>
-              </div>
-            </div>
+        <p class="lead" ng-hide="UDC.quoteForm || UDC.orderForm">
+          You currently have no active orders. Choose an option below to request a quote or place an order.
+        </p>
+        <div class="panel panel-default" ng-click="UDC.showQuoteForm()" ng-hide="UDC.orderForm">
+          <div class="panel-body">
+            <h2>Request a Quote</h2>
+            <p>
+              Choose this option if you would like to verify part numbers and/or prices before ordering.
+            </p>
+            <new-quote-form ng-show="UDC.quoteForm"></new-quote-form>
+          </div>
+        </div>
+        <div class="panel panel-default" ng-click="UDC.showOrderForm()" ng-hide="UDC.quoteForm">
+          <div class="panel-body">
+            <h2>Place an Order</h2>
+            <p>
+              Choose this option ONLY if you do not need price or part number verification. Your order may not be checked for matching part numbers and machine serial numbers.
+            </p>
+          </div>
+        </div>
       </div> <!-- MAIN USER AREA -->
       <div class="col-md-6">
-        <h3>Forms appear here!</h3>
       </div>
     </div>
 </div>

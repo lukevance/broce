@@ -35,10 +35,8 @@ function AdminQuotesController (AdminQuotesService) {
             price: detail.price
           });
         }
-        console.log(detail);
       });
     });
-    console.log(quotesOrganized);
     vm.requestedQuotes = quotesOrganized;
   }
 

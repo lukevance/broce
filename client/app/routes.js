@@ -19,14 +19,17 @@ angular.module('partsApp')
                 template : require('./pages/form.html'),
                 controller  : 'AccountController as AC'
             })
-            .when('/user/dash', {
-                template : require('./pages/user/userDash.html'),
-                controller  : 'UserDashController as UDC'
-            })
             .when('/signup', {
                 template : require('./pages/signup.html'),
                 controller  : 'AuthController as AU'
             })
+
+            // user pages routes
+            .when('/user/dash', {
+                template : require('./pages/user/userDash.html'),
+                controller  : 'UserDashController as UDC'
+            })
+
 
             // admin pages routes
             .when('/admin', {

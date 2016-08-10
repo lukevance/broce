@@ -29,13 +29,12 @@ router.get('/current', function(req, res){
 
 // create new order
 router.post('/new-quote', function(req, res){
-  console.log(req.body);
-  // data sanitation steps
-  // let orderData = {
-  //
+  // check for authorized user
+  // if (!req.body.token) {
+  //   res.json({error: 'not authorized'});
   // }
-  // first create new order
-  if (req.body.userId) {
+  // else
+   if (req.body.userId) {
     models.Order
       .create({
         po_number: req.body.poNumber,
@@ -82,11 +81,12 @@ router.post('/new-quote', function(req, res){
             }]
           })
           .then(function(lastOrder){
-            console.log('this is the order we found');
-            console.log(lastOrder[0].dataValues.Order_Details);
-              res.json({orders: lastOrder});
+            // send created order and details back to client
+            res.json({orders: lastOrder});
           });
+
         }); // end of promise.all for order_detail.create
+
       }) // end of Order.Create
       .catch(function(err){
         res.json({error: err});

@@ -11,17 +11,27 @@ function ParentNav () {
       $scope.userRole = false;
       $scope.adminRole = false;
 
-      let location = $location.path().split('/');
-      if (location[1] === 'user') {
-        $scope.userRole = true;
-      } else if (location[1] === 'admin') {
-        $scope.adminRole = true;
+      // function to check location and update
+      function updateNav() {
+        let location = $location.path().split('/');
+        if (location[1] === 'user') {
+          $scope.userRole = true;
+          $scope.adminRole = false;
+        } else if (location[1] === 'admin') {
+          $scope.adminRole = true;
+          $scope.userRole = false;
+        }
       }
 
-      $scope.$on('$routeUpdate', function(){
+      updateNav();
+
+
+      $scope.$watch('$routeUpdate', function(){
+        console.log('route change!');
         $scope.sort = $location.search().sort;
         $scope.order = $location.search().order;
         $scope.offset = $location.search().offset;
+        updateNav();
       });
 
     } // end of controller

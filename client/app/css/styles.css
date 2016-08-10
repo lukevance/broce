@@ -243,16 +243,23 @@
   margin-top: 5px;
 }
 
+/* ------ User Dash ------- */
 
-.admin-quote-form-btn {
-  float: right;
+.user-nav > li {
+  border-bottom: solid 1px rgb(232, 161, 39);
   margin-left: 1rem;
 }
+
 
 /* ------ Admin Dash ------ */
 
 .admin-nav {
   margin-top: 2rem;
+}
+
+.admin-quote-form-btn {
+  float: right;
+  margin-left: 1rem;
 }
 
 .quad-section {
