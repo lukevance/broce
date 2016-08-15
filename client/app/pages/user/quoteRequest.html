@@ -1,20 +1,89 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
+      <h2>Quote Request Form</h2>
       <form class="" action="index.html" method="">
         <div class="form-group">
           <label for="">PO Number</label>
-          <input type="text" class="form-control" name="name">
+          <input type="text" class="form-control" name="name" ng-model="QRC.poNumber">
         </div>
         <div class="form-group">
-          <label for=""></label>
-          <input class="btn btn-default" type="button" name="name" value="Cancel">
+          <label for="">Machine Serial Number</label>
+          <input class="form-control" type="text" name="name" value="" ng-model="QRC.activeMachine">
         </div>
-        <div class="form-group">
-          <label for=""></label>
-          <input class="btn btn-default" type="button" name="name" value="Submit">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label for="">Part Number</label>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <label for="">Quantity</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <input class="form-control" type="text" name="name" value="" ng-model="QRC.partNum">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <input class="form-control" type="number" name="name" value="" ng-model="QRC.partQty">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group">
+              <input class="btn btn-default" type="button" name="name" value="Add Part" ng-click="QRC.addPart(QRC.activeMachine, QRC.partNum, QRC.partQty)">
+            </div>
+          </div>
         </div>
       </form>
-    </div>
+    </div> <!-- end of form -->
+
+    <div class="col-md-6">
+      <div class="panel">
+        <div class="panel-body">
+          <h2>Quote Summary</h2>
+          <h4 ng-show="QRC.poNumber"> <span class="lead">Purchase Order Number:</span> {{QRC.poNumber}}</h4>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>
+                  Machine Serial Number
+                </th>
+                <th>
+                  Part Number
+                </th>
+                <th>
+                  Quantity
+                </th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th colspan="2">
+                  Total Amount of Parts
+                </th>
+                <th>
+                  XX
+                </th>
+              </tr>
+              <tr>
+                <th colspan="3">
+                  <input class="btn btn-default" style="float: right;" type="button" name="name" value="Place Your Order">
+                </th>
+              </tr>
+            </tfoot>
+            <!-- <tbody ng-repeat="machine"> -->
+
+            <!-- </tbody> -->
+
+          </table>
+        </div>
+      </div>
+    </div> <!-- end of summary section -->
   </div>
 </div>
