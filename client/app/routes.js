@@ -29,6 +29,11 @@ angular.module('partsApp')
                 template : require('./pages/user/userDash.html'),
                 controller  : 'UserDashController as UDC'
             })
+            .when('/user/new-quote', {
+              template: require('./pages/user/quoteRequest.html'),
+              controller: 'QuoteRequestController as QRC'
+            })
+
 
 
             // admin pages routes

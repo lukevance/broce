@@ -12,8 +12,8 @@
         <p class="lead" ng-hide="UDC.quoteForm || UDC.orderForm">
           You currently have no active orders. Choose an option below to request a quote or place an order.
         </p>
-        <div class="panel panel-default" ng-click="UDC.showQuoteForm()" ng-hide="UDC.orderForm">
-          <div class="panel-heading panel-link-lv" ng-href="/#/user/new-quote">
+        <div class="panel panel-default" ng-hide="UDC.orderForm">
+          <div class="panel-heading panel-link-lv" ng-click="UDC.go('/user/new-quote')">
             <h3>Request a Quote</h3>
           </div>
           <div class="panel-body">
@@ -22,7 +22,7 @@
             </p>
           </div>
         </div>
-        <div class="panel panel-default" ng-click="UDC.showOrderForm()" ng-hide="UDC.quoteForm">
+        <div class="panel panel-default" ng-hide="UDC.quoteForm">
           <div class="panel-heading panel-link-lv" ng-href="/#/user/new-order">
             <h3>Place an Order</h3>
           </div>

@@ -11,7 +11,8 @@ angular.module('partsApp')
   .controller('ContactController', require('./contact.controller'))
 
   // user controllers
-  .controller('UserDashController', require('./user/userDash.controller'))
+  .controller('UserDashController', ["$location" ,require('./user/userDash.controller')])
+  .controller('QuoteRequestController', require('./user/quoteRequest.controller'))
 
 
   // admin controllers
