@@ -250,6 +250,11 @@
   margin-left: 1rem;
 }
 
+.panel-link-lv:hover {
+  cursor: pointer;
+  background-color: rgb(175, 175, 175);
+}
+
 
 /* ------ Admin Dash ------ */
 

@@ -13,17 +13,20 @@
           You currently have no active orders. Choose an option below to request a quote or place an order.
         </p>
         <div class="panel panel-default" ng-click="UDC.showQuoteForm()" ng-hide="UDC.orderForm">
+          <div class="panel-heading panel-link-lv" ng-href="/#/user/new-quote">
+            <h3>Request a Quote</h3>
+          </div>
           <div class="panel-body">
-            <h2>Request a Quote</h2>
             <p>
               Choose this option if you would like to verify part numbers and/or prices before ordering.
             </p>
-            <new-quote-form ng-show="UDC.quoteForm"></new-quote-form>
           </div>
         </div>
         <div class="panel panel-default" ng-click="UDC.showOrderForm()" ng-hide="UDC.quoteForm">
+          <div class="panel-heading panel-link-lv" ng-href="/#/user/new-order">
+            <h3>Place an Order</h3>
+          </div>
           <div class="panel-body">
-            <h2>Place an Order</h2>
             <p>
               Choose this option ONLY if you do not need price or part number verification. Your order may not be checked for matching part numbers and machine serial numbers.
             </p>
