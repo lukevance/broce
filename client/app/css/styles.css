@@ -1,3 +1,9 @@
+/* General Use */
+
+.light {
+  font-weight: lighter;
+}
+
 .form-signin {
     max-width: 330px;
     padding: 15px;
@@ -254,6 +260,8 @@
   cursor: pointer;
   background-color: rgb(175, 175, 175);
 }
+
+
 
 
 /* ------ Admin Dash ------ */

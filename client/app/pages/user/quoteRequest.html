@@ -4,7 +4,7 @@
       <h2>Quote Request Form</h2>
       <form class="" action="index.html" method="">
         <div class="form-group">
-          <label for="">PO Number</label>
+          <label for="">PO Number <span class="light">(optional)</span></label>
           <input type="text" class="form-control" name="name" ng-model="QRC.poNumber">
         </div>
         <div class="form-group">
@@ -68,18 +68,33 @@
                   Total Amount of Parts
                 </th>
                 <th>
-                  XX
+                  {{QRC.quoteTotal}}
                 </th>
               </tr>
               <tr>
                 <th colspan="3">
-                  <input class="btn btn-default" style="float: right;" type="button" name="name" value="Place Your Order">
+                  <input class="btn btn-default" style="float: right;" type="button" name="name" value="Request Your Quote" ng-click="QRC.requestQuote()">
                 </th>
               </tr>
             </tfoot>
-            <!-- <tbody ng-repeat="machine"> -->
+            <tbody ng-repeat="machine in QRC.quoteSummary ">
+              <tr>
+                <td colspan="3">
+                  {{machine}}
+                </td>
+              </tr>
+              <tr ng-repeat="part in QRC.quoteInfo[machine]">
+                <td>
 
-            <!-- </tbody> -->
+                </td>
+                <td>
+                  {{part.part_number}}
+                </td>
+                <td>
+                  {{part.quantity}}
+                </td>
+              </tr>
+            </tbody>
 
           </table>
         </div>
