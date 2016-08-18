@@ -7,7 +7,7 @@ angular.module('partsApp')
   .service('SigninService', ['$http', 'EnvironmentService', require('./auth.service').SigninService])
   .service('SignupService',['$http', 'EnvironmentService', require('./auth.service').SignupService])
   .service('CheckForAuthService', ['$window', require('./auth.service').CheckForAuthService])
-  .service('PostNewQuote', ['$http', 'EnvironmentService', require('./orders.service').PostNewQuote])
+  .service('NewQuoteService', ['$http', 'EnvironmentService', require('./orders.service').PostNewQuote])
   .service('GetUsersQuotes', ['$http', 'EnvironmentService', require('./orders.service').GetUsersQuotes])
 
   // admin services

@@ -19,7 +19,11 @@ function PostNewQuote($http, EnvironmentService){
   return function (quoteBody, nextFunc) {
     return $http.post(EnvironmentService.path + '/orders/new-quote', quoteBody)
       .then(function(newQuote){
-        nextFunc(newQuote);
+        if (nextFunc){
+          nextFunc(newQuote);
+        } else {
+          console.log(newQuote);
+        }
       })
       .catch(function(error){
         console.log(error);
