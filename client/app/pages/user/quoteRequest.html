@@ -43,7 +43,7 @@
       </form>
     </div> <!-- end of form -->
 
-    <div class="col-md-6">
+    <div class="col-md-6" ng-hide="QRC.quoteResponse">
       <div class="panel">
         <div class="panel-body">
           <h2>Quote Summary</h2>
@@ -100,5 +100,40 @@
         </div>
       </div>
     </div> <!-- end of summary section -->
+
+    <div class="col-md-6" ng-show="QRC.quoteResponse">
+      <div class="panel">
+        <div class="panel-body">
+          <h2>Your quote has been submitted</h2>
+          <p>
+            We will review and price your quote as soon as possible. You will be emailed when your quote is ready.
+          </p>
+          <div class="row">
+            <div class="col-md-6">
+              <h5>Created At:</h5>
+            </div>
+            <div class="col-md-6">
+              <p>
+                {{QRC.quoteResponse.CreatedAt}}
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <h5>PO Number</h5>
+            </div>
+            <div class="col-md-6">
+              <p>
+                {{QRC.quoteResponse.po_number}}
+              </p>
+            </div>
+          </div>
+          <pre>
+            {{QRC.quoteResponse.Order_Details}}
+          </pre>
+        </div>
+      </div>
+    </div> <!-- end of quote response section -->
+
   </div>
 </div>

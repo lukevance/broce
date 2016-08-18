@@ -1,4 +1,4 @@
-function QuoteRequestController() {
+function QuoteRequestController(NewQuoteService) {
   var vm = this;
 
   // storage obj for quote details
@@ -36,6 +36,7 @@ function QuoteRequestController() {
     // setup obj to send
     var quoteBody = {
       poNumber: vm.poNumber,
+      userId: 3,
       details: []
     };
     for (var machine in vm.quoteInfo){
@@ -46,6 +47,12 @@ function QuoteRequestController() {
       }
     }
     console.log(quoteBody);
+    NewQuoteService(quoteBody, logResult);
+    function logResult (data){
+      console.log(data);
+      vm.quoteResponse = data.data.orders[0];
+      console.log(data);
+    }
   }
 
 } // end of controller
