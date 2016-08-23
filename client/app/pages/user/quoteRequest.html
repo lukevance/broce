@@ -44,7 +44,7 @@
     </div> <!-- end of form -->
 
     <div class="col-md-6" ng-hide="QRC.quoteResponse">
-      <div class="panel">
+      <div class="panel quote-page">
         <div class="panel-body">
           <h2>Quote Summary</h2>
           <h4 ng-show="QRC.poNumber"> <span class="lead">Purchase Order Number:</span> {{QRC.poNumber}}</h4>
@@ -114,7 +114,7 @@
             </div>
             <div class="col-md-6">
               <p>
-                {{QRC.quoteResponse.CreatedAt}}
+                {{QRC.quoteResponse.createdAt}}
               </p>
             </div>
           </div>
@@ -128,9 +128,39 @@
               </p>
             </div>
           </div>
-          <pre>
-            {{QRC.quoteResponse.Order_Details}}
-          </pre>
+          <div class="row">
+            <div class="col-md-12">
+              <h5>Order Summary</h5>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>
+                      Machine Serial Number
+                    </th>
+                    <th>
+                      Part Number
+                    </th>
+                    <th>
+                      Quantity
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="part in QRC.quoteResponse.Order_Details">
+                    <td>
+                      {{part.machine_serial_num}}
+                    </td>
+                    <td>
+                      {{part.part_number}}
+                    </td>
+                    <td>
+                      {{part.quantity}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div> <!-- end of quote response section -->
