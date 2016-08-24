@@ -6,7 +6,7 @@ module.exports = {
   context: __dirname + '/app',
   entry: {
     app: ['webpack/hot/dev-server', './app.js'],
-    vendor: ['bootstrap-webpack', 'angular', 'angular-route']
+    vendor: ['bootstrap-webpack', 'angular', 'angular-route', 'moment']
   },
   module: {
     loaders: [
