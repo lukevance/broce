@@ -42,50 +42,64 @@ router.post('/new-quote', function(req, res){
       })
       .then(function(data){
         // return created order, use ID to make order_details records
-        console.log(data.dataValues);
         let orderID = data.dataValues.id;
-        // function for creating order_detail record
-        const createDetail = function (detail) {
-          return models.Order_Detail
-            .create({
-              machine_serial_num: detail.machine_serial_num,
-              quantity: detail.quantity,
-              part_number: detail.part_number,
-              OrderId: orderID,
-            })
-            .then(function(order_detail){
-              return order_detail.id;
-            });
-        };
 
-        // array for storing create order_detail queries
-        let detailArray = [];
-        // loop through post request details
-        req.body.details.forEach(function(detail){
-          // push details into order_detail.create promise array
-          detailArray.push(createDetail(detail));
-        });
-
-        // execute all promises from order_detail query array
-        Promise.all(detailArray)
-        .then(function(stuff){
-          console.log(stuff);
-          // after all promises are returned find order record
-          models.Order
-          .findAll({
-            where: {
-              id: orderID
-            },
-            include:[{
-              model: models.Order_Detail
-            }]
+        // create new status record
+        models.Order_Status
+          .create({
+            current: true,
+            StatusTypeId: 1,
+            OrderId: orderID
           })
-          .then(function(lastOrder){
-            // send created order and details back to client
-            res.json({orders: lastOrder});
-          });
+          .then(function(status){
+            console.log(status);
 
-        }); // end of promise.all for order_detail.create
+            // function for creating order_detail record
+            const createDetail = function (detail) {
+              return models.Order_Detail
+                .create({
+                  machine_serial_num: detail.machine_serial_num,
+                  quantity: detail.quantity,
+                  part_number: detail.part_number,
+                  OrderId: orderID,
+                })
+                .then(function(order_detail){
+                  return order_detail.id;
+                });
+            };
+
+            // array for storing create order_detail queries
+            let detailArray = [];
+            // loop through post request details
+            req.body.details.forEach(function(detail){
+              // push details into order_detail.create promise array
+              detailArray.push(createDetail(detail));
+            });
+
+            // execute all promises from order_detail query array
+            Promise.all(detailArray)
+            .then(function(stuff){
+              // console.log(stuff);
+              // after all promises are returned find order record
+              models.Order
+              .findAll({
+                where: {
+                  id: orderID
+                },
+                include:[{
+                  model: models.Order_Detail
+                }]
+              })
+              .then(function(lastOrder){
+                // send created order and details back to client
+                res.json({orders: lastOrder});
+              });
+
+            }); // end of promise.all for order_detail.create
+          })
+          .catch(function(err){
+            res.json({error: err});
+          }); // end of Order_Status.create
 
       }) // end of Order.Create
       .catch(function(err){
