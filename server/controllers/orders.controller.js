@@ -3,31 +3,31 @@
 const router = require('express').Router();
 const models = require('../models');
 
-// show all current orders
-router.get('/current', function(req, res){
-  console.log('current orders');
-  models.Order
-    .findAll({
-      where: {
-        status: 'quote'
-      },
-      include:[{
-        model: models.Order_Detail,
-        include:[{
-          model: models.Part
-        }]
-      }]
-    })
-    .then(function(orderList){
-      res.json({curOrders: orderList});
-    })
-    .catch(function(err){
-      res.json({error: err});
-    });
-});
+// show all current orders for user
+// router.get('/current', function(req, res){
+//   console.log('current orders');
+//   models.Order
+//     .findAll({
+//       where: {
+//         status: 'quote'
+//       },
+//       include:[{
+//         model: models.Order_Detail,
+//         include:[{
+//           model: models.Part
+//         }]
+//       }]
+//     })
+//     .then(function(orderList){
+//       res.json({curOrders: orderList});
+//     })
+//     .catch(function(err){
+//       res.json({error: err});
+//     });
+// });
 
 
-// create new order
+// create new quote record
 router.post('/new-quote', function(req, res){
   // check for authorized user
   // if (!req.body.token) {
@@ -108,6 +108,27 @@ router.post('/new-quote', function(req, res){
   } else {
     res.json({error: 'not authorized'});
   }
+});
+
+// price a requested quote
+router.put('/new-price', function(req, res){
+  // find order details
+  // function for updating details
+  models.Order_Detail
+    .findAll({
+      where: {
+        OrderId: req.body.OrderId
+      }
+    })
+    .then(function(details){
+      res.json({orderDetails: details});
+    })
+    .catch(function(err){
+      res.json({error: err});
+    });
+  // update each record with price
+
+  // when prices are confirmed, update order_status
 });
 
 module.exports = router;
