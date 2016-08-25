@@ -98,7 +98,6 @@ router.get('/:userId', function(req, res){
   res.json({message: 'Unfinished route, sorry :/', reqParams: req.params});
 });
 
-
 // POST create new quote record
 router.post('/', function(req, res){
   // check for authorized user
@@ -188,20 +187,44 @@ router.put('/:id', function(req, res){
 
   // check for id parameter
   if (req.params.id){
-    // find order details
-    // function for updating details
-    models.Order_Detail
-      .findAll({
-        where: {
-          OrderId: req.body.OrderId
-        }
-      })
-      .then(function(details){
-        res.json({orderDetails: details});
-      })
-      .catch(function(err){
-        res.json({error: err});
-      });
+    let updatedDetails = [];
+
+    // function/promise for updating order_detail record
+    const updateDetail = function(detail){
+      return models.Order_Detail
+        .update({
+          price: detail.price
+        }, {
+          where: {id: detail.id}
+        })
+        .then(function(orderDetails){
+          updatedDetails.push(orderDetails);
+        });
+    };
+
+    // array for storing updateDetail promises
+    let updatedDetailArray = [];
+    // loop through details to update
+    req.body.quoteDetails.forEach(function(detail){
+      console.log(detail);
+      // push updateDetail promise into promise array
+      updatedDetailArray.push(updateDetail(detail));
+    });
+
+    // execute all promises from detailArray
+    Promise.all(updatedDetailArray)
+    .then(function(results){
+      console.log(results);
+
+      // send updated quotes to customers through email
+      // TWILLIO API integration needed!!
+
+      // send updated quotes back to client to update admin's view
+      res.json({updatedQuotes: updatedDetails});
+    })
+    .catch(function(err){
+      res.json({error: err});
+    });
     // update each record with price
 
     // when prices are confirmed, update order_status
@@ -209,6 +232,6 @@ router.put('/:id', function(req, res){
     res.status(403).json({error: 'Resource expects id parameter'});
   }
 
-});
+}); //end of PUT route for priced quotes
 
 module.exports = router;
