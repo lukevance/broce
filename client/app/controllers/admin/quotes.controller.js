@@ -2,7 +2,7 @@
 
 function AdminQuotesController (AdminQuotesService) {
   var vm = this;
-
+  var moment = require('moment');
   // function for organizing quotes data
   function organizeQuotes(quotesData){
     console.log(quotesData);
@@ -16,6 +16,8 @@ function AdminQuotesController (AdminQuotesService) {
       quote.showText = "Show";
       quote.showCommentBox = false;
       quote.comments = [];
+      // make createdAt value pretty
+      quote.Order.createdAt = moment(quote.Order.createdAt).format('MMM Do');
       // setup storage array for standardized details array
       quote.details = [];
       quote.machines = [];

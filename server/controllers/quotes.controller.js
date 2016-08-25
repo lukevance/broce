@@ -91,11 +91,13 @@ router.get('/', function(req, res){
   });
 });
 
+
 // GET current quotes for specified user
 router.get('/:userId', function(req, res){
   console.log(req.params);
   res.json({message: 'Unfinished route, sorry :/', reqParams: req.params});
 });
+
 
 // POST create new quote record
 router.post('/', function(req, res){

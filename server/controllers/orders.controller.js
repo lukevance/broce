@@ -54,5 +54,4 @@ router.post('/:quoteId', function(req, res){
   res.json({message: 'Unfinished route: "post new order from quote"'});
 });
 
-
 module.exports = router;

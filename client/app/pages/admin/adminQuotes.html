@@ -29,7 +29,7 @@
                   {{item.Order.User.first_name}} {{item.Order.User.last_name}}
                 </td>
                 <td colspan="2">
-                  date goes here
+                  {{item.Order.createdAt}}
                 </td>
                 <td ng-click="AQC.showDetails(item)">
                   {{item.showText}} Quote Details

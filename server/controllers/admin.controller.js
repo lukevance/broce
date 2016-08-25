@@ -7,35 +7,45 @@ const models = require('../models');
 // post route for submitting prices of quotes
 router.post('/pricedQuotes', function(req, res){
   let updatedDetails = [];
+
+  // function/promise for updating order_detail record
+  const updateDetail = function(detail){
+    return models.Order_Detail
+      .update({
+        price: detail.price
+      }, {
+        where: {id: detail.id}
+      })
+      .then(function(orderDetails){
+        updatedDetails.push(orderDetails);
+      });
+  };
+
+  // array for storing updateDetail promises
+  let updatedDetailArray = [];
   // loop through details to update
   req.body.quoteDetails.forEach(function(detail){
     console.log(detail);
-    models.Order_Detail
-    .update({
-      price: detail.price
-    }, {
-      where: {id: detail.id}
-    })
-    .then(function(orderDetails){
-      updatedDetails.push(orderDetails);
-    })
-    .catch(function(err){
-      res.json({error: err});
-    });
-  }); // all updates are done --NEED PROMISE HERE
+    // push updateDetail promise into promise array
+    updatedDetailArray.push(updateDetail(detail));
+  });
 
   // execute all promises from detailArray
   Promise.all(updatedDetailArray)
   .then(function(results){
     console.log(results);
 
-      // send updated quotes to customers through email
-      // TWILLIO API integration needed!!
+    // send updated quotes to customers through email
+    // TWILLIO API integration needed!!
 
     // send updated quotes back to client to update admin's view
     res.json({updatedQuotes: updatedDetails});
+  })
+  .catch(function(err){
+    res.json({error: err});
   });
-});
+
+}); // end of post for pricedQuotes
 
 // post route for submitting shipped orders info
 router.post('/shippedOrders', function(req, res){
