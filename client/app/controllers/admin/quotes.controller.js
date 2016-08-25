@@ -5,6 +5,7 @@ function AdminQuotesController (AdminQuotesService) {
 
   // function for organizing quotes data
   function organizeQuotes(quotesData){
+    console.log(quotesData);
     // setup variable to modify
     var quotesOrganized = quotesData.data.requestedQuotes;
     // loop through each quote
@@ -75,6 +76,7 @@ function AdminQuotesController (AdminQuotesService) {
         quote.details[machine].forEach(function(part){
           if (part.price) {
             quote.total += part.price * part.quantity;
+            quote.total = +(quote.total.toFixed(2));
           }
         });
       }
