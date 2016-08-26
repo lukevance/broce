@@ -17,7 +17,7 @@ function GetUsersQuotes ($http, EnvironmentService) {
 
 function PostNewQuote($http, EnvironmentService){
   return function (quoteBody, nextFunc) {
-    return $http.post(EnvironmentService.path + '/orders/new-quote', quoteBody)
+    return $http.post(EnvironmentService.path + '/quotes', quoteBody)
       .then(function(newQuote){
         if (nextFunc){
           nextFunc(newQuote);

@@ -91,18 +91,13 @@
                           </td>
                         </tr>
                       </tfoot>
-                      <tbody ng-repeat="machine in item.machines">
+                      <tbody ng-repeat="part in item.Order.Order_Details">
                         <tr>
-                          <td colspan="5">
-                            Machine Serial: {{machine}}
-                          </td>
-                        </tr>
-                        <tr ng-repeat="part in item.details[machine]">
                           <td>
-
+                            {{part.machine_serial_num}}
                           </td>
                           <td>
-                            {{part.number}}
+                            {{part.part_number}}
                           </td>
                           <td>
                             {{part.quantity}}

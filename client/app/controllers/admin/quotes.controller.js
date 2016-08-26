@@ -21,25 +21,25 @@ function AdminQuotesController (AdminQuotesService) {
       // setup storage array for standardized details array
       quote.details = [];
       quote.machines = [];
-      // loop through detail per quote
-      quote.Order.Order_Details.forEach(function(detail){
-        if (!quote.details[detail.machine_serial_num]){
-          quote.details[detail.machine_serial_num] = [];
-          quote.details[detail.machine_serial_num].push({
-            number: detail.part_number,
-            quantity: detail.quantity,
-            price: detail.price,
-            detailId: detail.id
-          });
-          quote.machines.push(detail.machine_serial_num);
-        } else {
-          quote.details[detail.machine_serial_num].push({
-            part_number: detail.part_number,
-            quantity: detail.quantity,
-            price: detail.price
-          });
-        }
-      });
+          // loop through detail per quote
+          // quote.Order.Order_Details.forEach(function(detail){
+          //   if (!quote.details[detail.machine_serial_num]){
+          //     quote.details[detail.machine_serial_num] = [];
+          //     quote.details[detail.machine_serial_num].push({
+          //       number: detail.part_number,
+          //       quantity: detail.quantity,
+          //       price: detail.price,
+          //       detailId: detail.id
+          //     });
+          //     quote.machines.push(detail.machine_serial_num);
+          //   } else {
+          //     quote.details[detail.machine_serial_num].push({
+          //       part_number: detail.part_number,
+          //       quantity: detail.quantity,
+          //       price: detail.price
+          //     });
+          //   }
+          // });
     });
     vm.requestedQuotes = quotesOrganized;
   }
@@ -64,8 +64,7 @@ function AdminQuotesController (AdminQuotesService) {
   // function to save price to quote
   vm.addPrice = addPrice;
   function addPrice (quote, part, partPrice) {
-    // loop through main order Obj
-
+    console.log(part.id);
     part.price = partPrice;
     editModeChng(part);
   }
@@ -107,6 +106,8 @@ function AdminQuotesController (AdminQuotesService) {
   vm.submitQuote = submitQuote;
   function submitQuote (quote) {
     console.log(quote);
+    console.log(quote.Order.Order_Details);
+    console.log(quote.details);
   }
 
   // call service and pass organization function into service nextFunc param
