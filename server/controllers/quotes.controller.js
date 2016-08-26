@@ -91,6 +91,56 @@ router.get('/', function(req, res){
   });
 });
 
+// GET all requested quotes only
+router.get('/requested', function(req, res){
+  models.Order_Status
+  .findAll({
+    where: {
+      current: true,
+      StatusTypeId: 1
+    },
+    attributes: ["OrderId", "createdAt", "StatusTypeId"],
+    include: [
+      {
+        model: models.Order,
+        include: [
+          {
+            model: models.User,
+            attributes: ["first_name", "last_name", "email"],
+            include: [
+              {
+                model: models.Account,
+                attributes: ["account_name"]
+              }
+            ]
+          },
+          {
+            model: models.Order_Detail,
+            attributes: ["machine_serial_num", "part_number", "quantity", "price", "id"]
+          }
+        ]
+      }
+    ],
+    limit: 20
+  })
+  .then(function(quotesList){
+    // Standardize Quotes --- NOT WORKING YET ---
+    // let modQuotesList = [];
+    // for (let i = 0; i < quotesList.length; i++){
+    //   let newQuote = {};
+    //   newQuote.user = {
+    //     first_name: quotesList[i].Order.User.first_name,
+    //     last_name: quotesList[i].Order.User.last_name
+    //   };
+    //   modQuotesList.push(newQuote);
+    // }
+    res.json({requestedQuotes: quotesList});
+  })
+  .catch(function(err){
+    res.json({error: err});
+  });
+});
+
 
 // GET current quotes for specified user
 router.get('/:userId', function(req, res){
@@ -195,7 +245,7 @@ router.put('/:id', function(req, res){
         .update({
           price: detail.price
         }, {
-          where: {id: detail.id}
+          where: {id: detail.detailId}
         })
         .then(function(orderDetails){
           updatedDetails.push(orderDetails);
