@@ -10,6 +10,9 @@ angular.module('partsApp')
   .service('NewQuoteService', ['$http', 'EnvironmentService', require('./orders.service').PostNewQuote])
   .service('GetUsersQuotes', ['$http', 'EnvironmentService', require('./orders.service').GetUsersQuotes])
 
+  // quote services
+  .service('PutPriceForQuote', ['$http', 'EnvironmentService', require('./quotes.service').PutPriceForQuote])
+
   // admin services
   .service('AdminSummaryService', ['$http', 'EnvironmentService', require('./admin.service').GetAdminSummaryData])
   .service('AdminQuotesService', ['$http', 'EnvironmentService', require('./admin.service').AdminQuotesService])

@@ -28,7 +28,8 @@ function AdminQuotesController (AdminQuotesService) {
           quote.details[detail.machine_serial_num].push({
             number: detail.part_number,
             quantity: detail.quantity,
-            price: detail.price
+            price: detail.price,
+            detailId: detail.id
           });
           quote.machines.push(detail.machine_serial_num);
         } else {

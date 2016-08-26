@@ -14,11 +14,9 @@ angular.module('partsApp')
   .controller('UserDashController', ["$location" ,require('./user/userDash.controller')])
   .controller('QuoteRequestController', ["NewQuoteService",require('./user/quoteRequest.controller')])
 
-
   // admin controllers
   .controller('AdminController', ["$scope", "AdminSummaryService", "DummyDataService", require('./admin.controller')])
-  .controller('AdminQuotesController', ["AdminQuotesService", require('./admin/quotes.controller')])
-
+  .controller('AdminQuotesController', ["AdminQuotesService", "PutPriceForQuote", require('./admin/quotes.controller')])
 
   // error handling controllers
   .controller('ErrorController', require('./error.controller'));

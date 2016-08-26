@@ -14,7 +14,7 @@ function GetAdminSummaryData ($http, EnvironmentService) {
 
 function AdminQuotesService ($http, EnvironmentService) {
   return function (nextFunc) {
-    return $http.get(EnvironmentService.path + '/admin/requestedQuotes')
+    return $http.get(EnvironmentService.path + '/quotes/requested')
     .then(function(quotesData){
       nextFunc(quotesData);
     })
