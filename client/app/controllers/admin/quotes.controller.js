@@ -1,6 +1,6 @@
 'use strict';
 
-function AdminQuotesController (AdminQuotesService) {
+function AdminQuotesController (AdminQuotesService, PutPriceForQuoteService) {
   var vm = this;
   var moment = require('moment');
   // function for organizing quotes data
@@ -10,41 +10,21 @@ function AdminQuotesController (AdminQuotesService) {
     var quotesOrganized = quotesData.data.requestedQuotes;
     // loop through each quote
     quotesData.data.requestedQuotes.forEach(function(quote){
-      // setup default values
+      // setup default values for quotes
       quote.total = "N/A";
       quote.showDetails = false;
       quote.showText = "Show";
+      // add comment storage and view switch
       quote.showCommentBox = false;
       quote.comments = [];
       // make createdAt value pretty
       quote.Order.createdAt = moment(quote.Order.createdAt).format('MMM Do');
-      // setup storage array for standardized details array
-      quote.details = [];
-      quote.machines = [];
-          // loop through detail per quote
-          // quote.Order.Order_Details.forEach(function(detail){
-          //   if (!quote.details[detail.machine_serial_num]){
-          //     quote.details[detail.machine_serial_num] = [];
-          //     quote.details[detail.machine_serial_num].push({
-          //       number: detail.part_number,
-          //       quantity: detail.quantity,
-          //       price: detail.price,
-          //       detailId: detail.id
-          //     });
-          //     quote.machines.push(detail.machine_serial_num);
-          //   } else {
-          //     quote.details[detail.machine_serial_num].push({
-          //       part_number: detail.part_number,
-          //       quantity: detail.quantity,
-          //       price: detail.price
-          //     });
-          //   }
-          // });
     });
+    // set new object with modified properties to model
     vm.requestedQuotes = quotesOrganized;
   }
 
-  // function for showing quote details
+  // function for quote details display switch
   vm.showDetails = showDetails;
   function showDetails (quote) {
     quote.showDetails = !quote.showDetails;
@@ -55,7 +35,7 @@ function AdminQuotesController (AdminQuotesService) {
     }
   }
 
-  // function to open editMode
+  // function to part pricing editMode switch
   vm.editModeChng = editModeChng;
   function editModeChng (part) {
     part.editMode = !part.editMode;
@@ -64,23 +44,23 @@ function AdminQuotesController (AdminQuotesService) {
   // function to save price to quote
   vm.addPrice = addPrice;
   function addPrice (quote, part, partPrice) {
-    console.log(part.id);
+    // update price in object
     part.price = partPrice;
+    // hide input and show buttons
     editModeChng(part);
   }
 
-  // update quote total
+  // update quote total to user view
   vm.updateTotal = updateTotal;
   function updateTotal (quote) {
+    // reset total
     quote.total = 0.00;
-    Object.keys(quote.details).forEach(function(machine){
-      if (machine){
-        quote.details[machine].forEach(function(part){
-          if (part.price) {
-            quote.total += part.price * part.quantity;
-            quote.total = +(quote.total.toFixed(2));
-          }
-        });
+    // loop through all parts in quote
+    quote.Order.Order_Details.forEach(function(part){
+      // if part is priced add to total
+      if (part.price) {
+        quote.total += part.price * part.quantity;
+        quote.total = +(quote.total.toFixed(2));
       }
     });
   }
@@ -105,9 +85,18 @@ function AdminQuotesController (AdminQuotesService) {
   // function to submit quote to customer
   vm.submitQuote = submitQuote;
   function submitQuote (quote) {
-    console.log(quote);
-    console.log(quote.Order.Order_Details);
-    console.log(quote.details);
+    var quoteInfo = {
+      id: quote.OrderId,
+      comments: quote.comments,
+      quoteDetails: quote.Order.Order_Details
+    };
+    console.log(quoteInfo);
+    PutPriceForQuoteService(quoteInfo, quoteInfo.id, pricedQuoteResponse);
+  }
+
+  // function for dealing with posted quote
+  function pricedQuoteResponse (quoteInfo){
+    console.log(quoteInfo);
   }
 
   // call service and pass organization function into service nextFunc param

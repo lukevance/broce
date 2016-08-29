@@ -1,8 +1,8 @@
 'use strict';
 
-function PutPriceForQuote ($http, EnvironmentService) {
-  return function (quoteId, nextFunc) {
-    return $http.put(EnvironmentService.path + '/quotes/' + quoteId)
+function PutPriceForQuoteService ($http, EnvironmentService) {
+  return function (quoteBody, quoteId, nextFunc) {
+    return $http.put(EnvironmentService.path + '/quotes/' + quoteId, quoteBody)
       .then(function(updatedQuotes){
         nextFunc(updatedQuotes);
       })
@@ -13,5 +13,5 @@ function PutPriceForQuote ($http, EnvironmentService) {
 }
 
 module.exports = {
-  PutPriceForQuote: PutPriceForQuote
+  PutPriceForQuoteService: PutPriceForQuoteService
 };
