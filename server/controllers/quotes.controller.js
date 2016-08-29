@@ -245,10 +245,11 @@ router.put('/:id', function(req, res){
         .update({
           price: detail.price
         }, {
-          where: {id: detail.detailId}
+          where: {id: detail.id}
         })
         .then(function(orderDetails){
-          updatedDetails.push(orderDetails);
+          console.log(orderDetails);
+          // updatedDetails.push(orderDetails); < ----- ***** what is being returned here??
         });
     };
 
@@ -264,13 +265,35 @@ router.put('/:id', function(req, res){
     // execute all promises from detailArray
     Promise.all(updatedDetailArray)
     .then(function(results){
+      console.log('inside PromiseAll');
       console.log(results);
+      // update quote_status records (change 'quote' to false)
+      models.Order_Status
+        .update({
+          current: false
+        }, {
+          where: {
+            OrderId: req.body.id,
+            StatusTypeId: 1
+          }
+        })
+        .then(function(result){
+          console.log(result);
+          // create new record for quote status as 'priced' (StatusTypeId === 2)
+          models.Order_Status
+          .create({
+            current: true,
+            StatusTypeId: 2,
+            OrderId: req.body.id
+          })
+          .then(function(result){
+            // send updated quotes to customers through email
+            // TWILLIO API integration needed!!
 
-      // send updated quotes to customers through email
-      // TWILLIO API integration needed!!
-
-      // send updated quotes back to client to update admin's view
-      res.json({updatedQuotes: updatedDetails});
+            // send updated quotes back to client to update admin's view
+            res.json({updatedQuote: result});
+          }); // end of quote status create
+        }); // end of quote status update
     })
     .catch(function(err){
       res.json({error: err});
