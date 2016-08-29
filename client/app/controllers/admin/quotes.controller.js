@@ -14,9 +14,15 @@ function AdminQuotesController (AdminQuotesService, PutPriceForQuoteService) {
       quote.total = "N/A";
       quote.showDetails = false;
       quote.showText = "Show";
+      // check for PO_number
+      if (!quote.Order.po_number){
+        quote.Order.po_number = 'NA';
+      }
       // add comment storage and view switch
       quote.showCommentBox = false;
       quote.comments = [];
+      // add display switch for post pricing response
+      quote.isVisible = true;
       // make createdAt value pretty
       quote.Order.createdAt = moment(quote.Order.createdAt).format('MMM Do');
     });
@@ -90,13 +96,19 @@ function AdminQuotesController (AdminQuotesService, PutPriceForQuoteService) {
       comments: quote.comments,
       quoteDetails: quote.Order.Order_Details
     };
-    console.log(quoteInfo);
     PutPriceForQuoteService(quoteInfo, quoteInfo.id, pricedQuoteResponse);
   }
 
   // function for dealing with posted quote
-  function pricedQuoteResponse (quoteInfo){
-    console.log(quoteInfo);
+  function pricedQuoteResponse (updatedQuoteInfo){
+    //
+    console.log(updatedQuoteInfo);
+    // loop through quotes to check for match
+    vm.requestedQuotes.forEach(function(quote){
+      if (quote.OrderId === updatedQuoteInfo.data.updatedQuote.OrderId) {
+        quote.isVisible = false;
+      }
+    });
   }
 
   // call service and pass organization function into service nextFunc param
