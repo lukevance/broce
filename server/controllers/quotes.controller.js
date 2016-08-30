@@ -92,12 +92,23 @@ router.get('/', function(req, res){
 });
 
 // GET all requested quotes only
-router.get('/requested', function(req, res){
+router.get('/:type', function(req, res){
+  // check for admin authorization
+  console.log(req.params);
+  let statusType = [{StatusTypeId: 1}, {StatusTypeId: 2}];
+  let request = 'allQuotes';
+  if (req.params.type === 'requested'){
+    statusType = [{StatusTypeId: 1}];
+    request = 'requestedQuotes';
+  } else if (req.params.type === 'priced'){
+    statusType = [{StatusTypeId: 2}];
+    request = 'pricedQuotes';
+  }
   models.Order_Status
   .findAll({
     where: {
       current: true,
-      StatusTypeId: 1
+      $or: statusType
     },
     attributes: ["OrderId", "createdAt", "StatusTypeId"],
     include: [
@@ -134,7 +145,7 @@ router.get('/requested', function(req, res){
     //   };
     //   modQuotesList.push(newQuote);
     // }
-    res.json({requestedQuotes: quotesList});
+    res.json({[request]: quotesList});
   })
   .catch(function(err){
     res.json({error: err});
@@ -143,7 +154,7 @@ router.get('/requested', function(req, res){
 
 
 // GET current quotes for specified user
-router.get('/:userId', function(req, res){
+router.get('/user/:userId', function(req, res){
   console.log(req.params);
   res.json({message: 'Unfinished route, sorry :/', reqParams: req.params});
 });
@@ -200,7 +211,7 @@ router.post('/', function(req, res){
             // execute all promises from order_detail query array
             Promise.all(detailArray)
             .then(function(stuff){
-              // console.log(stuff);
+              console.log(stuff);
               // after all promises are returned find order record
               models.Order
               .findAll({
@@ -237,7 +248,7 @@ router.put('/:id', function(req, res){
 
   // check for id parameter
   if (req.params.id){
-    let updatedDetails = [];
+    // let updatedDetails = [];
 
     // function/promise for updating order_detail record
     const updateDetail = function(detail){
