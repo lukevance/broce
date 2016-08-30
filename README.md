@@ -7,8 +7,6 @@ Built with Node.js and Express
 
 Read more about the API [here](./server/server.md#api)
 
-[I'm a relative reference to a repository file](../blob/master/LICENSE)
-
 ### Database
 
 Built with PostgreSQL and Sequelize
