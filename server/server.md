@@ -8,7 +8,7 @@ database setup
 
 etc.
 
-## API
+## API <a name="api"></a>
 Explanation of basic REST API design for this server.
 
 ### Resources
