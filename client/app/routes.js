@@ -41,9 +41,13 @@ angular.module('partsApp')
               template: require('./pages/admin.html'),
               controller: 'AdminController as ADC'
             })
-            .when('/admin/quotes', {
-              template: require('./pages/admin/adminQuotes.html'),
-              controller: 'AdminQuotesController as AQC'
+            .when('/admin/quotes/requested', {
+              template: require('./pages/admin/requestedQuotes.html'),
+              controller: 'RequestedQuotesController as RQC'
+            })
+            .when('/admin/quotes/priced', {
+              template: require('./pages/admin/pricedQuotes.html'),
+              controller: 'PricedQuotesController as PQC'
             })
             .when('/404', {
               template: require('./pages/404.html'),

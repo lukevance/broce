@@ -16,7 +16,8 @@ angular.module('partsApp')
 
   // admin controllers
   .controller('AdminController', ["$scope", "AdminSummaryService", "DummyDataService", require('./admin.controller')])
-  .controller('AdminQuotesController', ["AdminQuotesService", "PutPriceForQuoteService", require('./admin/quotes.controller')])
+  .controller('RequestedQuotesController', ["AdminQuotesService", "PutPriceForQuoteService", require('./admin/requestedQuotes.controller')])
+  .controller('PricedQuotesController', ["AdminQuotesService", require('./admin/pricedQuotes.controller')])
 
   // error handling controllers
   .controller('ErrorController', require('./error.controller'));

@@ -1,6 +1,6 @@
 'use strict';
 
-function AdminQuotesController (AdminQuotesService, PutPriceForQuoteService) {
+function RequestedQuotesController (AdminQuotesService, PutPriceForQuoteService) {
   var vm = this;
   var moment = require('moment');
   // function for organizing quotes data
@@ -112,9 +112,9 @@ function AdminQuotesController (AdminQuotesService, PutPriceForQuoteService) {
   }
 
   // call service and pass organization function into service nextFunc param
-  AdminQuotesService(organizeQuotes);
+  AdminQuotesService('requested', organizeQuotes);
 
 } // end of controller
 
 
-module.exports = AdminQuotesController;
+module.exports = RequestedQuotesController;

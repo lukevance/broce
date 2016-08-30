@@ -12,9 +12,9 @@ function GetAdminSummaryData ($http, EnvironmentService) {
   };
 }
 
-function AdminQuotesService ($http, EnvironmentService) {
-  return function (nextFunc) {
-    return $http.get(EnvironmentService.path + '/quotes/requested')
+function AdminGetQuotesService ($http, EnvironmentService) {
+  return function (type, nextFunc) {
+    return $http.get(EnvironmentService.path + '/quotes/' + type)
     .then(function(quotesData){
       nextFunc(quotesData);
     })
@@ -24,7 +24,20 @@ function AdminQuotesService ($http, EnvironmentService) {
   };
 }
 
+function PutPriceForQuoteService ($http, EnvironmentService) {
+  return function (quoteBody, quoteId, nextFunc) {
+    return $http.put(EnvironmentService.path + '/quotes/' + quoteId, quoteBody)
+      .then(function(updatedQuotes){
+        nextFunc(updatedQuotes);
+      })
+      .catch(function(error){
+        console.log(error);
+      });
+  };
+}
+
 module.exports = {
   GetAdminSummaryData: GetAdminSummaryData,
-  AdminQuotesService: AdminQuotesService
+  AdminQuotesService: AdminGetQuotesService,
+  PutPriceForQuoteService: PutPriceForQuoteService
 };

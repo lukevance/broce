@@ -11,9 +11,9 @@ angular.module('partsApp')
   .service('GetUsersQuotes', ['$http', 'EnvironmentService', require('./orders.service').GetUsersQuotes])
 
   // quote services
-  .service('PutPriceForQuoteService', ['$http', 'EnvironmentService', require('./quotes.service').PutPriceForQuoteService])
 
   // admin services
   .service('AdminSummaryService', ['$http', 'EnvironmentService', require('./admin.service').GetAdminSummaryData])
   .service('AdminQuotesService', ['$http', 'EnvironmentService', require('./admin.service').AdminQuotesService])
+  .service('PutPriceForQuoteService', ['$http', 'EnvironmentService', require('./admin.service').PutPriceForQuoteService])
   .service('DummyDataService', require('./dummyData.service'));
