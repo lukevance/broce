@@ -156,7 +156,20 @@ router.get('/:type', function(req, res){
 // GET current quotes for specified user
 router.get('/user/:userId', function(req, res){
   console.log(req.params);
-  res.json({message: 'Unfinished route, sorry :/', reqParams: req.params});
+  console.log(req.query);
+  // check for user authorization
+    // does :userId param match userId in token?
+
+  models.Order
+  .findAll({
+    UserId: req.params.userId
+  })
+  .then(function(orders){
+    res.json({orders: orders});
+  })
+  .catch(function(err){
+    res.json({error: err});
+  });
 });
 
 // POST create new quote record
