@@ -33,8 +33,10 @@ angular.module('partsApp')
               template: require('./pages/user/quoteRequest.html'),
               controller: 'QuoteRequestController as QRC'
             })
-
-
+            .when('/user/priced-quotes', {
+              template: require('./pages/user/pricedQuotes.html'),
+              controller: 'UserQuotesController as UQC'
+            })
 
             // admin pages routes
             .when('/admin', {

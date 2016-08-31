@@ -13,6 +13,7 @@ angular.module('partsApp')
   // user controllers
   .controller('UserDashController', ["$location" ,require('./user/userDash.controller')])
   .controller('QuoteRequestController', ["NewQuoteService",require('./user/quoteRequest.controller')])
+  .controller('UserQuotesController', [require('./user/pricedQuotes.controller')])
 
   // admin controllers
   .controller('AdminController', ["$scope", "AdminSummaryService", "DummyDataService", require('./admin.controller')])
