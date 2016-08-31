@@ -155,14 +155,31 @@ router.get('/:type', function(req, res){
 
 // GET current quotes for specified user
 router.get('/user/:userId', function(req, res){
-  console.log(req.params);
-  console.log(req.query);
   // check for user authorization
     // does :userId param match userId in token?
 
-  models.Order
+  models.Order_Status
   .findAll({
-    UserId: req.params.userId
+    where: {
+      current: true,
+      StatusTypeId: 2
+    },
+    attributes: ["OrderId", "createdAt", "StatusTypeId"],
+    include: [
+      {
+        model: models.Order,
+        where: {
+          UserId: req.params.userId
+        },
+        include: [
+          {
+            model: models.Order_Detail,
+            attributes: ["machine_serial_num", "part_number", "quantity", "price", "id"]
+          }
+        ]
+      }
+    ],
+    limit: 20
   })
   .then(function(orders){
     res.json({orders: orders});
@@ -170,7 +187,7 @@ router.get('/user/:userId', function(req, res){
   .catch(function(err){
     res.json({error: err});
   });
-});
+}); // end of user/:userId
 
 // POST create new quote record
 router.post('/', function(req, res){
