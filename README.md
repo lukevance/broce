@@ -5,7 +5,7 @@ Summary text about the purpose of this app with minimal details
 
 Built with Node.js and Express
 
-Read more about the API [here](./server/server.md#api)
+Read more about the API [here](./server/docs/readMe.md#api)
 
 ### Database
 

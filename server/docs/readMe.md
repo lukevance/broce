@@ -20,6 +20,8 @@ Explanation of basic REST API design for this server.
 **GET /quotes/{requested or priced}**
 admin only, gets all current quote records. If parameter “requested” or “priced” is used will only return that type of quote
 
+[requested response](./getQuotesRequested.json)
+
 **GET /quotes/{userId}**
 if user role is not ‘admin’, must use a ‘userId’ parameter, returns quotes at any stage for any user
 

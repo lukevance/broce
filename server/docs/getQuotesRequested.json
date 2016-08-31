@@ -1,0 +1,44 @@
+{
+  "requestedQuotes": [
+    {
+      "OrderId": 1,
+      "createdAt": "2016-08-26T16:49:42.619Z",
+      "StatusTypeId": 1,
+      "Order": {
+        "id": 1,
+        "shipping_address": null,
+        "shipping_city": null,
+        "shipping_state": null,
+        "shipping_zip": null,
+        "po_number": null,
+        "createdAt": "2016-08-26T16:49:42.553Z",
+        "updatedAt": "2016-08-26T16:49:42.553Z",
+        "UserId": 3,
+        "User": {
+          "first_name": "Bob",
+          "last_name": "Taylor",
+          "email": "bob@thetaylors.com",
+          "Account": {
+            "account_name": "CAT Dealers"
+          }
+        },
+        "Order_Details": [
+          {
+            "machine_serial_num": 407638,
+            "part_number": "RX-019234",
+            "quantity": 2,
+            "price": null,
+            "id": 1
+          },
+          {
+            "machine_serial_num": 305322,
+            "part_number": "AV-097412",
+            "quantity": 1,
+            "price": null,
+            "id": 2
+          }
+        ]
+      }
+    }
+  ]
+}
