@@ -5,7 +5,7 @@ PostNewQuote.$inject=['$http'];
 
 function GetUsersQuotes ($http, EnvironmentService) {
   return function (userId, nextFunc) {
-    return $http.get(EnvironmentService.path + '/quotes/' + userId)
+    return $http.get(EnvironmentService.path + '/quotes/user/' + userId)
       .then(function(usersOrders){
         nextFunc(usersOrders);
       })
