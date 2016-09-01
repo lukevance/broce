@@ -3,7 +3,8 @@
 var angular = require('angular');
 
 angular.module('partsApp')
-  // .directive('navbar', require('./navbar.directive'))
+  // general directives
+  .directive('mainNav', require('./navbar.directive'))
 
   // admin directives
   .directive('adminOrders', require('./admin/adminOrders.directive'))
