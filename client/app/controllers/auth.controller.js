@@ -9,30 +9,40 @@ function AuthController($window, $location, SigninService, SignupService) {
     if ($window.localStorage.token) {
       delete $window.localStorage.token;
     }
-    // make sign in request
+    // make sign in request to server
     SigninService(credentials, afterSignIn);
   }
 
   // function to handle sign in response
   function afterSignIn(response) {
-      console.log(response);
-      if (response.data.token){
-        $window.localStorage.token = response.data.token;
-        var userProfile = JSON.parse(window.atob($window.localStorage.token.split(".")[1]));
-        // reroute correctly based on role
-        if (userProfile.role === 'standard') {
-          // reroute to user home
-        } else if (userProfile.role === 'admin') {
-          // reroute to admin home
-        }
-        // window.location="http://localhost:8080/#/form";
-        console.log(userProfile.role);
-      } else {
-        //clear sign in fields and add message
-        document.getElementById('signinEmail').value="";
-        document.getElementById('signinPassword').value="";
-        alert("sorry try again");
+    // check for auth token in response
+    if (response.data.token){
+      $window.localStorage.token = response.data.token;
+      var userProfile = JSON.parse(window.atob($window.localStorage.token.split(".")[1]));
+      // reroute correctly based on role
+      if (userProfile.role === 'standard') {
+        // reroute to user home
+        $location.path('/user/dash');
+      } else if (userProfile.role === 'admin') {
+        // reroute to admin home
+        $location.path('/admin');
       }
+      // if no token in response, handle appropriately
+    } else {
+      //clear sign in fields and add message
+      vm.userInfo.email = '';
+      vm.userInfo.password = '';
+      // show error message to inform user of unsuccessful request
+      vm.error = true;
+      // check for error message in response
+      if (response.data.message){
+        // set error message users view
+        vm.errorMessage = response.data.message;
+      } else {
+        // default error message for other unknown errors
+        vm.errorMessage = 'Something broke. Please try again.';
+      }
+    }
   }
 
   // function for submitting sign up form
