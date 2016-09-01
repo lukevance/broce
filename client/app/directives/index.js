@@ -4,7 +4,7 @@ var angular = require('angular');
 
 angular.module('partsApp')
   // general directives
-  .directive('mainNav', require('./navbar.directive'))
+  .directive('mainNav', ["$window", "$location", require('./navbar.directive')])
 
   // admin directives
   .directive('adminOrders', require('./admin/adminOrders.directive'))
