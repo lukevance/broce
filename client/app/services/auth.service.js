@@ -11,7 +11,6 @@ function SigninService ($http, EnvironmentService) {
   return function (userCredentials, nextFunc) {
     return $http.post(EnvironmentService.path + '/auth/signin', userCredentials)
     .then(function(authorizedUserData){
-      console.log(authorizedUserData);
       nextFunc(authorizedUserData);
     })
     .catch(function(err){
