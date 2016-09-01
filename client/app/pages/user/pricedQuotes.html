@@ -34,7 +34,7 @@
 
                 </td>
                 <td>
-                  <input class="btn btn-default" type="button" name="name" value="Show Details">
+                  <input class="btn btn-default" type="button" name="name" value="{{quote.detailsText}} Details" ng-click="UQC.switchDetailView(quote)">
                 </td>
               </tr>
               <tr ng-show="quote.showDetails">
@@ -74,7 +74,7 @@
                     <tbody>
                       <tr ng-repeat="part in quote.Order.Order_Details">
                         <td>
-                          {{part.machine_serial_number}}
+                          {{part.machine_serial_num}}
                         </td>
                         <td>
                           {{part.part_number}}
