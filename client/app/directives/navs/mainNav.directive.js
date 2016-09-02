@@ -3,11 +3,10 @@
 function mainNav () {
   return {
     restrict: 'E',
-    template: require('../pages/partials/navs/mainNav.html'),
+    template: require('../../pages/partials/navs/mainNav.html'),
     controller: function($scope, $window, $location) {
       if ($window.localStorage.token) {
         $scope.auth = true;
-        console.log($window.localStorage.token);
         $scope.userProfile = JSON.parse(window.atob($window.localStorage.token.split(".")[1]));
         console.log($scope.userProfile);
       } else {
