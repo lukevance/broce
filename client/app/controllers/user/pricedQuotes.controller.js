@@ -1,11 +1,9 @@
 function UserQuotesController (GetUsersQuotes) {
   var vm = this;
-  vm.message = "this should display the user's priced quotes.";
 
   GetUsersQuotes(3, loadQuotes);
 
   function loadQuotes (quotes) {
-    console.log(quotes);
     // set response data to variable on view model
     vm.usersQuotes = quotes.data.orders;
     // loop through var on view model to add functionality
@@ -32,6 +30,24 @@ function UserQuotesController (GetUsersQuotes) {
       quote.detailsText = 'Show';
     }
   }
+
+  // function for opening shipping form
+  vm.showShipping = showShipping;
+  function showShipping (quote) {
+    clearShipping();
+    vm.shippingIsVisible = true;
+    vm.quoteToOrder = quote;
+    console.log(vm.quoteToOrder);
+  }
+
+  // function to clear and hide shipping form
+  vm.clearShipping = clearShipping;
+  function clearShipping () {
+    vm.shippingIsVisible = false;
+    delete vm.quoteToOrder;
+    vm.quoteToOrder = {};
+  }
 }
+
 
 module.exports = UserQuotesController;

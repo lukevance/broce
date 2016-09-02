@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-md-8" ng-hide="UQC.quoteResponse">
+    <div class="col-md-7" ng-hide="UQC.quoteResponse">
       <div class="panel quote-page">
         <div class="panel-body">
           <h2>Priced Quotes</h2>
@@ -67,7 +67,7 @@
                       </tr>
                       <tr>
                         <th colspan="4">
-                          <input class="btn btn-default" style="float: right;" type="button" name="name" value="Order this Quote" ng-click="UQC.requestQuote()">
+                          <input class="btn btn-default" style="float: right;" type="button" name="name" value="Order this Quote" ng-click="UQC.showShipping(quote)">
                         </th>
                       </tr>
                     </tfoot>
@@ -97,6 +97,28 @@
         </div>
       </div>
     </div> <!-- end of summary section -->
+
+    <div class="col-md-5">
+      <div class="panel panel-default" ng-show="UQC.shippingIsVisible">
+        <div class="panel-heading">
+          <h3>Add Shipping Info</h3>
+        </div>
+        <div class="panel-body">
+          <p>
+            shipping form here
+          </p>
+          <p>
+            {{UQC.quoteToOrder.Order.po_number}}
+          </p>
+          <p>
+            Total: {{UQC.quoteToOrder.total}}
+          </p>
+        </div>
+        <div class="panel-footer">
+          <input type="button" class="btn btn-default" name="name" value="Cancel" ng-click="UQC.clearShipping()">
+        </div>
+      </div>
+    </div>
 
   </div>
 </div>
