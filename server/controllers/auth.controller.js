@@ -65,7 +65,11 @@ router.post('/signin', function(req, res){
   models.User
     .findOne({
       where: {
-        email: req.body.email      }
+        email: req.body.email
+      },
+      include: [
+        {model: models.Account}
+      ]
     })
     .then(function(userInfo){
       if (userInfo) {
@@ -79,18 +83,25 @@ router.post('/signin', function(req, res){
             if (response === true) {
               console.log('correct password');
               // console.log(userInfo.dataValues);
+              let userProfile = {
+                first_name: userInfo.dataValues.first_name,
+                last_name: userInfo.dataValues.last_name,
+                email: userInfo.dataValues.email,
+                role: userInfo.dataValues.role,
+                account: userInfo.dataValues.Account
+              };
 
-              let token = jwt.sign(userInfo.dataValues, secret, {expiresIn: 60*60*2});
+              let token = jwt.sign(userProfile  , secret, {expiresIn: 60*60*2});
               // console.log(token);
               // send signed token
               res.json({token: token});
             } else {
-              res.json({message: 'username or password did not match'});
+              res.json({message: 'email or password did not match'});
             }
           }
         });
       } else {
-        res.json({message: 'username or password did not match'});
+        res.json({message: 'email or password did not match'});
       }
     });
 });
