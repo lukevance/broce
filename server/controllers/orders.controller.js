@@ -42,16 +42,57 @@ router.post('/', function(req, res){
 // POST approve new order from existing quote
 router.post('/:quoteId', function(req, res){
   // check orderId param matches req.body field
+  if (req.params.quoteId === req.body.id) {
+    console.log(req.body);
+    // update shipping fields in order
+    models.Order
+      .update({
+        shipping_city: req.body.shipping_city,
+        shipping_address: req.body.shipping_address,
+        shipping_state: req.body.shipping_state,
+        shipping_zip: req.body.shipping_zip
+      },
+      // UserId must match user id in token for success
+      {
+        where: {
+          id: req.body.id,
+          UserId: req.body.UserId
+        }
+      })
+      .then(function(rowsUpdated){
+        console.log(rowsUpdated);
+        if (rowsUpdated[0] === 1){
+          console.log('success');
+          
+          // .then create new order_status record for order
 
-  // find order by ID
+            // .then update old order_status record as active: f
 
-    // .then update shipping fields in order
+          models.Order
+          .findOne({
+            where: {
+              id: req.body.id
+            }
+          })
+          .then(function(orderInfo){
+            res.json({order: orderInfo});
+          });
+        } else {
+          console.log('fail');
+          res.json({message: 'Bad request, try again'});
+        }
 
-      // .then create new order_status record for order
 
-        // .then update old order_status record as active: f
+      })
+      .catch(function(err){
+        res.json({error: err});
+      });
 
-  res.json({message: 'Unfinished route: "post new order from quote"'});
+  // if param id and body id don't match
+  } else {
+    res.json({message: 'order id doesnt match'});
+  }
+
 });
 
 module.exports = router;

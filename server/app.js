@@ -14,7 +14,6 @@ var routes = require('./routes');
 // app.use('/user/profile', expressJwt({secret: process.env.JWT_Secret}));
 
 
-
 var app = express();
 
 app.use(logger('dev'));
@@ -26,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // cors middleware
 app.use(cors());
 
+// Direct all requests to routes file to be handled appropriately
 app.use('/', routes);
 
 // catch 404 and forward to error handler

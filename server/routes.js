@@ -15,7 +15,7 @@ router.use('/parts', parts);
 router.use('/users', users);
 router.use('/accounts', accounts);
 
-/* GET home page. */
+/* GET home message for default API call. */
 router.get('/', function(req, res) {
   res.json({ title: 'Broce Parts Api' });
 });
