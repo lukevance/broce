@@ -47,7 +47,7 @@ used to approve of quote and create order from quote record, shipping info in bo
 **POST /orders**
 new order is created at stage “placed” despite no prices
 
-**GET /orders/approved/shippingInfo**
+**GET /orders/approved**
 admin only, gets the shipping info of all orders that have been approved and
 have StatusTypeId of 3 or 4
 
