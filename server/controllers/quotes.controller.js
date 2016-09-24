@@ -348,4 +348,44 @@ router.put('/:id', function(req, res){
 
 }); //end of PUT route for priced quotes
 
+// PUT = update or create statusType of quote - ADMIN ONLY
+router.put('/:id/statusTypeId=:statusTypeId', function(req, res) {
+  // check for admin role first
+
+  // check for id parameter
+  if (req.params.id) {
+    // statusTypeId must be an integer in the set {1,4}
+    // this regex should be changed if we add or remove status type ids to the DB
+    if (req.params.statusTypeId && req.params.statusTypeId.match(/^[1-4]$/)) {
+
+      models.Order_Status
+        .update({
+          StatusTypeId: req.params.statusTypeId
+        }, {
+          where: {
+            OrderId: req.params.id,
+            current: true
+          }
+        })
+        .then(function(result) {
+          console.log(result);
+          // assuming we want to send some notification to someone here...
+          // send updated status notification to someone via email
+          // TWILIO API integration needed!!
+
+          // send updated quote back to client to update admin's view
+          res.json({updatedQuote: result});
+        })
+        .catch(function(err){
+          res.json({error: err});
+        });
+
+    } else {
+      res.status(403).json({error: 'Resource expects statusTypeId parameter in set {1,4}'});
+    }
+  } else {
+    res.status(403).json({error: 'Resource expects id parameter'});
+  }
+}); //end of PUT route for quote statusType
+
 module.exports = router;
