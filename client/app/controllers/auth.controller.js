@@ -64,6 +64,11 @@ function AuthController($window, $location, SigninService, SignupService) {
 
   }
 
+  vm.enterPressed = enterPressed;
+  function enterPressed(keyEvent, userInfo) {
+    if (keyEvent.which === 13) submitSignIn(userInfo);
+  }
+
 
 }
 

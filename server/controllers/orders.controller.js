@@ -28,6 +28,39 @@ router.get('/', function(req, res){
   //   });
 });
 
+// GET all approved orders with shipping info - admin only
+router.get('/approved', function(req, res) {
+  // check for admin role first
+
+  models.Order_Status
+    .findAll({
+      where: {
+        StatusTypeId: {
+          $and: {
+            // if StatusTypeId is 3 or 4
+            $gt: 2,
+            $lt: 5
+          }
+        },
+        // we only want to return approved orders, so only where current = false
+        current: false
+      }, 
+      attributes: ['id', 'StatusTypeId', 'OrderId'],
+      // include shipping info from the Order table
+      include:[{
+        model: models.Order,
+        attributes: ['shipping_address', 'shipping_city', 'shipping_state', 'shipping_zip', 'po_number']
+      }]
+    })
+    .then(function(orders) {
+      res.json({orders: orders});
+    })
+    .catch(function(err) {
+      res.json({error: err});
+    })
+
+});
+
 // GET current orders for specified user
 router.get('/:userId', function(req, res){
   console.log(req.params);
