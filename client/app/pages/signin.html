@@ -10,8 +10,12 @@
             </div>
             <div class="account-wall">
                 <form class="form-signin">
-                    <input type="text" id="signinEmail" class="form-control" placeholder="Email" required autofocus ng-model="AU.userInfo.email">
-                    <input type="password" id="signinPassword" class="form-control" placeholder="Password" required ng-model="AU.userInfo.password">
+                    <input type="text" id="signinEmail" class="form-control"
+                    placeholder="Email" required autofocus
+                    ng-model="AU.userInfo.email" ng-keypress="AU.enterPressed
+                    ($event, AU.userInfo)">
+                    <input type="password" id="signinPassword" class="form-control" placeholder="Password" required ng-model="AU.userInfo.password" ng-keypress="AU.enterPressed
+                    ($event, AU.userInfo)">
                     <button class="btn btn-lg btn-primary btn-block" id="signin" type="button" ng-click="AU.submit(AU.userInfo)">
                         Sign in</button>
                     <label class="checkbox pull-left">
