@@ -28,6 +28,29 @@ router.get('/', function(req, res){
   //   });
 });
 
+// GET all shipped orders (orders with StatusTypeId = 4) - ADMIN ONLY
+router.get('/shipped', function(req, res) {
+  // check for admin role first
+
+  models.Order_Status
+    .findAll({
+      where: {
+        StatusTypeId: 4
+      },
+      attributes: ['id'],
+      include: [{
+        model: models.Order
+      }]
+    })
+    .then(function(orders) {
+      res.json({orders: orders});
+    })
+    .catch(function(err) {
+      res.json({error: err});
+    })
+
+});
+
 // GET current orders for specified user
 router.get('/:userId', function(req, res){
   console.log(req.params);
