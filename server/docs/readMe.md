@@ -30,6 +30,10 @@ can be used by any role, creates new quote record at stage ‘requested’
 
 **PUT /quotes/{id}** - admin only, quote ‘id' is required, used for adding prices to requested quotes
 
+**PUT /quotes/{id}/statusTypeId={statusTypeId}** - admin only, quote 'id' is
+required, statusTypeId is required to be an integer within the set {1,4}, used
+for updating or creating statusTypeId of a quote
+
 ### Orders
 **GET /orders/{placed or shipped}**
 admin only, gets all current order records. If parameter “placed” or “shipped” is used will only return that type of order
